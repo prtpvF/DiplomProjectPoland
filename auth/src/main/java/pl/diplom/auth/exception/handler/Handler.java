@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import pl.diplom.auth.exception.ApiException;
 import pl.diplom.auth.exception.PersonAlreadyExistsException;
+import pl.diplom.auth.exception.PersonDoesntExistException;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -18,5 +19,12 @@ public class Handler {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ApiException exception = new ApiException(e.getMessage(), e, status, ZonedDateTime.now(ZoneId.of("Z")));
         return new ResponseEntity<>(exception, status);
+    }
+
+    @ExceptionHandler(PersonDoesntExistException.class)
+    public ResponseEntity<Object> personDoesntExistExceptionHandler(PersonDoesntExistException e){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ApiException exception = new ApiException(e.getMessage(),e, status, ZonedDateTime.now(ZoneId.of("Z")));
+        return new ResponseEntity<>(exception,status);
     }
 }

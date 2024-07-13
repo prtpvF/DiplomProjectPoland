@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import pl.diplom.auth.exception.handler.Handler;
 
 @EnableWebSecurity
 @Configuration
@@ -17,7 +18,6 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(request ->
                 request.requestMatchers("/auth/registration", "/auth/login").permitAll()
                         .anyRequest().authenticated());
-        http.formLogin(login -> login.loginProcessingUrl("/auth/login"));
         http.logout(logout -> logout.logoutUrl("/auth/logout"));
         return http.build();
     }
