@@ -1,4 +1,4 @@
-package util;
+package pl.diplom.auth.util;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +18,7 @@ public class ObjectMapper {
         Person person = new Person();
         person.setName(registrationDto.getName());
         person.setUsername(registrationDto.getUsername());
+        person.setEmail(registrationDto.getEmail());
         person.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
         person.setAge(registrationDto.getAge());
         person.setRole(definePersonRole(registrationDto.isConsumer()));

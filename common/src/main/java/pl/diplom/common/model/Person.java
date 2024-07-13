@@ -1,6 +1,7 @@
 package pl.diplom.common.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -40,6 +41,11 @@ public class Person {
 
     @CreationTimestamp
     private Timestamp createdAt;
+
+    @Email
+    @NotBlank
+    @Length(min=5, max = 150)
+    private String email;
 
     @UpdateTimestamp
     private Timestamp updatedAt;

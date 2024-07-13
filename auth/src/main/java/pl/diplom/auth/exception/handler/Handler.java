@@ -1,5 +1,6 @@
 package pl.diplom.auth.exception.handler;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,6 +25,13 @@ public class Handler {
     @ExceptionHandler(PersonDoesntExistException.class)
     public ResponseEntity<Object> personDoesntExistExceptionHandler(PersonDoesntExistException e){
         HttpStatus status = HttpStatus.NOT_FOUND;
+        ApiException exception = new ApiException(e.getMessage(),e, status, ZonedDateTime.now(ZoneId.of("Z")));
+        return new ResponseEntity<>(exception,status);
+    }
+
+    @ExceptionHandler(JWTVerificationException.class)
+    public ResponseEntity<Object> tokenHasExpiredHandler(JWTVerificationException e){
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
         ApiException exception = new ApiException(e.getMessage(),e, status, ZonedDateTime.now(ZoneId.of("Z")));
         return new ResponseEntity<>(exception,status);
     }
