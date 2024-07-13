@@ -18,4 +18,8 @@ public class Role {
 
     @OneToMany(mappedBy = "role")
     private List<Person> persons = new ArrayList<>();
+
+    public Role(String roleName){
+        this.roleName = roleName;
+    }
 }

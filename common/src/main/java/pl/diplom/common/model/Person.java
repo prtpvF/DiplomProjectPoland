@@ -47,10 +47,13 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Order> ordersHistory = new ArrayList<>();
 
-    @OneToMany(mappedBy = "addresses", cascade = {CascadeType.ALL} )
+    @OneToMany(mappedBy = "addresses", cascade = {CascadeType.REMOVE} )
     private List<Address> addresses = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+    @NotBlank
+    @Length(min=5, max=40)
+    private String password;
 }

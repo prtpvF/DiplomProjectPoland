@@ -19,7 +19,7 @@ public class AdminOrder {
     @ManyToOne
     private Person consumer;
     private double cost;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "status_id")
     private Status status;
     @CreationTimestamp
