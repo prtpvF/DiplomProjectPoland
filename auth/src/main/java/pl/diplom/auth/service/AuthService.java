@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.diplom.auth.dto.JwtRequestDto;
 import pl.diplom.auth.dto.RegistrationDto;
+import pl.diplom.auth.dto.RegistrationMessageDto;
 import pl.diplom.auth.exception.PersonAlreadyExistsException;
 import pl.diplom.auth.exception.PersonDoesntExistException;
 import pl.diplom.auth.jwt.JwtService;
+import pl.diplom.auth.util.MessageTypeEnum;
 import pl.diplom.auth.util.ObjectMapper;
 import pl.diplom.common.model.Person;
 import pl.diplom.common.repository.PersonRepository;
@@ -17,11 +19,13 @@ public class AuthService {
     private final PersonRepository personRepository;
     private final ObjectMapper objectMapper;
     private final JwtService jwtService;
+    private final RabbitService rabbitService;
 
     public void registration(RegistrationDto registrationDto) {
         Person person = objectMapper.convertFromRegisterDto(registrationDto);
         isPersonDataValid(person);
         personRepository.save(person);
+        rabbitService.sendMessageToQueue(registrationDto.getUsername());
     }
 
     private void isPersonDataValid(Person person) {
@@ -48,6 +52,8 @@ public class AuthService {
         isPersonExist(jwtRequestDto.getUsername());
         return jwtService.generateToken(jwtRequestDto.getUsername());
     }
+
+
 
 
 }
