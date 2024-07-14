@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.diplom.auth.dto.JwtRequestDto;
 import pl.diplom.auth.dto.RegistrationDto;
-import pl.diplom.auth.jwt.JwtService;
 import pl.diplom.auth.service.AuthService;
 
 @RestController

@@ -1,4 +1,4 @@
-package pl.diplom.auth.jwt;
+package pl.diplom.common.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
