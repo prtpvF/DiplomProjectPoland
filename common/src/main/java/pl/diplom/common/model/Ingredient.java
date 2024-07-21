@@ -12,27 +12,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Pizza")
+@Table(name = "Ingredient")
 @Data
-public class Pizza {
+public class Ingredient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int id;
 
     @NotBlank
-    @Length(min = 5, max = 30)
+    @Length(min=2, max=30)
     private String name;
 
     @NotNull
-    @Min(0)
-    @Max(3000)
+    @Min(1)
+    @Max(1000)
     private double cost;
 
-    @OneToOne(mappedBy = "pizza")
+    @ManyToOne()
+    @JoinColumn(name = "ingredients_id")
     private Recipe recipe;
-
-    @ManyToMany(mappedBy = "pizzas")
-    private List<Order> orders = new ArrayList<>();
-
-
 }

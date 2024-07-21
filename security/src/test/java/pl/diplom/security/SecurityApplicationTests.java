@@ -1,10 +1,10 @@
-package pl.diplom.admin;
+package pl.diplom.security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AdminApplicationTests {
+class SecurityApplicationTests {
 
 	@Test
 	void contextLoads() {
