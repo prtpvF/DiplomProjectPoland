@@ -21,8 +21,8 @@ public class Status {
     private String status;
 
     @OneToMany(mappedBy = "status")
-    private List<Order> orders = new ArrayList<>();
+    private List<PersonOrder> personOrders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "products")
+    @OneToMany(mappedBy = "status")
     private List<AdminOrder> adminsOrders = new ArrayList<>();
 }

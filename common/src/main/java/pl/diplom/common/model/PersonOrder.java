@@ -16,11 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "Person_Order")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class PersonOrder {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -34,14 +35,12 @@ public class Order {
     private Person person;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "status_id")
     private Status status;
 
-    @ManyToMany(cascade = CascadeType.REFRESH)
-    @JoinTable(name = "Order_Address",
-            joinColumns = {@JoinColumn(name = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "adddress_id")})
-    private List<Address> address = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -49,7 +48,7 @@ public class Order {
     @ManyToMany
     @JoinTable(name = "Order_Pizza",
             joinColumns = {@JoinColumn(name = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "order_id")})
+            inverseJoinColumns = {@JoinColumn(name = "pizza_id")})
     private List<Pizza> pizzas = new ArrayList<>();
 
     @NotNull

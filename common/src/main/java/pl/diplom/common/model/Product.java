@@ -8,9 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "Product")
 @Data

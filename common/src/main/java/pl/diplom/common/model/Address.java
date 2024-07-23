@@ -1,21 +1,24 @@
 package pl.diplom.common.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Address")
+@Data
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "person_id")
     private Person person;
 
-    @ManyToMany(mappedBy = "address")
-    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "address")
+    private List<PersonOrder> orders = new ArrayList<>();
 }

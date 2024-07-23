@@ -23,43 +23,42 @@ import java.util.List;
 @NoArgsConstructor
 public class Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int id;
 
-    @NotBlank
-    @Length(min=4, max = 20)
-    private String username;
+        @NotBlank
+        @Length(min=4, max = 20)
+        private String username;
 
-    @NotBlank
-    @Length(min = 2, max = 20)
-    private String name;
+        @NotBlank
+        @Length(min = 2, max = 20)
+        private String name;
 
-    @Min(value = 15)
-    @Max(value = 100)
-    private int age;
+        @Min(value = 15)
+        @Max(value = 100)
+        private int age;
 
-    @CreationTimestamp
-    private Timestamp createdAt;
+        @CreationTimestamp
+        private Timestamp createdAt;
 
-    @Email
-    @NotBlank
-    @Length(min=5, max = 150)
-    private String email;
+        @Email
+        @NotBlank
+        @Length(min=5, max = 150)
+        private String email;
 
-    @UpdateTimestamp
-    private Timestamp updatedAt;
+        @UpdateTimestamp
+        private Timestamp updatedAt;
 
-    @OneToMany(mappedBy = "person")
-    private List<Order> ordersHistory = new ArrayList<>();
+        @OneToMany(mappedBy = "person")
+        private List<PersonOrder> ordersHistory = new ArrayList<>();
 
-    @OneToMany(mappedBy = "addresses", cascade = {CascadeType.REMOVE} )
-    private List<Address> addresses = new ArrayList<>();
+        @OneToMany(mappedBy = "person", cascade = {CascadeType.REMOVE} )
+        private List<Address> addresses = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
-    @NotBlank
-    @Length(min=5, max=40)
-    private String password;
+        @ManyToOne(cascade = CascadeType.REFRESH)
+        @JoinColumn(name = "role_id", nullable = false)
+        private Role role;
+        @NotBlank
+        private String password;
 }

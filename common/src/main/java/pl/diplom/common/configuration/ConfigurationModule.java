@@ -10,4 +10,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = "pl.diplom.common.model")
 @Configuration
 public class ConfigurationModule{
+
 }

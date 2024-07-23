@@ -8,9 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "Ingredient")
 @Data
@@ -28,7 +25,7 @@ public class Ingredient {
     @Max(1000)
     private double cost;
 
-    @ManyToOne()
-    @JoinColumn(name = "ingredients_id")
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 }

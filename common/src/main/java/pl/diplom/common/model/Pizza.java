@@ -32,7 +32,7 @@ public class Pizza {
     private Recipe recipe;
 
     @ManyToMany(mappedBy = "pizzas")
-    private List<Order> orders = new ArrayList<>();
+    private List<PersonOrder> personOrders = new ArrayList<>();
 
 
 }

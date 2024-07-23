@@ -1,7 +1,6 @@
 package pl.diplom.common.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,8 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne(mappedBy = "recipe")
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "recipe_id", referencedColumnName = "id")
     private Pizza pizza;
 
     @OneToMany(mappedBy = "recipe")
