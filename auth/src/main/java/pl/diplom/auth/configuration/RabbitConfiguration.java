@@ -14,27 +14,27 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfiguration {
 
-    @Bean
-    public Queue myQueue(){
-        return new Queue("emailQueue");
-    }
-
-    @Bean
-    public RabbitTemplate rabbitTemplate(){
-        return new RabbitTemplate(connectionFactory());
-    }
-    @Bean
-    public ConnectionFactory connectionFactory(){
-        return new CachingConnectionFactory("localhost");
-    }
-
-    @Bean
-    public AmqpAdmin amqpAdmin(){
-        return new RabbitAdmin(connectionFactory());
-    }
-
-    @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
+//    @Bean
+//    public Queue myQueue(){
+//        return new Queue("emailQueue");
+//    }
+//
+//    @Bean
+//    public RabbitTemplate rabbitTemplate(){
+//        return new RabbitTemplate(connectionFactory());
+//    }
+//    @Bean
+//    public ConnectionFactory connectionFactory(){
+//        return new CachingConnectionFactory("localhost");
+//    }
+//
+//    @Bean
+//    public AmqpAdmin amqpAdmin(){
+//        return new RabbitAdmin(connectionFactory());
+//    }
+//
+//    @Bean
+//    public MessageConverter jsonMessageConverter() {
+//        return new Jackson2JsonMessageConverter();
+//    }
 }

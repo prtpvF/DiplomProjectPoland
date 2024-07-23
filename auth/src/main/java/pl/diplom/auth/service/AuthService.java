@@ -19,7 +19,6 @@ import pl.diplom.security.jwt.JwtUtil;
 @Slf4j
 public class AuthService {
 
-        private final RabbitService rabbitService;
         private final PersonRepository personRepository;
         private final ObjectMapper objectMapper;
         private final JwtUtil jwtUtil;
@@ -29,7 +28,6 @@ public class AuthService {
             Person person = objectMapper.convertFromRegisterDto(registrationDto);
             isPersonDataValid(person);
             personRepository.save(person);
-            rabbitService.sendMessageToQueue(registrationDto.getUsername());
         }
 
         public String login(LoginDto loginDto){

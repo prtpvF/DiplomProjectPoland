@@ -32,7 +32,7 @@ public class SecurityConfiguration {
                         "/auth/login",
                         "/public/party/**",
                         "/public/person/find",
-                        "/auth/logout").permitAll().anyRequest().authenticated())
+                        "/auth/logout").permitAll().anyRequest().permitAll())
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         http.logout(logout ->
                         logout
