@@ -1,57 +1,61 @@
 package pl.diplom.auth.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.diplom.auth.dto.JwtRequestDto;
+import pl.diplom.auth.dto.LoginDto;
 import pl.diplom.auth.dto.RegistrationDto;
+import pl.diplom.auth.exception.IncorrectPasswordException;
 import pl.diplom.auth.exception.PersonAlreadyExistsException;
 import pl.diplom.auth.exception.PersonDoesntExistException;
-import pl.diplom.common.jwt.JwtService;
 import pl.diplom.auth.util.ObjectMapper;
 import pl.diplom.common.model.Person;
 import pl.diplom.common.repository.PersonRepository;
+import pl.diplom.security.jwt.JwtUtil;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthService {
-    private final PersonRepository personRepository;
-    private final ObjectMapper objectMapper;
-    private final JwtService jwtService;
-    private final RabbitService rabbitService;
 
-    public void registration(RegistrationDto registrationDto) {
-        Person person = objectMapper.convertFromRegisterDto(registrationDto);
-        isPersonDataValid(person);
-        personRepository.save(person);
-        rabbitService.sendMessageToQueue(registrationDto.getUsername());
-    }
+        private final RabbitService rabbitService;
+        private final PersonRepository personRepository;
+        private final ObjectMapper objectMapper;
+        private final JwtUtil jwtUtil;
+        private final PasswordEncoder passwordEncoder;;
 
-    private void isPersonDataValid(Person person) {
-        isEmailTaken(person);
-        isUsernameTaken(person);
-    }
+        public void registration(RegistrationDto registrationDto) {
+            Person person = objectMapper.convertFromRegisterDto(registrationDto);
+            isPersonDataValid(person);
+            personRepository.save(person);
+            rabbitService.sendMessageToQueue(registrationDto.getUsername());
+        }
 
-    private void isUsernameTaken(Person person) {
-        personRepository.findByUsername(person.getUsername())
-                .orElseThrow(() -> new PersonAlreadyExistsException("this username is taken"));
-    }
+        public String login(LoginDto loginDto){
+            Person person = findByUsername(loginDto.getUsername());
+            doPasswordsMatch(person, loginDto);
+            log.info("person has successfully logged in: {}", person.getUsername());
+            return jwtUtil.generateToken(person.getUsername());
+        }
 
-    private void isEmailTaken(Person person) {
-        personRepository.findByEmail(person.getEmail())
-                .orElseThrow(() -> new PersonAlreadyExistsException("this email is taken"));
-    }
+        private void doPasswordsMatch(Person person, LoginDto loginDto){
+            if(!passwordEncoder.matches(loginDto.getPassword(), person.getPassword())){
+                throw new IncorrectPasswordException("incorrect password");
+            }
+        }
 
-    private void isPersonExist(String username) {
-        personRepository.findByUsername(username)
-                .orElseThrow(() -> new PersonDoesntExistException("person with this username doesn't exist"));
-    }
+        private Person findByUsername(String username){
+            return personRepository.findByUsername(username)
+                    .orElseThrow(()
+                            -> new PersonDoesntExistException("cannot find person with this username"));
+        }
 
-    public String generateToken(JwtRequestDto jwtRequestDto) {
-        isPersonExist(jwtRequestDto.getUsername());
-        return jwtService.generateToken(jwtRequestDto.getUsername());
-    }
-
-
-
-
+        private void isPersonDataValid(Person person){
+            personRepository.findByUsernameOrEmail(person.getUsername(),
+                    person.getEmail())
+                    .ifPresent(ex
+                            -> new PersonAlreadyExistsException("person with" +
+                            " this username or email already exists"));
+        }
 }

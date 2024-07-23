@@ -10,16 +10,15 @@ import pl.diplom.auth.util.MessageTypeEnum;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RabbitService {
-    private final RabbitTemplate rabbitTemplate;
-    private final Logger logger;
 
-    public void sendMessageToQueue(String username){
-        RegistrationMessageDto message = new RegistrationMessageDto(username, MessageTypeEnum.REGISTRATION);
-        rabbitTemplate.convertAndSend("authQueue",message);
-        logger.info("message to notification service was successfully send -> %s", message.toString());
-    }
+        private final RabbitTemplate rabbitTemplate;
 
 
-
+        public void sendMessageToQueue(String username){
+            RegistrationMessageDto message = new RegistrationMessageDto(username, MessageTypeEnum.REGISTRATION);
+            rabbitTemplate.convertAndSend("authQueue",message);
+            log.info("message to notification service was successfully send -> %s", message.toString());
+        }
 }
