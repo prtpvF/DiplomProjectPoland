@@ -36,6 +36,7 @@ public class JwtFilter extends GenericFilterBean {
             HttpServletRequest request = (HttpServletRequest) servletRequest;
             HttpServletResponse response = (HttpServletResponse) servletResponse;
             String token = jwtUtil.extractTokenFromHeader(request);
+            log.info("jyjtyutyuty");
             try {
                 if (token != null) {
                     String username = jwtUtil.validateTokenAndRetrieveClaim(token);

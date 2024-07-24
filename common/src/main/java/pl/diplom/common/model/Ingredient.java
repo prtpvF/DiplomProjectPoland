@@ -12,20 +12,21 @@ import org.hibernate.validator.constraints.Length;
 @Table(name = "Ingredient")
 @Data
 public class Ingredient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private int id;
 
-    @NotBlank
-    @Length(min=2, max=30)
-    private String name;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY )
+        private int id;
 
-    @NotNull
-    @Min(1)
-    @Max(1000)
-    private double cost;
+        @NotBlank
+        @Length(min=2, max=30)
+        private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+        @NotNull
+        @Min(1)
+        @Max(1000)
+        private double cost;
+
+        @ManyToOne
+        @JoinColumn(name = "recipe_id")
+        private Recipe recipe;
 }
