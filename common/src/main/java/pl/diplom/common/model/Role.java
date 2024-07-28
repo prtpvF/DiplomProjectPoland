@@ -2,9 +2,7 @@ package pl.diplom.common.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,8 @@ import java.util.List;
 @Table(name = "Role")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +26,10 @@ public class Role {
 
     public Role(String roleName){
         this.roleName = roleName;
+    }
+
+    public Role(String roleName, int id) {
+        this.roleName = roleName;
+        this.id = id;
     }
 }

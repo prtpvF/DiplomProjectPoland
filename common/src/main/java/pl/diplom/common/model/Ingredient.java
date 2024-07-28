@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.Length;
 public class Ingredient {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY )
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
         @NotBlank

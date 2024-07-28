@@ -61,4 +61,8 @@ public class Person {
         private Role role;
         @NotBlank
         private String password;
+
+        public void addAddress(Address address) {
+                this.addresses.add(address);
+        }
 }

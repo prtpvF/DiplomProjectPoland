@@ -26,10 +26,6 @@ public class PersonOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
-    @Length(min=4, max =30)
-    private String title;
-
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
