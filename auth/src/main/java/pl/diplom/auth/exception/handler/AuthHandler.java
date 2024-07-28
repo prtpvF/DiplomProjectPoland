@@ -19,8 +19,7 @@ public class AuthHandler {
         @ExceptionHandler(PersonAlreadyExistsException.class)
         public ResponseEntity<Object> personAlreadyExistsExceptionHandler(PersonAlreadyExistsException e){
             HttpStatus status = HttpStatus.BAD_REQUEST;
-            ApiException exception = new ApiException(e.getMessage(), e, status, ZonedDateTime.now(ZoneId.of("Z")));
-            return new ResponseEntity<>(exception, status);
+            return new ResponseEntity<>(e.getMessage(), status);
         }
 
         @ExceptionHandler(PersonDoesntExistException.class)
