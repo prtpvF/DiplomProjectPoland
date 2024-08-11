@@ -13,8 +13,6 @@ import pl.diplom.common.util.RoleEnum;
 @RequiredArgsConstructor
 public class ObjectMapper {
 
-    private final RoleRepository repository;
-    private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
     public Person convertFromRegisterDto(RegistrationDto registrationDto) {
@@ -22,10 +20,9 @@ public class ObjectMapper {
         person.setName(registrationDto.getName());
         person.setUsername(registrationDto.getUsername());
         person.setEmail(registrationDto.getEmail());
-        person.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
+        person.setPassword(registrationDto.getPassword());
         person.setAge(registrationDto.getAge());
         person.setRole(definePersonRole(registrationDto.isConsumer()));
-        System.out.println(person.getRole());
         return person;
     }
 

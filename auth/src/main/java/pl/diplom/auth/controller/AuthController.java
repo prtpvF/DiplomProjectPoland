@@ -12,6 +12,9 @@ import pl.diplom.auth.dto.LoginDto;
 import pl.diplom.auth.dto.RegistrationDto;
 import pl.diplom.auth.service.AuthService;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -19,19 +22,18 @@ public class AuthController {
 
         private final AuthService authService;
 
-    @PostMapping("/registration")
-    public ResponseEntity registration(@Valid @RequestBody RegistrationDto registrationDto,
-                                       BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        @PostMapping("/registration")
+        public ResponseEntity<List<?>> registration(@Valid @RequestBody RegistrationDto registrationDto,
+                                                                BindingResult bindingResult) {
+            if (bindingResult.hasErrors()) {
+                return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+            }
+            authService.registration(registrationDto);
+            return new ResponseEntity("success", HttpStatus.CREATED);
         }
-        authService.registration(registrationDto);
-        return new ResponseEntity("success", HttpStatus.CREATED);
-    }
 
-
-    @PostMapping("/login")
-        public String login(@RequestBody LoginDto loginDto) {
+        @PostMapping("/login")
+        public Map<String, String> login(@RequestBody LoginDto loginDto) {
             return authService.login(loginDto);
         }
 
