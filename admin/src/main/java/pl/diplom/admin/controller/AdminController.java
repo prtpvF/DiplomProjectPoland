@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.diplom.admin.dto.IngredientDto;
+import pl.diplom.admin.dto.PizzaDto;
 import pl.diplom.admin.service.AdminService;
 
 import java.util.List;
@@ -15,14 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminController {
 
         private final AdminService adminService;
 
         @PostMapping("/ingredient")
-        public ResponseEntity createIngredient(@RequestHeader("token") String token,
-                                               @Valid @RequestBody IngredientDto ingredientDto,
+        public ResponseEntity createIngredient(@Valid @RequestBody IngredientDto ingredientDto,
                                                BindingResult bindingResult) {
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity("both fields must be filled",HttpStatus.BAD_REQUEST);
@@ -31,9 +30,10 @@ public class AdminController {
                     adminService.createIngredient(ingredientDto));
         }
 
-        @PostMapping("/recipe")
-        public HttpStatus createRecipe(@RequestHeader("token") String token,
-                                       @RequestBody List<Integer> ingredientsIdList) {
-            return adminService.createRecipe(ingredientsIdList);
+        @PostMapping("/pizza")
+        public HttpStatus createPizza(@RequestHeader("token") String token,
+                @RequestBody PizzaDto pizzaDto) {
+            adminService.createPizza(pizzaDto);
+            return HttpStatus.CREATED;
         }
 }
