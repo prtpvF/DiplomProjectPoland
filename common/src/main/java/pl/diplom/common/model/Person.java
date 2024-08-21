@@ -5,9 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
@@ -18,7 +16,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "Person")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
@@ -41,6 +40,8 @@ public class Person {
 
         @CreationTimestamp
         private Timestamp createdAt;
+
+        private boolean isActive;
 
         @Email
         @NotBlank

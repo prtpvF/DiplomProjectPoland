@@ -9,12 +9,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class IngredientDto {
-
-        private Integer id;
 
         @NotBlank(message = "ingredient name cannot be blank")
         private String name;
@@ -24,5 +25,5 @@ public class IngredientDto {
         @Max(value = 4000, message = "cost cannot be bigger than 4000")
         private Double cost;
 
-        private Integer recipeId;
+        private List<Integer> pizzaIdList = new ArrayList<>();
 }

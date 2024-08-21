@@ -6,20 +6,19 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pl.diplom.admin.dto.IngredientDto;
+import pl.diplom.admin.dto.PersonDto;
 import pl.diplom.admin.dto.PizzaDto;
-import pl.diplom.admin.exception.IngredientNotFoundException;
 import pl.diplom.admin.exception.PersonNotFoundException;
-import pl.diplom.common.model.Ingredient;
-import pl.diplom.common.model.Person;
-import pl.diplom.common.model.Pizza;
+import pl.diplom.common.model.*;
+import pl.diplom.common.model.product.Pizza;
 import pl.diplom.common.repository.IngredientRepository;
 import pl.diplom.common.repository.PersonRepository;
-import pl.diplom.common.repository.PizzaRepository;
-import pl.diplom.security.jwt.JwtUtil;
+import pl.diplom.common.repository.product.PizzaRepository;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
+import static org.springframework.http.HttpStatus.OK;
 
 /**
  * Service was created for admin functional. Here you can find admins method which use in controller,
@@ -35,59 +34,80 @@ public class AdminService {
         private final PersonRepository personRepository;
         private final IngredientRepository ingredientRepository;
         private final PizzaRepository pizzaRepository;
-        private final JwtUtil jwtUtil;
+        private final IngredientService ingredientService;
+        private final PersonOrderService personOrderService;
         private final ModelMapper modelMapper;
+
 
         public HttpStatus createIngredient(IngredientDto ingredientDto){
                 ingredientRepository.save(modelMapper.map(ingredientDto, Ingredient.class));
                 return HttpStatus.CREATED;
         }
 
-
-
-        @Transactional
-        public void createPizza(PizzaDto pizzaDto) {
-                Pizza pizza = new Pizza();
-                modelMapper.map(pizzaDto, pizza);
-                List<Ingredient> ingredients = ingredientRepository.findAllById(pizzaDto.getIngredientsIds());
-                ingredients.forEach(ingredient -> ingredient.setPizza(pizza));
-                pizza.setIngredients(ingredients);
-                pizzaRepository.save(pizza);
+        public HttpStatus deleteIngredient(Integer ingredientId) {
+                ingredientService.isIngredientExists(ingredientId);
+                ingredientRepository.deleteById(ingredientId);
+                return OK;
         }
 
-        private void setPizzaToIngredient(Ingredient ingredient, Pizza pizza) {
-                ingredient.setPizza(pizza);
-                ingredientRepository.save(ingredient);
+        public HttpStatus updateIngredient(IngredientDto ingredientDto,
+                                           Integer ingredientNeedToBeUpdatedId) {
+                return ingredientService.updateIngredientModel(ingredientDto,
+                        ingredientNeedToBeUpdatedId);
         }
 
-        /**
-         * Method finds all requested ingredients what are necessary for recipe.
-         * @param ingredientsIdList list of ingredients id what will be found
-         * @return list of founded ingredients
-         */
-        private Set<Ingredient> findAllIngredient(List<Integer> ingredientsIdList) {
-                Set<Ingredient> ingredients = new HashSet<>();
-                for(Integer id : ingredientsIdList) {
-                        Ingredient ingredient = getIngredient(id);
-                        ingredients.add(ingredient);
+        public void banPerson(Integer personId) {
+                Person person = findPersonById(personId);
+                person.setActive(false);
+                personRepository.save(person);
+        }
+
+        public void unbanPerson(Integer personId) {
+                Person person = findPersonById(personId);
+                person.setActive(true);
+                personRepository.save(person);
+        }
+
+        public PersonDto getPersonDtoById(Integer personId) {
+                Person person = findPersonById(personId);
+                return convertPersonToDto(person);
+        }
+
+        public HttpStatus updateAddressForOrder(Integer orderNeedToBeUpdatedId,
+                                                String addressName) {
+                return personOrderService.updateAddressForPersonOrder(orderNeedToBeUpdatedId,
+                        addressName);
+        }
+
+        public HttpStatus removeOrderFromStory(Integer orderId) {
+              return personOrderService.removeOrderFromPersonHistory(orderId);
+        }
+
+        public HttpStatus updatePersonOrderStatus(Integer orderId,
+                                                  String statusName) {
+              return personOrderService.updatePersonOrderStatus(statusName , orderId);
+        }
+
+        private Person findPersonById(Integer personId) {
+                return personRepository.findById(personId)
+                        .orElseThrow(() -> new PersonNotFoundException(
+                                "cannot find person with this id"
+                        ));
+        }
+
+        private PersonDto convertPersonToDto(Person person) {
+                PersonDto personDto = modelMapper.map(person, PersonDto.class);
+                personDto.setAddressIdList(retrieveAllIdFromPersonAddressList(person.getAddresses()));
+                personDto.setRoleId(person.getRole().getId());
+                return personDto;
+        }
+
+        private List<Integer> retrieveAllIdFromPersonAddressList(List<Address> addressList) {
+                List<Integer> idList = new ArrayList<>();
+
+                for(Address address : addressList) {
+                        idList.add(address.getId());
                 }
-                return ingredients;
-        }
-
-        private Ingredient getIngredient(Integer id) {
-                return ingredientRepository.findById(id)
-                        .orElseThrow(() -> new IngredientNotFoundException("cannot fin ingredient with this id"));
-
-        }
-
-        private Person getAdminFromToken(String token) {
-                String username = getUsernameFromToken(token);
-                return personRepository.findByUsername(username)
-                        .orElseThrow(() ->
-                                new PersonNotFoundException("cannot find person with this username"));
-        }
-
-        private String getUsernameFromToken(String token) {
-                return jwtUtil.validateTokenAndRetrieveClaim(token);
+                return idList;
         }
 }

@@ -8,7 +8,7 @@ package pl.diplom.common.model.enums;
  * IN_DELIVER - deliveryman is going to a client address - 4
  * DELIVERED - order is given to a client - 5
  */
-public enum PersonOrderEnum {
+public enum PersonOrderStatusEnum {
         ACCEPTED,
         IN_PROCESS,
         READY,
