@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.diplom.admin.dto.DrinkDto;
 import pl.diplom.admin.dto.PizzaDto;
 import pl.diplom.admin.dto.SnackDto;
-import pl.diplom.admin.service.dropbox.DropBoxService;
 import pl.diplom.admin.service.dropbox.ImageService;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.product.Drink;
@@ -32,6 +31,8 @@ public class ProductService {
         private final DrinkRepository drinkRepository;
         private final SnackRepository snackRepository;
 
+        private static final String DROPBOX_URL_PREFIX = "/free-party/";
+
         private final ImageService imageService;
 
         private final ModelMapper modelMapper;
@@ -42,6 +43,7 @@ public class ProductService {
                 drink.setPersonOrderList(Collections.emptyList());
                 imageService.saveImagesToDropBox(Collections.singletonList(file));
                 drinkRepository.save(drink);
+                drink.setPathToImage(setPathToImage(file));
                 return CREATED;
         }
 
@@ -52,6 +54,7 @@ public class ProductService {
                 ingredients.forEach(ingredient -> ingredient.getPizza().add(pizza));
                 pizza.setIngredients(ingredients);
                 imageService.saveImagesToDropBox(Collections.singletonList(file));
+                pizza.setPathToImage(setPathToImage(file));
                 pizzaRepository.save(pizza);
                 return CREATED;
         }
@@ -61,14 +64,15 @@ public class ProductService {
                 modelMapper.map(snackDto, snack);
                 snack.setPersonOrderList(Collections.emptyList());
                 imageService.saveImagesToDropBox(Collections.singletonList(file));
+                snack.setPathToImage(setPathToImage(file));
                 snackRepository.save(snack);
                 return CREATED;
         }
 
-//        private String setPathToImage(MultipartFile file) {
-//                String fileName = file.getOriginalFilename();
-//
-//        }
+        private String setPathToImage(MultipartFile file) {
+                String fileName = file.getOriginalFilename();
+                return DROPBOX_URL_PREFIX+fileName;
+        }
 
         
 }
