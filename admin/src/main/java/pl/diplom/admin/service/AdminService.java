@@ -33,7 +33,6 @@ public class AdminService {
 
         private final PersonRepository personRepository;
         private final IngredientRepository ingredientRepository;
-        private final PizzaRepository pizzaRepository;
         private final IngredientService ingredientService;
         private final PersonOrderService personOrderService;
         private final ModelMapper modelMapper;

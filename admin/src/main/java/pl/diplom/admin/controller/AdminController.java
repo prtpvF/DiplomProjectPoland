@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.diplom.admin.dto.*;
+import pl.diplom.admin.dto.worker.RegistrationDto;
+import pl.diplom.admin.dto.worker.UpdateWorkerDto;
 import pl.diplom.admin.service.AdminService;
+import pl.diplom.admin.service.PersonService;
 import pl.diplom.admin.service.ProductService;
 
 @RestController
@@ -19,6 +21,7 @@ public class AdminController {
 
         private final AdminService adminService;
         private final ProductService productService;
+        private final PersonService personService;
 
         @PostMapping("/ingredient")
         public ResponseEntity createIngredient(@RequestBody IngredientDto ingredientDto,
@@ -61,6 +64,7 @@ public class AdminController {
             productService.createPizza(pizzaDto, image);
             return HttpStatus.CREATED;
         }
+
         @PostMapping("/drink")
         public HttpStatus createDrink(@RequestPart("drinkDto") DrinkDto drinkDto,
                                       @RequestPart("image") MultipartFile image) {
@@ -90,9 +94,32 @@ public class AdminController {
             adminService.banPerson(personId);
             return HttpStatus.OK;
         }
+
         @PatchMapping("/unban/{id}")
         public HttpStatus unbanPerson(@PathVariable("id") Integer personId) {
             adminService.unbanPerson(personId);
             return HttpStatus.OK;
+        }
+
+        @PostMapping("/new/worker")
+        public HttpStatus createNewWorker(@RequestBody RegistrationDto registrationDto,
+                                          BindingResult bindingResult) {
+            if (!bindingResult.hasErrors()) {
+                return personService.createNewWorker(registrationDto);
+            }
+            else {
+                return HttpStatus.BAD_REQUEST;
+            }
+        }
+
+        @DeleteMapping("/worker/{id}")
+        public HttpStatus deleteWorker(@PathVariable("id") Integer workerId) {
+            return personService.deleterWorker(workerId);
+        }
+
+        @PatchMapping("/worker/{id}")
+        public HttpStatus updateWorker(@PathVariable("id") Integer workerId,
+                                       @RequestBody UpdateWorkerDto updateWorkerDto) {
+            return  personService.updateWorker(workerId, updateWorkerDto);
         }
 }

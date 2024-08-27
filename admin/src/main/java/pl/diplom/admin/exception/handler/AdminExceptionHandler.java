@@ -4,10 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import pl.diplom.admin.exception.IllegalOrderStatusException;
-import pl.diplom.admin.exception.IngredientNotFoundException;
-import pl.diplom.admin.exception.PersonNotFoundException;
-import pl.diplom.admin.exception.RecipeNotFoundException;
+import pl.diplom.admin.exception.*;
 
 @ControllerAdvice
 public class AdminExceptionHandler {
@@ -33,6 +30,18 @@ public class AdminExceptionHandler {
         @ExceptionHandler(value = { IllegalOrderStatusException.class })
         public ResponseEntity illegalOrderStatusExceptionHandler(IllegalOrderStatusException ex) {
             HttpStatus status = HttpStatus.NOT_FOUND;
+            return new ResponseEntity(ex.getMessage(), status);
+        }
+
+        @ExceptionHandler(value = { PersonRoleNotFoundException.class })
+        public ResponseEntity personRoleNotFoundExceptionHandler(PersonRoleNotFoundException ex) {
+            HttpStatus status = HttpStatus.NOT_FOUND;
+            return new ResponseEntity(ex.getMessage(), status);
+        }
+
+        @ExceptionHandler(value = { IllegalPersonDataException.class })
+        public ResponseEntity illegalPersonDataExceptionHandler(IllegalPersonDataException ex) {
+            HttpStatus status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity(ex.getMessage(), status);
         }
 }

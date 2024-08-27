@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pl.diplom.admin.dto.IngredientDto;
+import pl.diplom.admin.exception.IngredientNotFoundException;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.repository.IngredientRepository;
 
@@ -18,7 +19,6 @@ import static org.springframework.http.HttpStatus.OK;
 public class IngredientService {
 
         private final IngredientRepository ingredientRepository;
-        private final ModelMapper modelMapper;
 
         public Ingredient getIngredientById(Integer id) {
             return ingredientRepository.findById(id)
@@ -27,7 +27,12 @@ public class IngredientService {
         }
 
         public List<Ingredient> getAllIngredientsById(List<Integer> ids) {
-            return ingredientRepository.findAllById(ids);
+            List<Ingredient> ingredients = ingredientRepository.findAllById(ids);
+            if(ingredients.isEmpty()) {
+                throw new IngredientNotFoundException(
+                        "cannot find ingredients with ids " + ids);
+            }
+            return ingredients;
         }
 
         public void isIngredientExists(Integer id) {

@@ -68,15 +68,6 @@ public class PersonOrderService {
             return OK;
         }
 
-        private Address convertAddressFromDto(AddressDto dto) {
-            Address address = new Address();
-            modelMapper.map(dto, address);
-
-            address.setPerson(findPersonById(dto.getOwnerId()));
-            address.setOrders(findAllPersonOrderById(dto.getOrderIdList()));
-            return address;
-        }
-
         private Person findPersonById(Integer personId) {
             return personRepository.findById(personId)
                     .orElseThrow(() -> new PersonNotFoundException(

@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.diplom.admin.dto.DrinkDto;
 import pl.diplom.admin.dto.PizzaDto;
 import pl.diplom.admin.dto.SnackDto;
-import pl.diplom.admin.service.dropbox.ImageService;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
@@ -31,8 +30,6 @@ public class ProductService {
         private final DrinkRepository drinkRepository;
         private final SnackRepository snackRepository;
 
-        private static final String DROPBOX_URL_PREFIX = "/free-party/";
-
         private final ImageService imageService;
 
         private final ModelMapper modelMapper;
@@ -41,9 +38,9 @@ public class ProductService {
                 Drink drink = new Drink();
                 modelMapper.map(drinkDto, drink);
                 drink.setPersonOrderList(Collections.emptyList());
-                imageService.saveImagesToDropBox(Collections.singletonList(file));
+                String filePath = imageService.savePhotoLocal(file);
+                drink.setPathToImage(filePath);
                 drinkRepository.save(drink);
-                drink.setPathToImage(setPathToImage(file));
                 return CREATED;
         }
 
@@ -53,8 +50,8 @@ public class ProductService {
                 List<Ingredient> ingredients = ingredientService.getAllIngredientsById(pizzaDto.getIngredientsIds());
                 ingredients.forEach(ingredient -> ingredient.getPizza().add(pizza));
                 pizza.setIngredients(ingredients);
-                imageService.saveImagesToDropBox(Collections.singletonList(file));
-                pizza.setPathToImage(setPathToImage(file));
+                String filePath = imageService.savePhotoLocal(file);
+                pizza.setPathToImage(filePath);
                 pizzaRepository.save(pizza);
                 return CREATED;
         }
@@ -63,16 +60,9 @@ public class ProductService {
                 Snack snack = new Snack();
                 modelMapper.map(snackDto, snack);
                 snack.setPersonOrderList(Collections.emptyList());
-                imageService.saveImagesToDropBox(Collections.singletonList(file));
-                snack.setPathToImage(setPathToImage(file));
+                String filePath = imageService.savePhotoLocal(file);
+                snack.setPathToImage(filePath);
                 snackRepository.save(snack);
                 return CREATED;
         }
-
-        private String setPathToImage(MultipartFile file) {
-                String fileName = file.getOriginalFilename();
-                return DROPBOX_URL_PREFIX+fileName;
-        }
-
-        
 }
