@@ -39,7 +39,10 @@ public class AdminService {
 
 
         public HttpStatus createIngredient(IngredientDto ingredientDto){
-                ingredientRepository.save(modelMapper.map(ingredientDto, Ingredient.class));
+                Ingredient ingredient = new Ingredient();
+                ingredient.setName(ingredientDto.getName());
+                ingredient.setCost(ingredientDto.getCost());
+                ingredientRepository.save(ingredient);
                 return HttpStatus.CREATED;
         }
 

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
-import pl.diplom.common.model.product.Product;
+import pl.diplom.common.model.product.Snack;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class PersonOrder {
         @ManyToMany
         @JoinTable(name = "Order_Pizza",
                 joinColumns = {@JoinColumn(name = "id")},
-                inverseJoinColumns = {@JoinColumn(name = "product_id")})
+                inverseJoinColumns = {@JoinColumn(name = "pizza_id")})
         private List<Pizza> pizzas = new ArrayList<>();
 
         @ManyToMany
@@ -53,10 +53,10 @@ public class PersonOrder {
         private List<Drink> drinks = new ArrayList<>();
 
         @ManyToMany
-        @JoinTable(name = "Order_Product",
+        @JoinTable(name = "Order_Snack",
                 joinColumns = {@JoinColumn(name = "id")},
-                inverseJoinColumns = {@JoinColumn(name = "product_id")})
-        private List<Pizza> snacks = new ArrayList<>();
+                inverseJoinColumns = {@JoinColumn(name = "snack_id")})
+        private List<Snack> snacks = new ArrayList<>();
 
         @NotNull
         @Min(10)

@@ -28,9 +28,6 @@ public class Status {
         @OneToMany(mappedBy = "status")
         private List<PersonOrder> personOrders = new ArrayList<>();
 
-        @OneToMany(mappedBy = "status")
-        private List<AdminOrder> adminsOrders = new ArrayList<>();
-
         public Status(String status) {
             this.status = status;
         }

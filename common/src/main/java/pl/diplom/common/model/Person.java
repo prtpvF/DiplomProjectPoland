@@ -31,8 +31,12 @@ public class Person {
         private String username;
 
         @NotBlank
-        @Length(min = 2, max = 20)
-        private String name;
+        @Length(min=4, max = 20)
+        private String firstName;
+
+        @NotBlank
+        @Length(min=4, max = 20)
+        private String lastName;
 
         @Min(value = 15)
         @Max(value = 100)

@@ -18,6 +18,10 @@ public class SnackDto {
 
         private String pathToImage;
 
+        private String description;
+
+        private Double cost;
+
         private Double weight;
 
         private List<Integer> personOrderIds = new ArrayList<>();

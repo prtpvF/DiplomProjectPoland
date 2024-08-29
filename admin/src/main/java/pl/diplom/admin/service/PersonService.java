@@ -10,7 +10,11 @@ import pl.diplom.admin.dto.worker.UpdateWorkerDto;
 import pl.diplom.admin.exception.IllegalPersonDataException;
 import pl.diplom.admin.exception.PersonNotFoundException;
 import pl.diplom.common.model.Person;
+import pl.diplom.common.model.enums.PersonRolesEnum;
 import pl.diplom.common.repository.PersonRepository;
+import pl.diplom.security.jwt.JwtUtil;
+
+import java.security.Principal;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -25,10 +29,11 @@ public class PersonService {
         private final PersonRepository personRepository;
         private final ModelMapper modelMapper;
         private final RoleService roleService;
+        private final JwtUtil jwtUtil;
         private final PasswordEncoder passwordEncoder;
 
         public HttpStatus createNewWorker(RegistrationDto registrationDto) {
-            Person person = modelMapper.map(registrationDto, Person.class);
+            Person person = mapAdttionalFieldToperson(registrationDto);
             isUsernameAndEmailTaken(registrationDto.getUsername(),
                                     registrationDto.getEmail());
             person.setPassword(passwordEncoder.encode(person.getPassword()));
@@ -61,10 +66,29 @@ public class PersonService {
             return CREATED;
         }
 
+        public boolean isAdmin(String token) {
+            Person person = getPersonByToken(token);
+            if(person.getRole()
+                    .getRoleName()
+                    .equals(PersonRolesEnum.ADMIN.name())) {
+                return true;
+            }
+            throw new IllegalPersonDataException("you are not an admin!");
+        }
+
         private Person findPersonById(Integer id) {
             return personRepository.findById(id)
                     .orElseThrow(() -> new PersonNotFoundException(
                             "cannot find person with this id"));
+        }
+
+        private Person getPersonByToken(String token) {
+            Person person = personRepository.findByUsername(
+                    jwtUtil.validateTokenAndRetrieveClaim(token))
+                    .orElseThrow(() -> new PersonNotFoundException(
+                            "cannot find person with this username"
+                    ));
+            return  person;
         }
 
         private void isUsernameAndEmailTaken(String username,
@@ -74,4 +98,21 @@ public class PersonService {
                             "person with this credentials already exists");
                     });
         }
+
+        private Person mapAdttionalFieldToperson(RegistrationDto registrationDto) {
+            Person person = new Person();
+            person.setUsername(registrationDto.getUsername());
+            person.setEmail(registrationDto.getEmail());
+            person.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
+            person.setRole(roleService.findRoleByName(
+                    registrationDto.getRoleName()
+            ));
+            person.setActive(true);
+            person.setAge(registrationDto.getAge());
+            person.setFirstName(registrationDto.getFirstName());
+            person.setLastName(registrationDto.getLastName());
+            return person;
+        }
+
+
 }

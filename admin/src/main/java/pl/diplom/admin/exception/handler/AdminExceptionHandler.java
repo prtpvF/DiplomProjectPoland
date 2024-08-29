@@ -44,4 +44,10 @@ public class AdminExceptionHandler {
             HttpStatus status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity(ex.getMessage(), status);
         }
+
+        @ExceptionHandler(value = { IllegalArgumentException.class })
+        public ResponseEntity illegalArgumentExceptionHandler(IllegalArgumentException ex) {
+            HttpStatus status = HttpStatus.BAD_REQUEST;
+            return new ResponseEntity(ex.getMessage(), status);
+        }
 }

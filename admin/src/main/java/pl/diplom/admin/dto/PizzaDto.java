@@ -17,12 +17,12 @@ public class PizzaDto {
         @NotBlank
         private String name;
 
-        @NotNull
+
         private Double cost;
-        @NotNull
-        private Integer recipeId;
 
         private String pathToImage;
+
+        private String description;
 
         private List<Integer> ingredientsIds = new ArrayList<>();
 
