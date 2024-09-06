@@ -29,7 +29,8 @@ public class PersonDto {
 
     private String username;
 
-    private String name;
+    private String firstName;
+    private String lastName;
 
     private int age;
 
@@ -44,6 +45,6 @@ public class PersonDto {
 
     private List<Integer> addressIdList = new ArrayList<>();
 
-    private Integer roleId;
+    private String role;
 
 }

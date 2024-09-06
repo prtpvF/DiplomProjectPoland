@@ -11,8 +11,6 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class SpringConfig {
 
-        @Value("${dropbox.access.token}")
-        private String ACCESS_TOKEN;
 
         @Bean
         public ModelMapper modelMapper() {
@@ -24,9 +22,4 @@ public class SpringConfig {
             return new RestTemplate();
         }
 
-        @Bean
-        public DbxClientV2 dbxClient() {
-            DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/java-tutorial").build();
-            return new DbxClientV2(config, ACCESS_TOKEN);
-        }
 }

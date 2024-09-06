@@ -98,9 +98,17 @@ public class AdminService {
         }
 
         private PersonDto convertPersonToDto(Person person) {
-                PersonDto personDto = modelMapper.map(person, PersonDto.class);
-                personDto.setAddressIdList(retrieveAllIdFromPersonAddressList(person.getAddresses()));
-                personDto.setRoleId(person.getRole().getId());
+                PersonDto personDto = new PersonDto();
+                personDto.setId(person.getId());
+                personDto.setRole(person.getRole().getRoleName());
+                personDto.setEmail(person.getEmail());
+                personDto.setFirstName(person.getFirstName());
+                personDto.setLastName(person.getLastName());
+                personDto.setUsername(person.getUsername());
+
+                if(!person.getAddresses().isEmpty()) {
+                        personDto.setAddressIdList(retrieveAllIdFromPersonAddressList(person.getAddresses()));
+                }
                 return personDto;
         }
 

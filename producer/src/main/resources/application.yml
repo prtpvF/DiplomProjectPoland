@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: producer
+  datasource:
+    username: mihail
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/diplom
+  main:
+    lazy-initialization: true
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
+server:
+  port: 9090

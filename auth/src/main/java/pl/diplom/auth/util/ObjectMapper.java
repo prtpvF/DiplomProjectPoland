@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pl.diplom.auth.dto.RegistrationDto;
 import pl.diplom.common.model.Person;
 import pl.diplom.common.model.Role;
+import pl.diplom.common.model.enums.PersonRolesEnum;
 import pl.diplom.common.repository.RoleRepository;
 import pl.diplom.common.util.RoleEnum;
 
@@ -17,18 +18,15 @@ public class ObjectMapper {
 
     public Person convertFromRegisterDto(RegistrationDto registrationDto) {
         Person person = new Person();
-        person.setName(registrationDto.getName());
         person.setUsername(registrationDto.getUsername());
         person.setEmail(registrationDto.getEmail());
         person.setPassword(registrationDto.getPassword());
+        person.setFirstName(registrationDto.getFirstName());
+        person.setLastName(registrationDto.getLastName());
         person.setAge(registrationDto.getAge());
-        person.setRole(definePersonRole(registrationDto.isConsumer()));
+        person.setRole(roleRepository.findByRoleName(
+                PersonRolesEnum.USER.name()
+        ).get());
         return person;
-    }
-
-    private Role definePersonRole(boolean isConsumer){
-        String roleName = isConsumer ? RoleEnum.CONSUMER.name() : RoleEnum.USER.name();
-        return roleRepository.findByRoleName(roleName)
-                .orElseThrow(() -> new IllegalArgumentException("Role not found: " + roleName));
     }
 }

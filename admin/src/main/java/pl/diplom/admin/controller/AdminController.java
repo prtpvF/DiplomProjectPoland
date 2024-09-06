@@ -26,7 +26,7 @@ public class AdminController {
         private final PersonService personService;
 
         @PostMapping("/ingredient")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public ResponseEntity createIngredient(@RequestBody IngredientDto ingredientDto,
                                                BindingResult bindingResult) {
 
@@ -35,27 +35,27 @@ public class AdminController {
         }
 
         @DeleteMapping("/ingredient/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus deleteIngredient(@PathVariable("id") Integer id) {
             return adminService.deleteIngredient(id);
         }
 
         @PatchMapping("/ingredient/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updateIngredient(@PathVariable("id") Integer orderNeedTobeUpdatedId,
                                            @RequestBody IngredientDto ingredientDto) {
             return  adminService.updateIngredient(ingredientDto, orderNeedTobeUpdatedId);
         }
 
         @PatchMapping("/order/address/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updateAddress(@PathVariable("id") Integer orderNeedToBeUpdatedId,
                                         @RequestParam String address) {
             return adminService.updateAddressForOrder(orderNeedToBeUpdatedId, address);
         }
 
         @PatchMapping("/order/status/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updateOrderStatus(@PathVariable("id") Integer orderId,
                                             @RequestParam String status) {
             return adminService.updatePersonOrderStatus(orderId, status);
@@ -63,7 +63,7 @@ public class AdminController {
 
         @PostMapping(value = "/pizza", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE,
                                                       MediaType.APPLICATION_OCTET_STREAM_VALUE})
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus createPizza(@RequestPart("pizzaDto") PizzaDto pizzaDto,
                                       @RequestPart("image") MultipartFile image) {
             productService.createPizza(pizzaDto,image);
@@ -71,7 +71,7 @@ public class AdminController {
         }
 
         @PostMapping("/drink")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus createDrink(@RequestPart("drinkDto") DrinkDto drinkDto,
                                       @RequestPart("image") MultipartFile image) {
             productService.createDrink(drinkDto, image);
@@ -79,7 +79,7 @@ public class AdminController {
         }
 
         @PostMapping("/snack")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus createSnack(@RequestPart("snackDto") SnackDto snackDto,
                                       @RequestPart("image") MultipartFile image) {
             productService.createSnack(snackDto,image);
@@ -87,33 +87,33 @@ public class AdminController {
         }
 
         @DeleteMapping("/person-order/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus deletePersonOrder(@PathVariable("id") Integer id) {
             return adminService.removeOrderFromStory(id);
         }
 
         @GetMapping("/person/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public PersonDto getPerson(@PathVariable Integer id) {
             return adminService.getPersonDtoById(id);
         }
 
         @PatchMapping("/ban/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus banPerson(@PathVariable("id") Integer personId) {
             adminService.banPerson(personId);
             return HttpStatus.OK;
         }
 
         @PatchMapping("/unban/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus unbanPerson(@PathVariable("id") Integer personId) {
             adminService.unbanPerson(personId);
             return HttpStatus.OK;
         }
 
         @PostMapping("/new/worker")
-        @PreAuthorize("hasRole('SUPER_ADMIN')")
+        @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
         public HttpStatus createNewWorker(@RequestBody RegistrationDto registrationDto,
                                           BindingResult bindingResult) {
             if (!bindingResult.hasErrors()) {
@@ -125,13 +125,13 @@ public class AdminController {
         }
 
         @DeleteMapping("/worker/{id}")
-        @PreAuthorize("hasRole('SUPER_ADMIN')")
+        @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
         public HttpStatus deleteWorker(@PathVariable("id") Integer workerId) {
             return personService.deleterWorker(workerId);
         }
 
         @PatchMapping("/worker/{id}")
-        @PreAuthorize("hasRole('SUPER_ADMIN')")
+        @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
         public HttpStatus updateWorker(@PathVariable("id") Integer workerId,
                                        @RequestBody UpdateWorkerDto updateWorkerDto) {
             return  personService.updateWorker(workerId, updateWorkerDto);
@@ -139,7 +139,7 @@ public class AdminController {
 
 
         @PatchMapping("/drink/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updateDrink(@PathVariable("id") Integer drinkId,
                                       @RequestPart DrinkDto drinkDto,
                                       @RequestPart MultipartFile image) {
@@ -147,7 +147,7 @@ public class AdminController {
         }
 
         @PatchMapping("/snack/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updateSnack(@PathVariable("id") Integer snackId,
                                       @RequestPart SnackDto snackDto,
                                       @RequestPart MultipartFile image) {
@@ -155,7 +155,7 @@ public class AdminController {
         }
 
         @PatchMapping("/pizza/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updatePizza(@PathVariable("id") Integer pizzaId,
                                       @RequestPart PizzaDto pizzaDto,
                                       @RequestPart MultipartFile image) {
@@ -163,19 +163,19 @@ public class AdminController {
         }
 
         @DeleteMapping("/drink/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus deleteDrink(@PathVariable("id") Integer drinkId) {
             return productService.deleteDrink(drinkId);
         }
 
         @DeleteMapping("/snack/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus deleteSnack(@PathVariable("id") Integer snackId) {
             return productService.deleteSnack(snackId);
         }
 
         @DeleteMapping("/pizza/{id}")
-        @PreAuthorize("hasAnyRole('ADMIN', 'SUPER-ADMIN')")
+        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus deletePizza(@PathVariable("id") Integer pizzaId) {
             return productService.deletePizza(pizzaId);
         }

@@ -22,9 +22,6 @@ spring:
 jwt:
   secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
 
-dropbox:
-  access:
-    token: ${ACCESS_TOKEN}
 logging:
   file:
     name: public.log

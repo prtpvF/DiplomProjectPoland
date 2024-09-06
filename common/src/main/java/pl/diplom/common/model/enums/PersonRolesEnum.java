@@ -2,6 +2,8 @@ package pl.diplom.common.model.enums;
 
 public enum PersonRolesEnum {
         USER,
-        CONSUMER,
+        SUPER_ADMIN,
+        DELIVERYMAN,
+        COOK,
         ADMIN
 }

@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import pl.diplom.admin.dto.AddressDto;
-import pl.diplom.admin.dto.PersonOrderDto;
 import pl.diplom.admin.exception.IllegalOrderStatusException;
 import pl.diplom.admin.exception.PersonNotFoundException;
 import pl.diplom.common.model.Address;

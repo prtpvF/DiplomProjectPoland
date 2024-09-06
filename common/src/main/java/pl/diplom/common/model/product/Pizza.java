@@ -9,6 +9,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.PersonOrder;
+import pl.diplom.common.model.Portion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,13 @@ public class Pizza extends Product{
         private int id;
 
         @ManyToMany(mappedBy = "pizza", cascade = CascadeType.REFRESH)
-        private List<Ingredient> ingredients = new ArrayList<>();
+        private List<Portion> portions = new ArrayList<>();
 
         private String pathToImage;
 
         @ManyToMany(mappedBy = "pizzas")
         private List<PersonOrder> personOrders = new ArrayList<>();
+
+        private String status;
 
 }

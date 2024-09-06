@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 public class PersonDetails implements UserDetails {
@@ -24,7 +25,7 @@ public class PersonDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + person.getRole().getRoleName()));
     }
 
     @Override

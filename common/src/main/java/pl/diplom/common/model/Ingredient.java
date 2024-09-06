@@ -1,5 +1,8 @@
 package pl.diplom.common.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -37,6 +40,10 @@ public class Ingredient extends Product {
                 }
         )
         private List<Pizza> pizza = new ArrayList<>();
+
+        @OneToMany(mappedBy = "ingredient")
+        @JsonManagedReference
+        private List<Portion> portions = new ArrayList<>();
 
         @Override
         public String toString() {

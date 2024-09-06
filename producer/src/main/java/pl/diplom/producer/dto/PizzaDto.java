@@ -1,2 +1,15 @@
-package pl.diplom.producer.dto;public class PizzaDto {
+package pl.diplom.producer.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class PizzaDto {
+
+        private Integer id;
+
+        private String name;
+
+        private Double cost;
 }

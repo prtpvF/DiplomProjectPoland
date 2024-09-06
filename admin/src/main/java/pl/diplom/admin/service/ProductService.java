@@ -1,6 +1,7 @@
 package pl.diplom.admin.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -10,15 +11,16 @@ import pl.diplom.admin.dto.DrinkDto;
 import pl.diplom.admin.dto.PizzaDto;
 import pl.diplom.admin.dto.SnackDto;
 import pl.diplom.common.model.Ingredient;
+import pl.diplom.common.model.Portion;
+import pl.diplom.common.model.enums.PizzaCreatorEnum;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
-import pl.diplom.common.model.product.Product;
 import pl.diplom.common.model.product.Snack;
+import pl.diplom.common.repository.PortionRepository;
 import pl.diplom.common.repository.product.DrinkRepository;
 import pl.diplom.common.repository.product.PizzaRepository;
 import pl.diplom.common.repository.product.SnackRepository;
 
-import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,9 +33,9 @@ public class ProductService {
 
         private final PizzaRepository pizzaRepository;
         private final IngredientService ingredientService;
+        private final PortionService portionService;
         private final DrinkRepository drinkRepository;
         private final SnackRepository snackRepository;
-        private final PersonService personService;
 
         private final ImageService imageService;
 
@@ -50,13 +52,16 @@ public class ProductService {
                 return CREATED;
         }
 
+        @Transactional
         public HttpStatus createPizza(PizzaDto pizzaDto,
                                       MultipartFile file) {
                 Pizza pizza = new Pizza();
                 modelMapper.map(pizzaDto, pizza);
-                List<Ingredient> ingredients = ingredientService.getAllIngredientsById(pizzaDto.getIngredientsIds());
-                ingredients.forEach(ingredient -> ingredient.getPizza().add(pizza));
-                pizza.setIngredients(ingredients);
+                List<Portion> portions = portionService
+                        .findAllOrCreate(
+                                pizzaDto.getPortions());
+                pizza.setPortions(portions);
+                pizza.setStatus(PizzaCreatorEnum.ADMIN.name());
                 String filePath = imageService.savePhotoLocal(file);
                 pizza.setPathToImage(filePath);
                 pizzaRepository.save(pizza);
@@ -80,10 +85,11 @@ public class ProductService {
 
                 Pizza pizza = getPizzaById(pizzaNeedToBeUpdatedId);
                 pizza.setId(pizza.getId());
-                pizza.setIngredients(ingredientService
-                        .getAllIngredientsById(
-                                pizzaDto
-                                        .getIngredientsIds()));
+                pizza.setPortions(
+                        portionService.findAllOrCreate(
+                                pizzaDto.getPortions()
+                        )
+                );
                 pizza.setCost(pizzaDto.getCost());
                 pizza.setName(pizzaDto.getName());
                 if (!pizza.getPersonOrders().isEmpty()) {
@@ -111,11 +117,7 @@ public class ProductService {
                         drink.setPersonOrderList(drink.getPersonOrderList());
                 }
 
-                drink.setTaste(drinkDto.getTaste());
-                drink.setDescription(drinkDto.getDescription());
-                drink.setCost(drinkDto.getCost());
-                drink.setName(drinkDto.getName());
-                drink.setTaste(drinkDto.getTaste());
+                mapAdditionalFieldFoDrink(drinkDto, drink);
 
                 if (file!=null) {
                         drink.setPathToImage(imageService.savePhotoLocal(file));
@@ -144,10 +146,7 @@ public class ProductService {
                         snack.setPathToImage(imageService.savePhotoLocal(file));
                 }
 
-                snack.setDescription(snack.getDescription());
-                snack.setCost(snackDto.getCost());
-                snack.setName(snackDto.getName());
-                snack.setWeight(snackDto.getWeight());
+                mapAdditionalFieldForSnack(snackDto, snack);
                 snackRepository.save(snack);
                 return OK;
         }
@@ -171,24 +170,36 @@ public class ProductService {
         }
 
         private Drink getDrinkById(Integer drinkNeedToBeUpdatedId) {
-                Drink drink = drinkRepository.findById(drinkNeedToBeUpdatedId)
+                return drinkRepository.findById(drinkNeedToBeUpdatedId)
                         .orElseThrow(() -> new EntityNotFoundException(
                                 "cannot find drink with this id"));
-                return drink;
         }
 
         private Pizza getPizzaById(Integer pizzaNeedToBeUpdatedId) {
-                Pizza pizza = pizzaRepository.findById(pizzaNeedToBeUpdatedId)
+                return pizzaRepository.findById(pizzaNeedToBeUpdatedId)
                         .orElseThrow(() -> new EntityNotFoundException(
                                 "cannot find pizza with this id"));
-                return pizza;
         }
 
         private Snack getSnackById(Integer snackId) {
-                Snack snack = snackRepository.findById(snackId)
+                return snackRepository.findById(snackId)
                         .orElseThrow(() -> new EntityNotFoundException(
                                 "cannot find snack with this id"
                         ));
-                return snack;
+        }
+
+        private void mapAdditionalFieldForSnack(SnackDto snackDto, Snack snack) {
+                snack.setDescription(snack.getDescription());
+                snack.setCost(snackDto.getCost());
+                snack.setName(snackDto.getName());
+                snack.setWeight(snackDto.getWeight());
+        }
+
+        private void mapAdditionalFieldFoDrink(DrinkDto drinkDto, Drink drink) {
+                drink.setTaste(drinkDto.getTaste());
+                drink.setDescription(drinkDto.getDescription());
+                drink.setCost(drinkDto.getCost());
+                drink.setName(drinkDto.getName());
+                drink.setTaste(drinkDto.getTaste());
         }
 }

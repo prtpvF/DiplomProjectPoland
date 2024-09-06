@@ -45,8 +45,8 @@ public class AuthService {
             checkPersonExists(registrationDto.getUsername(), registrationDto.getEmail());
             Person person = objectMapper.convertFromRegisterDto(registrationDto);
             person.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
-            person.setRole(getPersonRole(registrationDto.isConsumer()));
-            //preparePersonForRegistration(person, registrationDto.isConsumer());
+            person.setRole(roleRepository.findByRoleName(PersonRolesEnum.USER.name()).get());
+            person.setActive(true);
             personRepository.save(person);
             log.info("New person has registered: {}", person);
         }
@@ -85,30 +85,6 @@ public class AuthService {
                 throw new PersonAlreadyExistsException("Person with this credentials already exists");
             });
         }
-
-        /**
-         * Method prepares person fo saving into db.
-         * In this method a person get role and encrypted password
-         * @param person model of person what will be preapred for saving
-         * @param consumer flag of "is person a consumer ir not"
-         */
-        private void preparePersonForRegistration(Person person, boolean consumer) {
-            person.setPassword(person.getPassword());
-            person.setRole(getPersonRole(consumer));
-        }
-
-        /**
-         * Method checks is param true or not. If it's true, person role = consumer
-         * else = user
-         * @param consumer  flag of person role (true - consumer, false - user)
-         * @return Role model
-         */
-        private Role getPersonRole(boolean consumer) {
-            String roleName = consumer ? PersonRolesEnum.CONSUMER.name() : PersonRolesEnum.USER.name();
-            return roleRepository.findByRoleName(roleName)
-                    .orElseThrow(() -> new IllegalArgumentException("Role not found: " + roleName));
-        }
-
 
         private String createJwtToken(String username) {
             return jwtUtil.generateToken(username);

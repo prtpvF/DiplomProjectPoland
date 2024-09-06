@@ -36,13 +36,13 @@ public class JwtFilter extends GenericFilterBean {
             HttpServletRequest request = (HttpServletRequest) servletRequest;
             HttpServletResponse response = (HttpServletResponse) servletResponse;
             String token = jwtUtil.extractTokenFromHeader(request);
-            log.info("jyjtyutyuty");
             try {
                 if (token != null) {
                     String username = jwtUtil.validateTokenAndRetrieveClaim(token);
                     jwtUtil.isTokenActive(username);
                     log.info("Token is valid for user: {}", username);
                     PersonDetails personDetails = personDetailsService.loadUserByUsername(username);
+                    log.info("User authorities: {}", personDetails.getAuthorities());
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken
                             (personDetails,null, personDetails.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
