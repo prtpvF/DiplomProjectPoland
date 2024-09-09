@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.diplom.admin.dto.DrinkDto;
 import pl.diplom.admin.dto.PizzaDto;
+import pl.diplom.admin.dto.PortionDto;
 import pl.diplom.admin.dto.SnackDto;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.Portion;
@@ -21,6 +22,7 @@ import pl.diplom.common.repository.product.DrinkRepository;
 import pl.diplom.common.repository.product.PizzaRepository;
 import pl.diplom.common.repository.product.SnackRepository;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,12 +57,12 @@ public class ProductService {
         @Transactional
         public HttpStatus createPizza(PizzaDto pizzaDto,
                                       MultipartFile file) {
-                Pizza pizza = new Pizza();
-                modelMapper.map(pizzaDto, pizza);
-                List<Portion> portions = portionService
-                        .findAllOrCreate(
-                                pizzaDto.getPortions());
-                pizza.setPortions(portions);
+                Pizza pizza = mapAdditionalFields(pizzaDto);
+                pizza.setPortions(convertDtoListToPortionList(
+                        portionService.findAllOrCreate(
+                                pizzaDto.getPortions()
+                        ))
+                );
                 pizza.setStatus(PizzaCreatorEnum.ADMIN.name());
                 String filePath = imageService.savePhotoLocal(file);
                 pizza.setPathToImage(filePath);
@@ -85,10 +87,10 @@ public class ProductService {
 
                 Pizza pizza = getPizzaById(pizzaNeedToBeUpdatedId);
                 pizza.setId(pizza.getId());
-                pizza.setPortions(
+                pizza.setPortions(convertDtoListToPortionList(
                         portionService.findAllOrCreate(
                                 pizzaDto.getPortions()
-                        )
+                        ))
                 );
                 pizza.setCost(pizzaDto.getCost());
                 pizza.setName(pizzaDto.getName());
@@ -201,5 +203,27 @@ public class ProductService {
                 drink.setCost(drinkDto.getCost());
                 drink.setName(drinkDto.getName());
                 drink.setTaste(drinkDto.getTaste());
+        }
+
+        private Pizza mapAdditionalFields(PizzaDto pizzaDto) {
+                Pizza pizza = new Pizza();
+                pizza.setName(pizzaDto.getName());
+                pizza.setDescription(pizzaDto.getDescription());
+                pizza.setCost(pizzaDto.getCost());
+                return pizza;
+        }
+
+        private List<Portion> convertDtoListToPortionList(List<PortionDto> dtos) {
+                List<Portion> portions = new ArrayList<>();
+                for (PortionDto dto : dtos) {
+                        Portion portion = new Portion();
+                        portion.setId(dto.getId());
+                        portion.setIngredient(ingredientService.getIngredientById(dto.getIngredientId()));
+                        if(!dto.getPizzaIds().isEmpty()) {
+                                portion.setPizza(pizzaRepository.findAllById(dto.getPizzaIds()));
+                        }
+                        portions.add(portion);
+                }
+                return portions;
         }
 }

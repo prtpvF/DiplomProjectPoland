@@ -25,7 +25,7 @@ public class Portion {
         private int id;
 
         @ManyToOne
-        @JoinColumn(referencedColumnName = "id")
+        @JoinColumn(name = "ingredient_id", nullable = false) // Убедитесь, что указано правильное имя столбца
         @JsonBackReference
         private Ingredient ingredient;
 

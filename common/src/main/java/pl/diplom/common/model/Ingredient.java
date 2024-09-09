@@ -41,7 +41,7 @@ public class Ingredient extends Product {
         )
         private List<Pizza> pizza = new ArrayList<>();
 
-        @OneToMany(mappedBy = "ingredient")
+        @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
         @JsonManagedReference
         private List<Portion> portions = new ArrayList<>();
 
