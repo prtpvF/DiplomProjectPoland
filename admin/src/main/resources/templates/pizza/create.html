@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+
+    <script th:inline="javascript">
+        // Преобразуем список ингредиентов в JSON и передаем его в JavaScript
+        let ingredients = /*[[${ingredients}]]*/ [];
+    </script>
+    <script>
+        function addPortion() {
+            // Получаем контейнер для порций
+            const container = document.getElementById("portions-container");
+
+            // Узнаем количество текущих порций
+            let portionIndex = document.querySelectorAll(".portion-row").length;
+
+            // Создаем новый элемент порции
+            const newPortion = document.createElement("div");
+            newPortion.classList.add("portion-row");
+
+            // Формируем HTML для новой порции
+            newPortion.innerHTML = `
+                <label for="portions[${portionIndex}].ingredientId">Ingredient:</label>
+                <select name="portions[${portionIndex}].ingredientId">
+                    ${ingredients.map(ingredient => `<option value="${ingredient.id}">${ingredient.name}</option>`).join('')}
+                </select>
+                <label for="portions[${portionIndex}].weight">Weight (g):</label>
+                <input type="number" name="portions[${portionIndex}].weight" placeholder="Weight (g)" />
+            `;
+
+            // Добавляем новую строку порции в контейнер
+            container.appendChild(newPortion);
+        }
+    </script>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h3>Create new pizza</h3>
+
+<div class="creation-container">
+    <form th:action="@{/admin/pizza/create}" method="post" enctype="multipart/form-data" th:object="${pizzaDto}">
+
+        <div>
+            <label for="name">Имя:</label>
+            <input type="text" th:field="*{name}"  id="name"/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></span>
+        </div>
+
+        <label for="cost">Cost:</label>
+        <input type="number" th:field="*{cost}" id="cost" >
+        <span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}" style="color: red"></span>
+
+        <label for="description">Description:</label>
+        <input type="text" th:field="*{description}" id="description" >
+
+        Photo: <input type="file" name="image" id="image"/><br><br>
+
+        <h4>Portions</h4>
+        <div id="portions-container"></div>
+        <span th:if="${#fields.hasErrors('portions')}" th:errors="*{portions}" style="color: red"></span>
+        <button type="button" onclick="addPortion()">Add ingredient</button>
+
+        <input type="submit" value="Create pizza"/>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

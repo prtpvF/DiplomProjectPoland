@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.diplom.auth.dto.LoginDto;
@@ -21,6 +22,16 @@ import java.util.Map;
 public class AuthController {
 
         private final AuthService authService;
+
+        @GetMapping("/reg")
+        public String showRegistrationForm(Model model) {
+            return "/auth/reg";
+        }
+
+        @GetMapping("/login")
+        public String showLoginForm(Model model) {
+            return "/auth/login";
+        }
 
         @PostMapping("/registration")
         public ResponseEntity<List<?>> registration(@Valid @RequestBody RegistrationDto registrationDto,

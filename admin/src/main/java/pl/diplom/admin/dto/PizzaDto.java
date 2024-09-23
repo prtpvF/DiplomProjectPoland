@@ -14,9 +14,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PizzaDto {
 
-        @NotBlank
+        @NotBlank(message = "cannot be empty")
         private String name;
-
 
         private Double cost;
 

@@ -11,15 +11,15 @@ import pl.diplom.producer.dto.*;
 @Component
 public class ObjectMapper {
 
-        public PersonOrderDto convertPersonOrderToDto(PersonOrder personOrder) {
-            PersonOrderDto personOrderDto = new PersonOrderDto();
-            personOrderDto.setId(personOrder.getId());
-            personOrderDto.setPerson(convertPersonDtoToPersonDto(personOrder.getPerson()));
-            personOrderDto.setSnacks();
-            personOrderDto.setDrinks();
-            personOrderDto.setPizzas();
-            personOrderDto.setAddress(personOrder.getAddress().getAddress());
-        }
+//        public PersonOrderDto convertPersonOrderToDto(PersonOrder personOrder) {
+//            PersonOrderDto personOrderDto = new PersonOrderDto();
+//            personOrderDto.setId(personOrder.getId());
+//            personOrderDto.setPerson(convertPersonDtoToPersonDto(personOrder.getPerson()));
+//            personOrderDto.setSnacks();
+//            personOrderDto.setDrinks();
+//            personOrderDto.setPizzas();
+//            personOrderDto.setAddress(personOrder.getAddress().getAddress());
+//        }
 
         public PersonDto convertPersonDtoToPersonDto(Person person) {
             PersonDto personDto = new PersonDto();

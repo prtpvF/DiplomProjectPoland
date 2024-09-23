@@ -40,19 +40,19 @@ public class PersonOrder {
         @CreationTimestamp
         private LocalDateTime createdAt;
 
-        @ManyToMany
+        @ManyToMany(cascade = CascadeType.REFRESH)
         @JoinTable(name = "Order_Pizza",
                 joinColumns = {@JoinColumn(name = "id")},
                 inverseJoinColumns = {@JoinColumn(name = "pizza_id")})
         private List<Pizza> pizzas = new ArrayList<>();
 
-        @ManyToMany
+        @ManyToMany(cascade = CascadeType.REFRESH)
         @JoinTable(name = "Order_Drink",
                 joinColumns = {@JoinColumn(name = "id")},
                 inverseJoinColumns = {@JoinColumn(name = "drink_id")})
         private List<Drink> drinks = new ArrayList<>();
 
-        @ManyToMany
+        @ManyToMany(cascade = CascadeType.REFRESH)
         @JoinTable(name = "Order_Snack",
                 joinColumns = {@JoinColumn(name = "id")},
                 inverseJoinColumns = {@JoinColumn(name = "snack_id")})

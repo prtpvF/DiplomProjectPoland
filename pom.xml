@@ -22,6 +22,7 @@
     <modules>
         <module>security</module>
         <module>auth</module>
+        <module>admin</module>
         <module>clients</module>
         <module>common</module>
         <module>producer</module>

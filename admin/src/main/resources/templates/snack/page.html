@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Drink Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Drink Details</h1>
+
+<div class="drink-details">
+    <img th:src="@{/images/{id}(id=${snack.getPreviewImageId()})}" alt="Drink Image" class="product-image">
+    <h2 th:text="${snack.name}"></h2>
+    <p>Cost: $<span th:text="${snack.cost}"></span></p>
+    <p>Description: <span th:text="${snack.description}"></span></p>
+</div>
+
+<form th:action="@{/admin/delete/snack/{id}(id=${snack.id})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <button type="submit">Delete snack</button>
+</form>
+
+<!-- Подвал сайта -->
+<div th:replace="fragments/footer :: footer"></div>
+
+
+</body>
+</html>

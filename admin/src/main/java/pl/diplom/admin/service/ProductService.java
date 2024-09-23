@@ -11,17 +11,21 @@ import pl.diplom.admin.dto.DrinkDto;
 import pl.diplom.admin.dto.PizzaDto;
 import pl.diplom.admin.dto.PortionDto;
 import pl.diplom.admin.dto.SnackDto;
+import pl.diplom.common.model.Image;
 import pl.diplom.common.model.Ingredient;
+import pl.diplom.common.model.PersonOrder;
 import pl.diplom.common.model.Portion;
 import pl.diplom.common.model.enums.PizzaCreatorEnum;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
 import pl.diplom.common.model.product.Snack;
+import pl.diplom.common.repository.PersonOrderRepository;
 import pl.diplom.common.repository.PortionRepository;
 import pl.diplom.common.repository.product.DrinkRepository;
 import pl.diplom.common.repository.product.PizzaRepository;
 import pl.diplom.common.repository.product.SnackRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,15 +42,21 @@ public class ProductService {
         private final PortionService portionService;
         private final DrinkRepository drinkRepository;
         private final SnackRepository snackRepository;
-
+        private final PersonOrderRepository personOrderRepository;
         private final ImageService imageService;
 
         private final ModelMapper modelMapper;
 
         public HttpStatus createDrink(DrinkDto drinkDto,
-                                      MultipartFile file) {
+                                      MultipartFile file) throws IOException {
                 Drink drink = new Drink();
                 modelMapper.map(drinkDto, drink);
+                Image image;
+                if (file.getSize() != 0) {
+                        image = toImageEntity(file);
+                        image.setPreviewImage(true);
+                        drink.addImage(image);
+                }
                 drink.setPersonOrderList(Collections.emptyList());
                 String filePath = imageService.savePhotoLocal(file);
                 drink.setPathToImage(filePath);
@@ -56,8 +66,15 @@ public class ProductService {
 
         @Transactional
         public HttpStatus createPizza(PizzaDto pizzaDto,
-                                      MultipartFile file) {
+                                      MultipartFile file) throws IOException {
+
                 Pizza pizza = mapAdditionalFields(pizzaDto);
+                Image image;
+                if (file.getSize() != 0) {
+                        image = toImageEntity(file);
+                        image.setPreviewImage(true);
+                        pizza.addImage(image);
+                }
                 pizza.setPortions(convertDtoListToPortionList(
                         portionService.findAllOrCreate(
                                 pizzaDto.getPortions()
@@ -65,15 +82,22 @@ public class ProductService {
                 );
                 pizza.setStatus(PizzaCreatorEnum.ADMIN.name());
                 String filePath = imageService.savePhotoLocal(file);
-                pizza.setPathToImage(filePath);
-                pizzaRepository.save(pizza);
+                Pizza fromDb = pizzaRepository.save(pizza);
+                fromDb.setPreviewImageId(fromDb.getImages().get(0).getId());
+                pizzaRepository.save(fromDb);
                 return CREATED;
         }
 
         public HttpStatus createSnack(SnackDto snackDto,
-                                      MultipartFile file) {
+                                      MultipartFile file) throws IOException {
                 Snack snack = new Snack();
                 modelMapper.map(snackDto, snack);
+                Image image;
+                if (file.getSize() != 0) {
+                        image = toImageEntity(file);
+                        image.setPreviewImage(true);
+                        snack.addImage(image);
+                }
                 snack.setPersonOrderList(Collections.emptyList());
                 String filePath = imageService.savePhotoLocal(file);
                 snack.setPathToImage(filePath);
@@ -110,24 +134,14 @@ public class ProductService {
         }
 
         public HttpStatus updateDrink(Integer drinkNeedToBeUpdatedId,
-                                      DrinkDto drinkDto,
-                                      MultipartFile file) {
+                                      Drink drink) {
 
-                Drink drink = getDrinkById(drinkNeedToBeUpdatedId);
+                Drink drinkNeed = getDrinkById(drinkNeedToBeUpdatedId);
                 drink.setId(drink.getId());
                 if(!drink.getPersonOrderList().isEmpty()) {
                         drink.setPersonOrderList(drink.getPersonOrderList());
                 }
 
-                mapAdditionalFieldFoDrink(drinkDto, drink);
-
-                if (file!=null) {
-                        drink.setPathToImage(imageService.savePhotoLocal(file));
-                }
-
-                if(!drink.getPersonOrderList().isEmpty()) {
-                        drink.setPersonOrderList(drink.getPersonOrderList());
-                }
                 drinkRepository.save(drink);
                 return OK;
         }
@@ -155,6 +169,14 @@ public class ProductService {
 
         public HttpStatus deleteDrink(int drinkId) {
                 Drink drink = getDrinkById(drinkId);
+                for (PersonOrder order : drink.getPersonOrderList()) {
+                        order.getDrinks().remove(drink);
+                }
+
+                // Сохраняем изменения в заказах
+                personOrderRepository.saveAll(drink.getPersonOrderList());
+
+                // Теперь можно безопасно удалить напиток
                 drinkRepository.delete(drink);
                 return OK;
         }
@@ -218,12 +240,23 @@ public class ProductService {
                 for (PortionDto dto : dtos) {
                         Portion portion = new Portion();
                         portion.setId(dto.getId());
-                        portion.setIngredient(ingredientService.getIngredientById(dto.getIngredientId()));
+                        Ingredient ingredient = ingredientService.getIngredientById(dto.getIngredientId());
+                        portion.setIngredient(ingredient);
                         if(!dto.getPizzaIds().isEmpty()) {
                                 portion.setPizza(pizzaRepository.findAllById(dto.getPizzaIds()));
                         }
                         portions.add(portion);
                 }
                 return portions;
+        }
+
+        private static Image toImageEntity(MultipartFile file1) throws IOException { //конвертирование фотографии в сущность
+                Image image = new Image();
+                image.setName(file1.getName());
+                image.setOriginalFilename(file1.getOriginalFilename());
+                image.setContentType(file1.getContentType());
+                image.setSize(file1.getSize());
+                image.setBytes(file1.getBytes());
+                return image;
         }
 }

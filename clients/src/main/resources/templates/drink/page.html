@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Drink Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Drink Details</h1>
+
+<div class="drink-details">
+    <img th:src="@{${drink.pathToImage}}" alt="Drink Image" style="width: 300px; height: auto;"/>
+    <h2 th:text="${drink.name}"></h2>
+    <p>Cost: $<span th:text="${drink.cost}"></span></p>
+    <p>Description: <span th:text="${drink.description}"></span></p>
+</div>
+
+<!-- Подвал сайта -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

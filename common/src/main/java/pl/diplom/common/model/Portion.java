@@ -1,7 +1,5 @@
 package pl.diplom.common.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +24,6 @@ public class Portion {
 
         @ManyToOne
         @JoinColumn(name = "ingredient_id", nullable = false) // Убедитесь, что указано правильное имя столбца
-        @JsonBackReference
         private Ingredient ingredient;
 
         @ManyToMany

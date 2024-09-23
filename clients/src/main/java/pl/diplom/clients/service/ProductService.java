@@ -72,21 +72,8 @@ public class ProductService {
             return (convertedSnackList);
         }
 
-    public Page<PizzaDto> convertPizzaListToDto(Pageable pageable) {
-        Page<Pizza> page = pizzaRepository.findAll(pageable);
-
-        Page<PizzaDto> pizzaDtoPage = page.map(pizza -> {
-            PizzaDto pizzaDto = new PizzaDto();
-            pizzaDto.setId(pizza.getId());
-            pizzaDto.setName(pizza.getName());
-            pizzaDto.setDescription(pizza.getDescription());
-            pizzaDto.setCost(pizza.getCost());
-            pizzaDto.setPathToImage(pizza.getPathToImage());
-            pizzaDto.setPortions(convertPortionsListToDto(pizza.getPortions()));
-            return pizzaDto;
-        });
-
-        return pizzaDtoPage;
+    public Page<Pizza> convertPizzaListToDto(Pageable pageable) {
+        return pizzaRepository.findAll(pageable);
     }
 
         private List<PortionDto> convertPortionsListToDto(List<Portion> portions) {
@@ -102,47 +89,24 @@ public class ProductService {
             return dtos;
         }
 
-    public Page<SnackDto> convertSnackListToDto(Pageable pageable) {
+    public Page<Snack> convertSnackListToDto(Pageable pageable) {
         Page<Snack> snacks = snackRepository.findAll(pageable);
 
         // Проверяем, если страница пуста, то выбрасываем исключение
         if (snacks.isEmpty()) {
             throw new SnackNotFoundException("Cannot find snacks");
         }
-
-        // Преобразование каждой Snack в SnackDto с использованием метода map
-        return snacks.map(snack -> {
-            SnackDto snackDto = new SnackDto();
-            snackDto.setId(snack.getId());
-            snackDto.setDescription(snack.getDescription());
-            snackDto.setName(snack.getName());
-            snackDto.setPathToImage(snack.getPathToImage());
-            snackDto.setCost(snack.getCost());
-            snackDto.setWeight(snack.getWeight());
-            return snackDto;
-        });
+        return snacks;
     }
 
-    public Page<DrinkDto> convertDrinkListToDto(Pageable pageable) {
+    public Page<Drink> convertDrinkListToDto(Pageable pageable) {
         Page<Drink> drinks = drinkRepository.findAll(pageable);
 
         // Проверяем, если страница пуста, то выбрасываем исключение
         if (drinks.isEmpty()) {
             throw new DrinkNotFoundException("Cannot find drinks");
         }
-
-        // Преобразование каждой Drink в DrinkDto с использованием метода map
-        return drinks.map(drink -> {
-            DrinkDto drinkDto = new DrinkDto();
-            drinkDto.setId(drink.getId());
-            drinkDto.setDescription(drink.getDescription());
-            drinkDto.setName(drink.getName());
-            drinkDto.setPathToImage(drink.getPathToImage());
-            drinkDto.setCost(drink.getCost());
-            drinkDto.setTaste(drink.getTaste());
-            drinkDto.setVolume(drink.getVolume());
-            return drinkDto;
-        });
+        return drinks;
     }
 
 

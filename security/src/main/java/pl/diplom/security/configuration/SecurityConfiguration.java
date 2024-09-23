@@ -2,9 +2,7 @@ package pl.diplom.security.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,10 +10,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.HttpStatusEntryPoint;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
-import pl.diplom.security.filter.JwtFilter;
 import pl.diplom.security.logout.LogoutHandlerImpl;
 
 
@@ -26,7 +20,7 @@ import pl.diplom.security.logout.LogoutHandlerImpl;
 public class SecurityConfiguration {
 
     private final LogoutHandlerImpl logoutHandler;
-    private final JwtFilter filter;
+  //  private final JwtFilter filter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -35,15 +29,20 @@ public class SecurityConfiguration {
                         "/auth/login",
                         "/public/party/**",
                         "/public/person/find",
-                        "/auth/logout").permitAll()
+                        "/auth/logout",
+                        "/admin/all/drinks",
+                        "/css/**",
+                        "/js/**").permitAll()
                         .anyRequest()
-                        .authenticated())
-                .addFilterBefore(filter,
-                        UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(exceptionHandling ->
-                        exceptionHandling
-                                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-                .csrf(AbstractHttpConfigurer::disable);
+                        .authenticated());
+                http.csrf(AbstractHttpConfigurer::disable);
+                http.cors(AbstractHttpConfigurer::disable);
+                //.addFilterBefore(filter,
+                //        UsernamePasswordAuthenticationFilter.class)
+//                .exceptionHandling(exceptionHandling ->
+//                        exceptionHandling
+//                                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+//                .csrf(AbstractHttpConfigurer::disable);
         http.logout((logout) -> logout.logoutUrl("/auth/logout").addLogoutHandler(logoutHandler));
         return http.build();
     }

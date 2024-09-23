@@ -1,12 +1,10 @@
 package pl.diplom.common.model.product;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import pl.diplom.common.model.Image;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.PersonOrder;
 import pl.diplom.common.model.Portion;
@@ -32,8 +30,19 @@ public class Pizza extends Product{
         private String pathToImage;
 
         @ManyToMany(mappedBy = "pizzas")
+        //@NotEmpty(message = "Portions list cannot be empty")
         private List<PersonOrder> personOrders = new ArrayList<>();
 
         private String status;
+
+        @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "pizza")
+        //@NotEmpty(message = "image cannot be empty")
+        private List<Image> images = new ArrayList<>();
+
+        private Integer previewImageId;
+        public void addImage(Image image) {
+                image.setPizza(this);
+                images.add(image);
+        }
 
 }

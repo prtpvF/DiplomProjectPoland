@@ -16,8 +16,6 @@ public class DrinkDto {
 
         private String name;
 
-        private String pathToImage;
-
         private double cost;
 
         private String taste;

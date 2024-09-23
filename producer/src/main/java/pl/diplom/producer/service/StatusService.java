@@ -13,7 +13,7 @@ public class StatusService {
         private final StatusRepository statusRepository;
 
         public Status getStatusByName(String statusName) {
-            return statusRepository.findByName(statusName)
+            return statusRepository.findByStatus(statusName)
                     .orElseThrow(() -> new OrderStatusNotFoundException("cannot find order status with this id"));
         }
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Drink Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Drink Details</h1>
+
+<div class="drink-details">
+    <h2 th:text="${person.username}"></h2>
+    <p th:text="${personDto.email}"></p>
+</div>
+
+
+<div th:if="${person.isActive}">
+    <form th:action="@{/admin/ban/{id}(id=${person.id})}" method="post">
+        <input type="hidden" name="_method" value="update"/>
+        <button type="submit">ban person</button>
+    </form>
+</div>
+
+<div th:if="${!person.isActive}">
+    <form th:action="@{/admin/unban/{id}(id=${person.id})}" method="post">
+        <input type="hidden" name="_method" value="update"/>
+        <button type="submit">unban person</button>
+    </form>
+</div>
+
+<!-- Подвал сайта -->
+<div th:replace="fragments/footer :: footer"></div>
+
+
+</body>
+</html>
