@@ -69,12 +69,7 @@ public class ProductService {
                                       MultipartFile file) throws IOException {
 
                 Pizza pizza = mapAdditionalFields(pizzaDto);
-                Image image;
-                if (file.getSize() != 0) {
-                        image = toImageEntity(file);
-                        image.setPreviewImage(true);
-                        pizza.addImage(image);
-                }
+
                 pizza.setPortions(convertDtoListToPortionList(
                         portionService.findAllOrCreate(
                                 pizzaDto.getPortions()
@@ -82,9 +77,8 @@ public class ProductService {
                 );
                 pizza.setStatus(PizzaCreatorEnum.ADMIN.name());
                 String filePath = imageService.savePhotoLocal(file);
-                Pizza fromDb = pizzaRepository.save(pizza);
-                fromDb.setPreviewImageId(fromDb.getImages().get(0).getId());
-                pizzaRepository.save(fromDb);
+                pizza.setPathToImage(filePath);
+                pizzaRepository.save(pizza);
                 return CREATED;
         }
 
@@ -92,12 +86,6 @@ public class ProductService {
                                       MultipartFile file) throws IOException {
                 Snack snack = new Snack();
                 modelMapper.map(snackDto, snack);
-                Image image;
-                if (file.getSize() != 0) {
-                        image = toImageEntity(file);
-                        image.setPreviewImage(true);
-                        snack.addImage(image);
-                }
                 snack.setPersonOrderList(Collections.emptyList());
                 String filePath = imageService.savePhotoLocal(file);
                 snack.setPathToImage(filePath);
@@ -106,8 +94,7 @@ public class ProductService {
         }
 
         public HttpStatus updatePizza(Integer pizzaNeedToBeUpdatedId,
-                                      PizzaDto pizzaDto,
-                                      MultipartFile file) {
+                                      PizzaDto pizzaDto) {
 
                 Pizza pizza = getPizzaById(pizzaNeedToBeUpdatedId);
                 pizza.setId(pizza.getId());
@@ -121,11 +108,6 @@ public class ProductService {
                 if (!pizza.getPersonOrders().isEmpty()) {
                         pizza.setPersonOrders(pizza.getPersonOrders());
                 }
-                pizza.setDescription(pizzaDto.getDescription());
-                if (file != null) {
-                        String filePath = imageService.savePhotoLocal(file);
-                        pizza.setPathToImage(filePath);
-                }
                 else {
                         pizza.setPathToImage(pizza.getPathToImage());
                 }
@@ -134,21 +116,24 @@ public class ProductService {
         }
 
         public HttpStatus updateDrink(Integer drinkNeedToBeUpdatedId,
-                                      Drink drink) {
+                                      DrinkDto drinkDto) {
 
                 Drink drinkNeed = getDrinkById(drinkNeedToBeUpdatedId);
-                drink.setId(drink.getId());
-                if(!drink.getPersonOrderList().isEmpty()) {
-                        drink.setPersonOrderList(drink.getPersonOrderList());
+                drinkNeed.setId(drinkNeedToBeUpdatedId);
+                if(!drinkNeed.getPersonOrderList().isEmpty()) {
+                        drinkNeed.setPersonOrderList(drinkNeed.getPersonOrderList());
                 }
-
-                drinkRepository.save(drink);
+                drinkNeed.setPathToImage(drinkNeed.getPathToImage());
+                drinkNeed.setCost(drinkDto.getCost());
+                drinkNeed.setName(drinkDto.getName());
+                drinkNeed.setTaste(drinkDto.getTaste());
+                drinkNeed.setVolume(drinkDto.getVolume());
+                drinkRepository.save(drinkNeed);
                 return OK;
         }
 
         public HttpStatus updateSnack(Integer snackId,
-                                      SnackDto snackDto,
-                                      MultipartFile file) {
+                                      SnackDto snackDto) {
 
                 Snack snack = getSnackById(snackId);
 
@@ -157,12 +142,10 @@ public class ProductService {
                 if(!snack.getPersonOrderList().isEmpty()) {
                         snack.setPersonOrderList(snack.getPersonOrderList());
                 }
-
-                if(file!=null) {
-                        snack.setPathToImage(imageService.savePhotoLocal(file));
-                }
-
-                mapAdditionalFieldForSnack(snackDto, snack);
+                snack.setPathToImage(snack.getPathToImage());
+                snack.setCost(snackDto.getCost());
+                snack.setName(snackDto.getName());
+                snack.setWeight(snackDto.getWeight());
                 snackRepository.save(snack);
                 return OK;
         }
@@ -172,11 +155,7 @@ public class ProductService {
                 for (PersonOrder order : drink.getPersonOrderList()) {
                         order.getDrinks().remove(drink);
                 }
-
-                // Сохраняем изменения в заказах
                 personOrderRepository.saveAll(drink.getPersonOrderList());
-
-                // Теперь можно безопасно удалить напиток
                 drinkRepository.delete(drink);
                 return OK;
         }
@@ -213,7 +192,6 @@ public class ProductService {
         }
 
         private void mapAdditionalFieldForSnack(SnackDto snackDto, Snack snack) {
-                snack.setDescription(snack.getDescription());
                 snack.setCost(snackDto.getCost());
                 snack.setName(snackDto.getName());
                 snack.setWeight(snackDto.getWeight());
@@ -221,7 +199,6 @@ public class ProductService {
 
         private void mapAdditionalFieldFoDrink(DrinkDto drinkDto, Drink drink) {
                 drink.setTaste(drinkDto.getTaste());
-                drink.setDescription(drinkDto.getDescription());
                 drink.setCost(drinkDto.getCost());
                 drink.setName(drinkDto.getName());
                 drink.setTaste(drinkDto.getTaste());
@@ -230,7 +207,6 @@ public class ProductService {
         private Pizza mapAdditionalFields(PizzaDto pizzaDto) {
                 Pizza pizza = new Pizza();
                 pizza.setName(pizzaDto.getName());
-                pizza.setDescription(pizzaDto.getDescription());
                 pizza.setCost(pizzaDto.getCost());
                 return pizza;
         }

@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.PizzaDto;
 import com.example.demo.exception.PizzaNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

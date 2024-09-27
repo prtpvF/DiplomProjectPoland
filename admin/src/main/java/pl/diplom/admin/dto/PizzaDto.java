@@ -21,8 +21,6 @@ public class PizzaDto {
 
         private String pathToImage;
 
-        private String description;
-
         private String status;
 
         private List<PortionDto> portions = new ArrayList<>();

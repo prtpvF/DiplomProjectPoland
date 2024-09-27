@@ -1,4 +1,4 @@
-package pl.diplom.admin.dto;
+package com.example.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
@@ -20,6 +20,8 @@ public class SnackDto {
         private String name;
 
         private String pathToImage;
+
+        private String description;
 
         @NotNull(message = "cannot be empty")
         private Double cost;

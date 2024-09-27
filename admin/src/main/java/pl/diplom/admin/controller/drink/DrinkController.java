@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class DrinkController {
@@ -35,53 +35,16 @@ public class DrinkController {
     }
 
     @PatchMapping("/drink/{id}")
-    //@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus updateDrink(@PathVariable("id") Integer drinkId,
-                                  @ModelAttribute("drink") Drink drink) {
-        return productService.updateDrink(drinkId, drink);
+                                  @RequestBody DrinkDto drinkDto) {
+        return productService.updateDrink(drinkId, drinkDto);
     }
 
     @PostMapping("/delete/drink/{id}")
-    // @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
-    public String deleteDrink(@PathVariable("id") Integer drinkId) {
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
+    public HttpStatus deleteDrink(@PathVariable("id") Integer drinkId) {
         productService.deleteDrink(drinkId);
-        return "redirect:/drink/all";
+        return HttpStatus.OK;
     }
-
-    @RequestMapping(value = "/all/drinks", method = RequestMethod.GET)
-    public String allDrink(Model model) {
-        List<Drink> drinks = drinkRepository.findAll();
-        model.addAttribute("drinks", drinks);
-        return "drink/all";
-    }
-
-    @GetMapping("/drink/{id}")
-    public String getDrink(@PathVariable("id") Integer id, Model model) {
-        setAuth(model);
-        Drink drink = drinkRepository.findById(id).orElse(null);
-        model.addAttribute("drink", drink);
-        return "/drink/page";
-    }
-
-    @GetMapping("/update/drink/{id}/page")
-    public String updateDrinkPage(@PathVariable("id") int id,
-                                  Model model) {
-        Optional<Drink> drink = drinkRepository.findById(id);
-        model.addAttribute("drink", drink.get());
-        return "/drink/update";
-    }
-
-    @GetMapping("/drink/create")
-    public String createDrinkPage(Model model) {
-        setAuth(model);
-        model.addAttribute("drinkDto", new DrinkDto());
-        return "drink/create";
-    }
-
-    private void setAuth(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userRole = authentication.getAuthorities().iterator().next().getAuthority();
-        model.addAttribute("userRole", userRole);
-    }
-
 }

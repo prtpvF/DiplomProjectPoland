@@ -20,8 +20,6 @@ public class DrinkDto {
 
         private String taste;
 
-        private String description;
-
         private Double volume;
 
         private List<Integer> personOrderIds = new ArrayList<>();

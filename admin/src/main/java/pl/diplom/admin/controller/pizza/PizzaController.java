@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class PizzaController {
@@ -37,38 +37,18 @@ public class PizzaController {
     private final IngredientRepository ingredientRepository;
     private final IngredientService ingredientService;
 
-    @GetMapping("/update/pizza/{id}/page")
-    public String updatePizzaPage(@PathVariable("id") int id,
-                                  Model model) {
-        Pizza pizza = pizzaRepository.findById(id).orElse(null);
-        model.addAttribute("pizza", pizza);
-        return "/pizza/update";
-    }
-
-    @GetMapping("/pizza/{id}")
-    public String getPizza(@PathVariable("id") Integer id, Model model) {
-        setAuth(model);
-        Pizza pizza = pizzaRepository.findById(id).orElse(null);
-        model.addAttribute("pizza", pizza);
-        return "/pizza/page";
-    }
-
     @PostMapping(value = "/pizza/create", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public String createPizza(@ModelAttribute @Valid PizzaDto pizzaDto,
+    public HttpStatus createPizza(@ModelAttribute @Valid PizzaDto pizzaDto,
                               @RequestPart("image") MultipartFile image,
                               BindingResult bindingResult,
                               Model model) {
-        if (bindingResult.hasErrors()) {
-            return "pizza/create";
-        }
 
         try {
-            model.addAttribute("ingredients", ingredientRepository.findAll());
             productService.createPizza(pizzaDto, image);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/admin/all/pizza"; // Перенаправление на успешную страницу
+        return HttpStatus.OK;
     }
 
     @GetMapping("/pizza/create")
@@ -85,9 +65,8 @@ public class PizzaController {
     @PatchMapping("/pizza/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus updatePizza(@PathVariable("id") Integer pizzaId,
-                                  @RequestPart PizzaDto pizzaDto,
-                                  @RequestPart MultipartFile image) {
-        return productService.updatePizza(pizzaId, pizzaDto, image);
+                                  @RequestPart PizzaDto pizzaDto) {
+        return productService.updatePizza(pizzaId, pizzaDto);
     }
 
     @DeleteMapping("/pizza/{id}")
