@@ -54,7 +54,8 @@ public class PersonController {
     }
 
     @PostMapping("/order")
-    public void createOrder(@RequestBody PersonOrderDto order) {
+    public void createOrder(@RequestBody PersonOrderDto order,
+                            @RequestHeader("token") String token) {
         clientService.createOrder(token, order);
     }
 

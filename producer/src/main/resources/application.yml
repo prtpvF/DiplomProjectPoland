@@ -2,15 +2,16 @@ spring:
   application:
     name: producer
   datasource:
-    username: mihail
-    password: postgres
-    url: jdbc:postgresql://localhost:5432/diplom
+    username: ${USER}
+    password: ${PASSWORD}
+    url: ${URI}
   main:
     lazy-initialization: true
   jpa:
     properties:
       hibernate:
         show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
   servlet:
@@ -18,7 +19,5 @@ spring:
       enabled: true
       max-file-size: 10MB
       max-request-size: 10MB
-
-
 server:
   port: 9090

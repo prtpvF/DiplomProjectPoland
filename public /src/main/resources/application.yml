@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: public
-
-server:
-  port: 8081

@@ -47,9 +47,8 @@ public class SnackController {
     @PatchMapping("/snack/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus updateSnack(@PathVariable("id") Integer snackId,
-                                  @RequestPart SnackDto snackDto,
-                                  @RequestPart MultipartFile image) {
-        return productService.updateSnack(snackId, snackDto, image);
+                                  @RequestPart SnackDto snackDto) {
+        return productService.updateSnack(snackId, snackDto);
     }
 
     @GetMapping("/snack/{id}")

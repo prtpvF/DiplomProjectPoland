@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.PizzaDto;
 import com.example.demo.exception.PizzaNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,6 @@ public class PizzaService {
             pizzaDto.setName(pizza.getName());
             pizzaDto.setCost(pizza.getCost());
             pizzaDto.setPathToImage(pizza.getPathToImage());
-            pizzaDto.setRecipeId(pizza.getRecipe().getId());
             return pizzaDto;
         }
 }

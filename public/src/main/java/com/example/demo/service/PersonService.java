@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.exception.PersonNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,12 @@ public class PersonService {
                         .orElseThrow(() -> new PersonNotFoundException
                                 ("cannot find person with this username"));
                 personRepository.delete(person);
+        }
+
+        public Person findByUsername(String username){
+                Person person = personRepository.findByUsername(username)
+                        .orElseThrow(() -> new EntityNotFoundException("cannot find person with this username"));
+                return person;
         }
 
 }
