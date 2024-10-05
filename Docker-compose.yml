@@ -7,9 +7,9 @@ services:
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_USER: mihail
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: diplom
+      POSTGRES_DB: poland
       POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - "5434:5432"
@@ -26,7 +26,7 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom  # Используем имя сервиса вместо localhost
+      URI: jdbc:postgresql://postgres:5432/poland
       USER: mihail
       PASSWORD: postgres
 
@@ -42,8 +42,8 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom
-      USER: mihail
+      URI: jdbc:postgresql://postgres:5432/poland
+      USER: postgres
       PASSWORD: postgres
 
   public-api_service:
@@ -57,8 +57,8 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom
-      USER: mihail
+      URI: jdbc:postgresql://postgres:5432/poland
+      USER: postgres
       PASSWORD: postgres
 
   producer_service:
@@ -72,8 +72,8 @@ services:
         - postgres
       environment:
         SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-        URI: jdbc:postgresql://postgres:5432/diplom
-        USER: mihail
+        URI: jdbc:postgresql://postgres:5432/poland
+        USER: postgres
         PASSWORD: postgres
 
   admin_service:
@@ -87,8 +87,8 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom  # Используем имя сервиса вместо localhost
-      USER: mihail
+      URI: jdbc:postgresql://postgres:5432/poland  # Используем имя сервиса вместо localhost
+      USER: postgres
       PASSWORD: postgres
 
 
