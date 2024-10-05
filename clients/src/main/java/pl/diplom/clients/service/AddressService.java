@@ -10,6 +10,8 @@ import pl.diplom.common.model.Address;
 import pl.diplom.common.model.Person;
 import pl.diplom.common.repository.AddressRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -21,6 +23,7 @@ import static org.springframework.http.HttpStatus.OK;
 public class AddressService {
 
         private final AddressRepository addressRepository;
+        private final PersonService personService;
 
         public Address findOrCreateAddress(String address, Person person) {
             Optional<Address> founded = addressRepository.findByAddressAndPerson(address, person);
@@ -31,13 +34,37 @@ public class AddressService {
             }
         }
 
-        public Person createAddress(Person person, String address) {
+        public String getAddress(String address, String token) {
+            Person person = personService.getPersonFromToken(token);
+            Optional<Address> founded = addressRepository.findByAddressAndPerson(address, person);
+
+            if(founded.isPresent()) {
+                return founded.get().getAddress();
+            }
+            else {
+                throw new EntityNotFoundException("Address not found");
+            }
+        }
+
+        public List<String> getAllPersonAddresses(String token) {
+            Person person = personService.getPersonFromToken(token);
+
+            List<Address> personAddresses = person.getAddresses();
+            List<String> addresses = new ArrayList<>();
+            for (Address address : personAddresses) {
+                addresses.add(address.getAddress());
+            }
+            return addresses;
+        }
+
+        public HttpStatus createAddress(String token, String address) {
+            Person person = personService.getPersonFromToken(token);
             isAddressExists(person, address);
             address = convertAddressToLowerCase(address);
             Address addressModel = new Address(person, address);
             person.addAddress(addressModel);
             addressRepository.save(addressModel);
-           return person;
+           return OK;
         }
 
         public HttpStatus deleteAddress(Integer addressId, Person person) {

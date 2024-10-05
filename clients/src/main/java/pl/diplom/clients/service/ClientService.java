@@ -49,13 +49,6 @@ public class ClientService {
                 personRepository.delete(person);
         }
 
-        public HttpStatus addAddress(String token, String address) {
-                Person person = retrievePersonFromToken(token);
-                person = addressService.createAddress(person, address);
-                personRepository.save(person);
-                return CREATED;
-        }
-
         public HttpStatus deleteAddress(Integer addressId, String token) {
                 Person person = retrievePersonFromToken(token);
                 return addressService.deleteAddress(addressId, person);

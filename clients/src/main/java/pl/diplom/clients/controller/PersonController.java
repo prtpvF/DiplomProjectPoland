@@ -12,15 +12,14 @@ import pl.diplom.clients.dto.DrinkDto;
 import pl.diplom.clients.dto.PersonOrderDto;
 import pl.diplom.clients.dto.PizzaDto;
 import pl.diplom.clients.dto.SnackDto;
-import pl.diplom.clients.service.ClientService;
-import pl.diplom.clients.service.PersonOrderService;
-import pl.diplom.clients.service.PersonService;
-import pl.diplom.clients.service.ProductService;
+import pl.diplom.clients.service.*;
 import pl.diplom.common.model.Person;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
 import pl.diplom.common.model.product.Snack;
 import pl.diplom.security.util.PersonDetails;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/person")
@@ -31,6 +30,7 @@ public class PersonController {
     private final PersonOrderService personOrderService;
     private final PersonService personService;
     private final ProductService productService;
+    private final AddressService addressService;
 
     @GetMapping("/pizza")
     public String getAllPizza(Pageable pageable, Model model) {
@@ -75,12 +75,6 @@ public class PersonController {
     public void deletePersonOrder(@PathVariable("id") int personOrderId,
                                   @RequestHeader("token") String token) {
         clientService.deleteOrder(token, personOrderId);
-    }
-
-    @PostMapping("/address")
-    public void addAddress(@RequestHeader("token") String token,
-                           @RequestBody String address) {
-        clientService.addAddress(token, address);
     }
 
     private void setAuth(Model model) {
