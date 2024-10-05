@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: public
+  datasource:
+    username: ${USER}
+    password: ${PASSWORD}
+    url: ${URI}
+  main:
+    lazy-initialization: true
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
+server:
+  port: 8082

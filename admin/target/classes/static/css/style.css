@@ -1,0 +1,116 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+h1, h2 {
+    color: #004080;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 20px;
+    text-align: center;
+}
+
+li img {
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+li h2 {
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+
+li p {
+    margin: 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Стили для пагинации */
+div.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+div.pagination a {
+    color: #004080;
+    padding: 10px 20px;
+    margin: 0 5px;
+    text-decoration: none;
+    border: 1px solid #004080;
+    border-radius: 5px;
+}
+
+div.pagination a:hover {
+    background-color: #004080;
+    color: white;
+}
+
+/* Шапка и подвал */
+header, footer {
+    background-color: #004080;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header nav a, footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+header nav a:hover, footer a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.product-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    box-sizing: border-box;
+    width: calc(25% - 20px); /* 4 товара в ряд с отступами */
+    margin: 10px; /* Отступ между товарами */
+    border: 1px solid #ccc; /* Граница для блока товара */
+    padding: 10px; /* Внутренний отступ */
+}
+
+.product-image {
+    width: 100%; /* Изображение занимает всю ширину блока */
+    height: auto; /* Пропорциональная высота */
+}
+
+.product-details {
+    text-align: center; /* Центрирование текста */
+}
+
+.product-price {
+    display: inline; /* В одну строку с "Cost:" */
+}

@@ -1,0 +1,15 @@
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/AuthApplication.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/configuration/RabbitConfiguration.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/controller/AuthController.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/dto/JwtRequestDto.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/dto/LoginDto.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/dto/RegistrationDto.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/dto/RegistrationMessageDto.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/ApiException.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/IncorrectPasswordException.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/PersonAlreadyExistsException.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/PersonDoesntExistException.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/handler/AuthHandler.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/service/AuthService.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/util/MessageTypeEnum.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/util/ObjectMapper.java

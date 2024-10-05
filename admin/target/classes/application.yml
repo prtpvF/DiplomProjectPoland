@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: admin
+  datasource:
+    username: ${USER}
+    password: ${PASSWORD}
+    url: ${URI}
+  main:
+    lazy-initialization: true
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  thymeleaf:
+    servlet:
+      content-type: text/html
+    suffix: .html
+    cache: false
+jwt:
+  secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
+
+logging:
+  file:
+    name: public.log
+  level:
+    root: info
+
+server:
+  port: 8080

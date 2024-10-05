@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Person List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+
+<div th:replace="fragments/header :: header"></div>
+
+<h1>All Person</h1>
+
+<div th:if="${userRole == 'ROLE_ADMIN'}">
+    <a th:href="@{/admin/pizza/create}">Create new worker</a>
+</div>
+
+<ul class="product-list">
+    <li th:each="user : ${users}" class="product-item">
+        <div class="product-details">
+            <h3 th:text="${user.username}"></h3>
+            <p th:text="${user.firstName}"></p> <p th:text="${user.lastName}"></p>
+            <p th:text="${user.getEmail}"></p>
+            <a th:href="@{/admin/person/{id}(id=${user.id})}">View Details</a>
+        </div>
+    </li>
+</ul>
+
+<h3>WORKERS</h3>
+<ul class="product-list">
+    <li th:each="user : ${workers}" class="product-item">
+        <div class="product-details">
+            <h3 th:text="${user.username}"></h3>
+            <p th:text="${user.firstName}"></p> <p th:text="${user.lastName}"></p>
+            <p th:text="${user.getEmail}"></p>
+            <a th:href="@{/admin/person/{id}(id=${user.id})}">View Details</a>
+        </div>
+    </li>
+</ul>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

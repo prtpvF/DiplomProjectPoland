@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Drink</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h3>Update drink</h3>
+
+<div class="update-container">
+    <form th:action="@{/admin/drink/{id}(id=${drink.id})}"
+          method="post" enctype="multipart/form-data" th:object="${drink}">
+        <input type="hidden" th:field="*{id}" /> <!-- Поле ID для передачи в запрос -->
+
+        <label for="name">Name:</label>
+        <input type="text" th:field="*{name}" id="name" >
+
+        <label for="cost">Cost:</label>
+        <input type="number" th:field="*{cost}" id="cost" >
+        <span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}" style="color: red"></span>
+
+        <label for="volume">Volume:</label>
+        <input type="number" th:field="*{volume}" id="volume" >
+        <span th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}" style="color: red"></span>
+
+        <label for="taste">Taste:</label>
+        <input type="text" th:field="*{taste}" id="taste" >
+
+        <label for="description">Description:</label>
+        <textarea th:field="*{description}" id="description"></textarea>
+
+        <input type="submit" value="Update drink"/>
+    </form>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

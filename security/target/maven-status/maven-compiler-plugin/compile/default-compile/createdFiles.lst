@@ -1,0 +1,6 @@
+pl/diplom/security/configuration/RedisConfiguration.class
+pl/diplom/security/jwt/JwtUtil.class
+pl/diplom/security/util/PersonDetails.class
+pl/diplom/security/logout/LogoutHandlerImpl.class
+pl/diplom/security/configuration/SecurityConfiguration.class
+pl/diplom/security/service/PersonDetailsService.class

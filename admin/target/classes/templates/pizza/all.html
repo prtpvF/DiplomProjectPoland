@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Drink List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+
+<div th:replace="fragments/header :: header"></div>
+
+<h1>All pizza</h1>
+
+<div th:if="${userRole == 'ROLE_ADMIN'}">
+    <a th:href="@{/admin/pizza/create}">Create new pizza</a>
+</div>
+<div th:if="${#lists.isEmpty(pizza)}">
+    <li>No pizza found</li>
+</div>
+
+<ul class="product-list">
+    <li th:each="pizza : ${pizza}" class="product-item">
+        <img th:src="@{/images/{id}(id=${pizza.getPreviewImageId()})}" alt="Drink Image" class="product-image">
+        <div class="product-details">
+            <h3 th:text="${pizza.name}"></h3>
+            <p class="product-price">Cost: <span th:text="${pizza.cost}"></span></p>
+            <a th:href="@{/admin/pizza/{id}(id=${pizza.id})}">View Details</a>
+        </div>
+    </li>
+</ul>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All orders</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+    <h1>All persons' orders</h1>
+
+<ul>
+    <li th:each="order : ${orderPage.content}">
+        <h2 th:src="@{${order.status}}"/>
+        <h2 th:text="${drink.name}"></h2>
+        <p>Cost: $<span th:text="${order.cost}"></span></p>
+        <p>Address <span th:text="${order.address}"></span></p>
+        <a th:href="@{/order/{id}(id=${order.id})}">View Details</a>
+    </li>
+</ul>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

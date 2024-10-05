@@ -1,0 +1,15 @@
+pl/diplom/auth/dto/RegistrationDto.class
+pl/diplom/auth/exception/handler/AuthHandler.class
+pl/diplom/auth/exception/PersonAlreadyExistsException.class
+pl/diplom/auth/dto/JwtRequestDto.class
+pl/diplom/auth/util/MessageTypeEnum.class
+pl/diplom/auth/exception/ApiException.class
+pl/diplom/auth/dto/LoginDto.class
+pl/diplom/auth/util/ObjectMapper.class
+pl/diplom/auth/exception/IncorrectPasswordException.class
+pl/diplom/auth/service/AuthService.class
+pl/diplom/auth/dto/RegistrationMessageDto.class
+pl/diplom/auth/controller/AuthController.class
+pl/diplom/auth/AuthApplication.class
+pl/diplom/auth/configuration/RabbitConfiguration.class
+pl/diplom/auth/exception/PersonDoesntExistException.class

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Drink List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+
+<div th:replace="fragments/header :: header"></div>
+
+<h1>All Drinks</h1>
+
+<div th:if="${userRole == 'ROLE_ADMIN'}">
+    <a th:href="@{/admin/drink/create}">Create new drink</a>
+</div>
+<div th:if="${#lists.isEmpty(drinks)}">
+    <li>No drinks found</li>
+</div>
+
+<ul class="product-list">
+    <li th:if="${#lists.isEmpty(drinks)}">No drinks found</li>
+    <li th:each="drink : ${drinks}" class="product-item">
+        <img th:src="@{${drink.pathToImage}}" alt="Drink Image" class="product-image">
+        <div class="product-details">
+            <h3 th:text="${drink.name}"></h3>
+            <p class="product-price">Cost: <span th:text="${drink.cost}"></span></p>
+            <a th:href="@{/admin/drink/{id}(id=${drink.id})}">View Details</a>
+        </div>
+    </li>
+</ul>
+
+
+</div>
+
+
+
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
