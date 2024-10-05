@@ -13,7 +13,7 @@ spring:
         show_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
   servlet:
     multipart:
       enabled: true
