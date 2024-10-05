@@ -57,7 +57,7 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom  # Используем имя сервиса вместо localhost
+      URI: jdbc:postgresql://postgres:5432/diplom
       USER: mihail
       PASSWORD: postgres
 
