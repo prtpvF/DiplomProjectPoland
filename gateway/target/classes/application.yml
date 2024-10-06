@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: gateway-server
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: auth
+          uri: http://localhost:8089
+          predicates:
+            - Path=/auth/**
+        - id: admin
+          uri: http://localhost:8080
+          predicates:
+            - Path=/admin/**
+        - id: clients
+          uri: http://localhost:8091
+          predicates:
+            - Path=/person/**
+        - id: clients-address
+          uri: http://localhost:8091
+          predicates:
+            - Path=/address/**
+        - id: producer
+          uri: http://localhost:9090
+          predicates:
+            - Path=/worker/**
+        - id: public
+          uri: http://localhost:8092
+          predicates:
+            - Path=/public/**
+
+        - id: public-order-status
+          uri: http://localhost:8092
+          predicates:
+            - Path=/order-status/**
+
+        - id: public-public-person
+          uri: http://localhost:8092
+          predicates:
+            - Path=/public-person/**
+
+        - id: public-public-role
+          uri: http://localhost:8092
+          predicates:
+            - Path=/public-role/**
+
+        - id: public-public-pizza
+          uri: http://localhost:8092
+          predicates:
+            - Path=/public-pizza/**
+
+        - id: public-public-product
+          uri: http://localhost:8092
+          predicates:
+            - Path=/public-product/**
+    discovery:
+
+server:
+  port: 8888
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

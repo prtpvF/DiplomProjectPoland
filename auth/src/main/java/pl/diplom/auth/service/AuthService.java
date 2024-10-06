@@ -101,7 +101,6 @@ public class AuthService {
 
             if (authentication != null) {
                 new SecurityContextLogoutHandler().logout(request, response, authentication);
-                jwtUtil.removeToken(getUsernameFromToken(token));
             }
         }
 

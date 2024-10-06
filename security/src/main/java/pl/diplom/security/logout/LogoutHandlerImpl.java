@@ -19,7 +19,7 @@ public class LogoutHandlerImpl implements LogoutHandler {
             String token = request.getHeader("token");
             if(token!=null){
                 String username = jwtUtil.validateTokenAndRetrieveClaim(token);
-                jwtUtil.removeToken(username);
+
             }
         }
 }

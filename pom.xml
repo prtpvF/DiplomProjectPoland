@@ -20,6 +20,7 @@
     </properties>
 
     <modules>
+        <module>gateway</module>
         <module>security</module>
         <module>auth</module>
         <module>admin</module>

@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
+
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -24,7 +24,6 @@ public class JwtUtil {
 
 
         private final String secret = "984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf";
-        private final RedisTemplate<String, String> redisTemplate;
 
         public String generateToken( String username){
             Date expirationDate = Date.from(ZonedDateTime.now().plusMinutes(60).toInstant());
@@ -32,7 +31,6 @@ public class JwtUtil {
                     .withIssuedAt(new Date()).withIssuer("free-party")
                     .withExpiresAt(expirationDate)
                     .sign(Algorithm.HMAC256(secret));
-            saveTokenToRedis(username, token);
             return token;
         }
 
@@ -45,15 +43,7 @@ public class JwtUtil {
             return jwt.getClaim("username").asString();
         }
 
-        public void isTokenActive(String username){
-            String token = redisTemplate.opsForValue().get(username);
-            assert token != null;
-            log.info("token is still active");
-        }
-        public void removeToken(String username){
-            redisTemplate.delete(username);
-            log.info("token has successfully deleted from redis");
-        }
+
 
         public String extractTokenFromHeader(HttpServletRequest request) {
             String token = request.getHeader("token");
@@ -63,8 +53,4 @@ public class JwtUtil {
             return null;
         }
 
-        private void saveTokenToRedis(String username, String token){
-            redisTemplate.opsForValue().set(username, token, Duration.ofMinutes(10));
-            log.info("token has successfully added into redis");
-        }
 }

@@ -7,9 +7,10 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: mihail
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: poland
+      POSTGRES_DB: diplom
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - "5434:5432"
 
@@ -25,9 +26,17 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/poland
+      URI: jdbc:postgresql://postgres:5432/diplom
       USER: mihail
       PASSWORD: postgres
+
+  gateway_service:
+    container_name: gateway
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
 
 
   person_service:
@@ -41,8 +50,8 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/poland
-      USER: postgres
+      URI: jdbc:postgresql://postgres:5432/diplom
+      USER: mihail
       PASSWORD: postgres
 
   public-api_service:
@@ -56,8 +65,8 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/poland
-      USER: postgres
+      URI: jdbc:postgresql://postgres:5432/diplom
+      USER: mihail
       PASSWORD: postgres
 
   producer_service:
@@ -71,8 +80,8 @@ services:
         - postgres
       environment:
         SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-        URI: jdbc:postgresql://postgres:5432/poland
-        USER: postgres
+        URI: jdbc:postgresql://postgres:5432/diplom
+        USER: mihail
         PASSWORD: postgres
 
   admin_service:
@@ -86,8 +95,8 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/poland  # Используем имя сервиса вместо localhost
-      USER: postgres
+      URI: jdbc:postgresql://postgres:5432/diplom  # Используем имя сервиса вместо localhost
+      USER: mihail
       PASSWORD: postgres
 
 
