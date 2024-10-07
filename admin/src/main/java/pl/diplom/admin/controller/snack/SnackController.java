@@ -39,13 +39,11 @@ public class SnackController {
     }
 
     @DeleteMapping("/snack/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus deleteSnack(@PathVariable("id") Integer snackId) {
         return productService.deleteSnack(snackId);
     }
 
     @PatchMapping("/snack/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus updateSnack(@PathVariable("id") Integer snackId,
                                   @RequestPart SnackDto snackDto) {
         return productService.updateSnack(snackId, snackDto);

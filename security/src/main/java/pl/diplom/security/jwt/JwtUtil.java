@@ -25,9 +25,10 @@ public class JwtUtil {
 
         private final String secret = "984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf";
 
-        public String generateToken( String username){
+        public String generateToken( String username, String role){
             Date expirationDate = Date.from(ZonedDateTime.now().plusMinutes(60).toInstant());
             String token = JWT.create().withSubject("User details").withClaim("username", username)
+                    .withClaim("role", role)
                     .withIssuedAt(new Date()).withIssuer("free-party")
                     .withExpiresAt(expirationDate)
                     .sign(Algorithm.HMAC256(secret));

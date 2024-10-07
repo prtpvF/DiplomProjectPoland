@@ -63,14 +63,12 @@ public class PizzaController {
 
 
     @PatchMapping("/pizza/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus updatePizza(@PathVariable("id") Integer pizzaId,
                                   @RequestPart PizzaDto pizzaDto) {
         return productService.updatePizza(pizzaId, pizzaDto);
     }
 
     @DeleteMapping("/pizza/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus deletePizza(@PathVariable("id") Integer pizzaId) {
         return productService.deletePizza(pizzaId);
     }

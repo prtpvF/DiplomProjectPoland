@@ -55,7 +55,6 @@ public class AdminController {
         private final SnackRepository snackRepository;
 
         @PostMapping("/ingredient")
-        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public ResponseEntity createIngredient(@RequestBody IngredientDto ingredientDto,
                                                BindingResult bindingResult) {
 
@@ -64,7 +63,6 @@ public class AdminController {
         }
 
         @DeleteMapping("/ingredient/{id}")
-        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus deleteIngredient(@PathVariable("id") Integer id) {
             return adminService.deleteIngredient(id);
         }
@@ -85,21 +83,18 @@ public class AdminController {
         }
 
         @PatchMapping("/ingredient/{id}")
-        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updateIngredient(@PathVariable("id") Integer orderNeedTobeUpdatedId,
                                            @RequestBody IngredientDto ingredientDto) {
             return  adminService.updateIngredient(ingredientDto, orderNeedTobeUpdatedId);
         }
 
         @PatchMapping("/order/address/{id}")
-        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updateAddress(@PathVariable("id") Integer orderNeedToBeUpdatedId,
                                         @RequestParam String address) {
             return adminService.updateAddressForOrder(orderNeedToBeUpdatedId, address);
         }
 
         @PatchMapping("/order/status/{id}")
-        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus updateOrderStatus(@PathVariable("id") Integer orderId,
                                             @RequestParam String status) {
             return adminService.updatePersonOrderStatus(orderId, status);
@@ -126,7 +121,6 @@ public class AdminController {
         }
 
         @DeleteMapping("/person-order/{id}")
-        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus deletePersonOrder(@PathVariable("id") Integer id) {
             return adminService.removeOrderFromStory(id);
         }
@@ -144,7 +138,6 @@ public class AdminController {
         }
 
         @PatchMapping("/ban/{id}")
-        @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
         public HttpStatus banPerson(@PathVariable("id") Integer personId) {
             adminService.banPerson(personId);
             return HttpStatus.OK;

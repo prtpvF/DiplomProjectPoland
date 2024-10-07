@@ -11,8 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/public-role")
-@PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+@RequestMapping("/public/role")
 public class PersonRoleController {
 
         private final PersonRoleService personRoleService;

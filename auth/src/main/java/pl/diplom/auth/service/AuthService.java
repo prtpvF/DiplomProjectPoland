@@ -56,7 +56,7 @@ public class AuthService {
         boolean isPasswordMatch = passwordEncoder.matches(logInDto.getPassword(), person.getPassword());
             if (isPasswordMatch) {
                 authPerson(person.getUsername());
-                String token = createJwtToken(person.getUsername());
+                String token = createJwtToken(person.getUsername(), person.getRole().getRoleName());
                 Map<String, String> data = new HashMap<>();
                 data.put("access-token", token);
                 return data;
@@ -86,8 +86,8 @@ public class AuthService {
             });
         }
 
-        private String createJwtToken(String username) {
-            return jwtUtil.generateToken(username);
+        private String createJwtToken(String username, String role) {
+            return jwtUtil.generateToken(username, role);
         }
 
         private Person findByUsername(String username){

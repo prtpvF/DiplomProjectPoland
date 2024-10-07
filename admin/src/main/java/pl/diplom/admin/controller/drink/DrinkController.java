@@ -27,7 +27,6 @@ public class DrinkController {
     private final DrinkRepository drinkRepository;
 
     @PostMapping("/drink/create")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus createDrink(@RequestPart("drinkDto") DrinkDto drinkDto,
                                   @RequestPart("image") MultipartFile image) throws IOException {
         productService.createDrink(drinkDto, image);
@@ -35,14 +34,12 @@ public class DrinkController {
     }
 
     @PatchMapping("/drink/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus updateDrink(@PathVariable("id") Integer drinkId,
                                   @RequestBody DrinkDto drinkDto) {
         return productService.updateDrink(drinkId, drinkDto);
     }
 
     @PostMapping("/delete/drink/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
     public HttpStatus deleteDrink(@PathVariable("id") Integer drinkId) {
         productService.deleteDrink(drinkId);
         return HttpStatus.OK;
