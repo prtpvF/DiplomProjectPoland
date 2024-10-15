@@ -3,6 +3,7 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/configuration/PersonConfig.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/controller/AddressController.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/controller/PersonController.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/AddressDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/DrinkDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/PersonOrderDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/PizzaDto.java

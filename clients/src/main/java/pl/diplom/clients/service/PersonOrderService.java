@@ -14,6 +14,7 @@ import pl.diplom.common.model.Person;
 import pl.diplom.common.model.PersonOrder;
 import pl.diplom.common.model.enums.PersonOrderStatusEnum;
 import pl.diplom.common.model.product.Product;
+import pl.diplom.common.repository.AddressRepository;
 import pl.diplom.common.repository.PersonOrderRepository;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class PersonOrderService {
 
         private final PersonOrderRepository personOrderRepository;
         private final ProductService productService;
+        private final AddressRepository addressRepository;
         private final ObjectMapper objectMapper;
         private final AddressService addressService;
 
@@ -42,7 +44,7 @@ public class PersonOrderService {
             setProducts(personOrder, order);
 
             order.setCost(calculateOrderTotalPrice(order));
-            order.setAddress(addressService.findOrCreateAddress(personOrder.getAddress(), person));
+            order.setAddress(addressRepository.findAddressByAddress(personOrder.getAddress()).get());
             personOrderRepository.save(order);
             return CREATED;
         }

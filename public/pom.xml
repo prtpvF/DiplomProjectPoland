@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>public </artifactId>
+	<artifactId>publicapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>public </name>
 	<description>public module</description>

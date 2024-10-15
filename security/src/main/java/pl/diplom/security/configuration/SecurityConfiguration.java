@@ -31,20 +31,22 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((request) -> request.requestMatchers(
                         "/auth/registration",
                         "/auth/login",
-                        "/public/**",
+                        "public/**",
+                        "/public/person",
                         "/auth/logout",
                         "/css/**",
                         "/js/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest()
-                        .authenticated());
+                        .permitAll());
                 http.csrf(AbstractHttpConfigurer::disable);
                 http.cors(AbstractHttpConfigurer::disable)
                 .addFilterBefore(filter,
-                        UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(exceptionHandling ->
-                        exceptionHandling
-                                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-                .csrf(AbstractHttpConfigurer::disable);
+                        UsernamePasswordAuthenticationFilter.class);
+//                .exceptionHandling(exceptionHandling ->
+//                        exceptionHandling
+//                                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+                //.csrf(AbstractHttpConfigurer::disable);
         http.logout((logout) -> logout.logoutUrl("/auth/logout").addLogoutHandler(logoutHandler));
         return http.build();
     }

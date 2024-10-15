@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.diplom.common.model.Person;
+import pl.diplom.common.model.Role;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,4 +20,6 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 
     @Query(value = "SELECT * FROM Person WHERE role.id=2", nativeQuery = true)
     List<Person> findAllAdmins();
+
+    List<Person> findByRole(Role role);
 }

@@ -1,5 +1,6 @@
 package pl.diplom.admin.service;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import pl.diplom.common.model.enums.PizzaCreatorEnum;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
 import pl.diplom.common.model.product.Snack;
+import pl.diplom.common.repository.IngredientRepository;
 import pl.diplom.common.repository.PersonOrderRepository;
 import pl.diplom.common.repository.PortionRepository;
 import pl.diplom.common.repository.product.DrinkRepository;
@@ -38,7 +40,6 @@ import static org.springframework.http.HttpStatus.OK;
 public class ProductService {
 
         private final PizzaRepository pizzaRepository;
-        private final IngredientService ingredientService;
         private final PortionService portionService;
         private final DrinkRepository drinkRepository;
         private final SnackRepository snackRepository;
@@ -46,6 +47,7 @@ public class ProductService {
         private final ImageService imageService;
 
         private final ModelMapper modelMapper;
+        private final IngredientRepository ingredientRepository;
 
         public HttpStatus createDrink(DrinkDto drinkDto,
                                       MultipartFile file) throws IOException {
@@ -216,7 +218,8 @@ public class ProductService {
                 for (PortionDto dto : dtos) {
                         Portion portion = new Portion();
                         portion.setId(dto.getId());
-                        Ingredient ingredient = ingredientService.getIngredientById(dto.getIngredientId());
+                        Ingredient ingredient = ingredientRepository.findById(dto.getIngredientId())
+                                .orElseThrow(() -> new EntityNotFoundException("cannot find ingredient with this id"));
                         portion.setIngredient(ingredient);
                         if(!dto.getPizzaIds().isEmpty()) {
                                 portion.setPizza(pizzaRepository.findAllById(dto.getPizzaIds()));

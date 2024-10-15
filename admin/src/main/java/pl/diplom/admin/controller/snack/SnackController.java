@@ -26,17 +26,6 @@ import java.io.IOException;
 public class SnackController {
 
     private final ProductService productService;
-    private final SnackRepository snackRepository;
-
-    @GetMapping("/all/snacks")
-    public String allSnack(Model model,
-                           @RequestParam(value = "page", defaultValue = "0") int page,
-                           @RequestParam(value = "size", defaultValue = "5") int size) {
-        setAuth(model);
-        Page<Snack> snackPage = snackRepository.findAll(PageRequest.of(page, size));
-        model.addAttribute("snackPage", snackPage);
-        return "/snack/all";
-    }
 
     @DeleteMapping("/snack/{id}")
     public HttpStatus deleteSnack(@PathVariable("id") Integer snackId) {
@@ -49,44 +38,9 @@ public class SnackController {
         return productService.updateSnack(snackId, snackDto);
     }
 
-    @GetMapping("/snack/{id}")
-    public String getSnack(@PathVariable("id") Integer id, Model model) {
-        setAuth(model);
-        Snack snack = snackRepository.findById(id).orElse(null);
-        model.addAttribute("snack", snack);
-        return "/snack/page";
-    }
-
-    @GetMapping("/update/snack/{id}/page")
-    public String updateSnackPage(@PathVariable("id") int id,
-                                  Model model) {
-        Snack snack = snackRepository.findById(id).orElse(null);
-        model.addAttribute("snack", snack);
-        return "/snack/update";
-    }
-
     @PostMapping("/snack/create")
-    public String createSnack(@ModelAttribute @Valid SnackDto snackDto,
-                                  @RequestPart("image") MultipartFile image,
-                                  BindingResult bindingResult,
-                                  Model model) throws IOException {
-        setAuth(model);
-        if (bindingResult.hasErrors()) {
-            return "/admin/snack/create";
-        }
-        productService.createSnack(snackDto,image);
-        return "redirect:/admin/all/snacks";
-    }
-
-    @GetMapping("/snack/create")
-    public String createPage(Model model) {
-        model.addAttribute("snackDto", new SnackDto());
-        return "snack/create";
-    }
-
-    private void setAuth(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userRole = authentication.getAuthorities().iterator().next().getAuthority();
-        model.addAttribute("userRole", userRole);
+    public HttpStatus createSnack(@ModelAttribute @Valid SnackDto snackDto,
+                                  @RequestPart("image") MultipartFile image) throws IOException {
+        return productService.createSnack(snackDto,image);
     }
 }

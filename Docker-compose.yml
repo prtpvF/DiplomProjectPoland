@@ -7,12 +7,11 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: mihail
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: diplom
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: poland
     ports:
-      - "5434:5432"
+      - "5432:5432"
 
   auth_service:
     container_name: auth
@@ -26,8 +25,8 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom
-      USER: mihail
+      URI: jdbc:postgresql://postgres:5432/poland
+      USER: postgres
       PASSWORD: postgres
 
   gateway_service:
@@ -45,13 +44,13 @@ services:
       context: ./clients
       dockerfile: Dockerfile
     ports:
-      - "8091:8091"
+      - "8081:8081"
     depends_on:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom
-      USER: mihail
+      URI: jdbc:postgresql://postgres:5432/poland
+      USER: postgres
       PASSWORD: postgres
 
   public-api_service:
@@ -60,29 +59,29 @@ services:
       context: ./public
       dockerfile: Dockerfile
     ports:
-      - "8092:8092"
+      - "8082:8082"
     depends_on:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom
-      USER: mihail
+      URI: jdbc:postgresql://postgres:5432/poland
+      USER: postgres
       PASSWORD: postgres
 
   producer_service:
-      container_name: producer
-      build:
-         context: ./producer
-         dockerfile: Dockerfile
-      ports:
-        - "9090:9090"
-      depends_on:
-        - postgres
-      environment:
-        SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-        URI: jdbc:postgresql://postgres:5432/diplom
-        USER: mihail
-        PASSWORD: postgres
+    container_name: producer
+    build:
+      context: ./producer
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      URI: jdbc:postgresql://postgres:5432/poland
+      USER: postgres
+      PASSWORD: postgres
 
   admin_service:
     container_name: admin
@@ -95,8 +94,8 @@ services:
       - postgres
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
-      URI: jdbc:postgresql://postgres:5432/diplom  # Используем имя сервиса вместо localhost
-      USER: mihail
+      URI: jdbc:postgresql://postgres:5432/poland  # Используем имя сервиса вместо localhost
+      USER: postgres
       PASSWORD: postgres
 
 

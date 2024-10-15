@@ -5,16 +5,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.diplom.admin.dto.PersonDto;
 import pl.diplom.admin.dto.worker.RegistrationDto;
 import pl.diplom.admin.dto.worker.UpdateWorkerDto;
 import pl.diplom.admin.exception.IllegalPersonDataException;
 import pl.diplom.admin.exception.PersonNotFoundException;
 import pl.diplom.common.model.Person;
+import pl.diplom.common.model.Role;
 import pl.diplom.common.model.enums.PersonRolesEnum;
 import pl.diplom.common.repository.PersonRepository;
 import pl.diplom.security.jwt.JwtUtil;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -31,6 +35,25 @@ public class PersonService {
         private final RoleService roleService;
         private final JwtUtil jwtUtil;
         private final PasswordEncoder passwordEncoder;
+
+        private final String ADMIN_ROLE = "ADMIN";
+
+        public PersonDto findByUsername(String username) {
+            Person person = personRepository.findByUsername(username)
+                    .orElseThrow(() -> new PersonNotFoundException(username));
+            return convertPersonTpoDto(person);
+        }
+
+        public List<PersonDto> getAllWorkers() {
+            Role role = roleService.findRoleByName(ADMIN_ROLE);
+            List<Person> workers = personRepository.findByRole(role);
+            List<PersonDto> personDtos = new ArrayList<>();
+
+            for (Person person : workers) {
+                personDtos.add(convertPersonTpoDto(person));
+            }
+            return personDtos;
+        }
 
         public HttpStatus createNewWorker(RegistrationDto registrationDto) {
             Person person = mapAdttionalFieldToperson(registrationDto);
@@ -76,7 +99,7 @@ public class PersonService {
             throw new IllegalPersonDataException("you are not an admin!");
         }
 
-        private Person findPersonById(Integer id) {
+        public Person findPersonById(Integer id) {
             return personRepository.findById(id)
                     .orElseThrow(() -> new PersonNotFoundException(
                             "cannot find person with this id"));
@@ -112,6 +135,18 @@ public class PersonService {
             person.setFirstName(registrationDto.getFirstName());
             person.setLastName(registrationDto.getLastName());
             return person;
+        }
+
+        private PersonDto convertPersonTpoDto(Person person) {
+            PersonDto personDto = new PersonDto();
+            personDto.setId(person.getId());
+            personDto.setUsername(person.getUsername());
+            personDto.setEmail(person.getEmail());
+            personDto.setRole(person.getRole().getRoleName());
+            personDto.setFirstName(person.getFirstName());
+            personDto.setLastName(person.getLastName());
+            personDto.setAge(person.getAge());
+            return personDto;
         }
 
 

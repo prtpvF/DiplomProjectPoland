@@ -27,7 +27,8 @@ public class JwtUtil {
 
         public String generateToken( String username, String role){
             Date expirationDate = Date.from(ZonedDateTime.now().plusMinutes(60).toInstant());
-            String token = JWT.create().withSubject("User details").withClaim("username", username)
+            String token = JWT.create().withSubject("User details")
+                    .withClaim("username", username)
                     .withClaim("role", role)
                     .withIssuedAt(new Date()).withIssuer("free-party")
                     .withExpiresAt(expirationDate)
@@ -43,8 +44,6 @@ public class JwtUtil {
             DecodedJWT jwt = verifier.verify(token);
             return jwt.getClaim("username").asString();
         }
-
-
 
         public String extractTokenFromHeader(HttpServletRequest request) {
             String token = request.getHeader("token");

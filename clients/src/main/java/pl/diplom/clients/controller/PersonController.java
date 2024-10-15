@@ -76,13 +76,4 @@ public class PersonController {
                                   @RequestHeader("token") String token) {
         clientService.deleteOrder(token, personOrderId);
     }
-
-    private void setAuth(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userRole = authentication.getAuthorities().iterator().next().getAuthority();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        String username = personDetails.getUsername();
-        model.addAttribute("userRole", userRole);
-        model.addAttribute("username", username);
-    }
 }

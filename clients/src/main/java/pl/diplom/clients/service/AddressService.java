@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import pl.diplom.clients.dto.AddressDto;
 import pl.diplom.clients.exception.AddressAlreadyExistsException;
 import pl.diplom.common.model.Address;
 import pl.diplom.common.model.Person;
@@ -25,36 +26,26 @@ public class AddressService {
         private final AddressRepository addressRepository;
         private final PersonService personService;
 
-        public Address findOrCreateAddress(String address, Person person) {
-            Optional<Address> founded = addressRepository.findByAddressAndPerson(address, person);
-            if (founded.isPresent()) {
-                return founded.get();
-            } else {
-                return addressRepository.save(new Address(person, address));
-            }
-        }
-
-        public String getAddress(String address, String token) {
-            Person person = personService.getPersonFromToken(token);
+        public AddressDto getAddress(String address, Person person) {
             Optional<Address> founded = addressRepository.findByAddressAndPerson(address, person);
 
             if(founded.isPresent()) {
-                return founded.get().getAddress();
+                return convertToDto(founded.get());
             }
             else {
                 throw new EntityNotFoundException("Address not found");
             }
         }
 
-        public List<String> getAllPersonAddresses(String token) {
+        public List<AddressDto> getAllPersonAddresses(String token) {
             Person person = personService.getPersonFromToken(token);
 
             List<Address> personAddresses = person.getAddresses();
-            List<String> addresses = new ArrayList<>();
-            for (Address address : personAddresses) {
-                addresses.add(address.getAddress());
-            }
-            return addresses;
+            List<AddressDto> addressDtos = new ArrayList<>();
+           for(Address address : personAddresses) {
+               addressDtos.add(convertToDto(address));
+           }
+            return addressDtos;
         }
 
         public HttpStatus createAddress(String token, String address) {
@@ -85,5 +76,12 @@ public class AddressService {
         private void isAddressExistsById(Integer addressId) {
             addressRepository.findById(addressId)
                     .orElseThrow(() -> new EntityNotFoundException("cannot find address"));
+        }
+
+        private AddressDto convertToDto(Address address) {
+            AddressDto addressDto = new AddressDto();
+            addressDto.setAddress(address.getAddress());
+            addressDto.setId(address.getId());
+            return addressDto;
         }
 }

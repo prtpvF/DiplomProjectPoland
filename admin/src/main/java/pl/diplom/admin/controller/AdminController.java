@@ -3,6 +3,7 @@ package pl.diplom.admin.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import pl.diplom.admin.dto.*;
 import pl.diplom.admin.dto.worker.RegistrationDto;
 import pl.diplom.admin.dto.worker.UpdateWorkerDto;
 import pl.diplom.admin.service.AdminService;
+import pl.diplom.admin.service.IngredientService;
 import pl.diplom.admin.service.PersonService;
 import pl.diplom.admin.service.ProductService;
 import pl.diplom.common.model.Ingredient;
@@ -45,18 +47,11 @@ import java.util.stream.IntStream;
 public class AdminController {
 
         private final AdminService adminService;
-        private final ProductService productService;
         private final PersonService personService;
-        private final PersonRepository personRepository;
-        private final IngredientRepository ingredientRepository;
-        private final RoleRepository roleRepository;
-        private final PizzaRepository pizzaRepository;
-        private final DrinkRepository drinkRepository;
-        private final SnackRepository snackRepository;
+        private final IngredientService ingredientService;
 
         @PostMapping("/ingredient")
-        public ResponseEntity createIngredient(@RequestBody IngredientDto ingredientDto,
-                                               BindingResult bindingResult) {
+        public ResponseEntity createIngredient(@RequestBody IngredientDto ingredientDto) {
 
             return new ResponseEntity("Ingredient created",
                     adminService.createIngredient(ingredientDto));
@@ -68,18 +63,13 @@ public class AdminController {
         }
 
         @GetMapping("/ingredients")
-        public String allIngredient(Model model) {
-            List<Ingredient> ingredientList = ingredientRepository.findAll();
-            model.addAttribute("ingredients", ingredientList);
-            return "/ingredient/all";
+        public Page<IngredientDto> allIngredient(@RequestHeader("token") String token, Pageable pageable) { //pagination
+            return ingredientService.getAllIngredients(pageable);
         }
 
         @GetMapping("/ingredient/{id}")
-        public String getIngredient(@PathVariable("id") Integer id, Model model) {
-            setAuth(model);
-           Optional<Ingredient> ingredient = ingredientRepository.findById(id);
-           model.addAttribute("ingredient", ingredient.get());
-           return "ingredient/page";
+        public IngredientDto getIngredient(@PathVariable("id") Integer id) {
+          return ingredientService.getIngredientById(id);
         }
 
         @PatchMapping("/ingredient/{id}")
@@ -101,35 +91,18 @@ public class AdminController {
         }
 
         @GetMapping("/persons")
-        public String allPersonPage(Model model) {
-            List<Person> allPerson = personRepository.findAll();
-            List<Person> workers = new ArrayList<>();
-            List<Person> users = new ArrayList<>();
-            for (Person person : allPerson) {
-                if(!person.getRole().equals(
-                        roleRepository.findByRoleName("USER")
-                )) {
-                    workers.add(person);
-                }
-                else {
-                    users.add(person);
-                }
-            }
-            model.addAttribute("workers", workers);
-            model.addAttribute("users", users);
-            return "person/all";
+        public List<PersonDto> allPersonPage() {
+           return personService.getAllWorkers();
+        }
+
+        @GetMapping("/findByUsername")
+        public PersonDto findPersonByUsername(@RequestParam String username) {
+            return personService.findByUsername(username);
         }
 
         @DeleteMapping("/person-order/{id}")
         public HttpStatus deletePersonOrder(@PathVariable("id") Integer id) {
             return adminService.removeOrderFromStory(id);
-        }
-
-        @GetMapping("/person/{id}")
-        public String getPerson(@PathVariable Integer id, Model model) {
-            PersonDto person = adminService.getPersonDtoById(id);
-            model.addAttribute("person", person);
-            return "person/page";
         }
 
         @GetMapping("/test")
@@ -169,11 +142,5 @@ public class AdminController {
         public HttpStatus updateWorker(@PathVariable("id") Integer workerId,
                                        @RequestBody UpdateWorkerDto updateWorkerDto) {
             return  personService.updateWorker(workerId, updateWorkerDto);
-        }
-
-        private void setAuth(Model model) {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String userRole = authentication.getAuthorities().iterator().next().getAuthority();
-            model.addAttribute("userRole", userRole);
         }
 }

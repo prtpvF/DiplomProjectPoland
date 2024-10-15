@@ -33,15 +33,10 @@ import java.util.stream.IntStream;
 public class PizzaController {
 
     private final ProductService productService;
-    private final PizzaRepository pizzaRepository;
-    private final IngredientRepository ingredientRepository;
-    private final IngredientService ingredientService;
 
     @PostMapping(value = "/pizza/create", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public HttpStatus createPizza(@ModelAttribute @Valid PizzaDto pizzaDto,
-                              @RequestPart("image") MultipartFile image,
-                              BindingResult bindingResult,
-                              Model model) {
+                              @RequestPart("image") MultipartFile image) {
 
         try {
             productService.createPizza(pizzaDto, image);
@@ -50,17 +45,6 @@ public class PizzaController {
         }
         return HttpStatus.OK;
     }
-
-    @GetMapping("/pizza/create")
-    public String createPizzaPage(Model model) {
-        setAuth(model);
-        model.addAttribute("pizzaDto", new PizzaDto());
-
-        List<Ingredient> ingredients = ingredientRepository.findAll();
-        model.addAttribute("ingredients", ingredientService.getAllIngredients());
-        return "pizza/create";
-    }
-
 
     @PatchMapping("/pizza/{id}")
     public HttpStatus updatePizza(@PathVariable("id") Integer pizzaId,
@@ -71,19 +55,5 @@ public class PizzaController {
     @DeleteMapping("/pizza/{id}")
     public HttpStatus deletePizza(@PathVariable("id") Integer pizzaId) {
         return productService.deletePizza(pizzaId);
-    }
-
-    @GetMapping("/all/pizza")
-    public String allPizza(Model model) {
-        setAuth(model);
-
-        model.addAttribute("pizza", pizzaRepository.findAll());
-        return "/pizza/all";
-    }
-
-    private void setAuth(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userRole = authentication.getAuthorities().iterator().next().getAuthority();
-        model.addAttribute("userRole", userRole);
     }
 }

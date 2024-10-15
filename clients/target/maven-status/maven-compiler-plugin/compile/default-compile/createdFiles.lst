@@ -6,6 +6,7 @@ pl/diplom/clients/dto/PortionDto.class
 pl/diplom/clients/exception/IngredientNotFoundException.class
 pl/diplom/clients/configuration/PersonConfig.class
 pl/diplom/clients/ClientsApplication.class
+pl/diplom/clients/dto/AddressDto.class
 pl/diplom/clients/dto/PizzaDto.class
 pl/diplom/clients/dto/DrinkDto.class
 pl/diplom/clients/exception/DrinkNotFoundException.class
