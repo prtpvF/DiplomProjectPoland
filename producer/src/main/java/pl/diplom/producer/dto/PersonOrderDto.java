@@ -16,7 +16,7 @@ public class PersonOrderDto {
 
         private String address;
 
-        private PersonDto person;
+        private String username;
 
         private String status;
 

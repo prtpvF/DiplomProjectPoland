@@ -41,7 +41,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class AdminController {

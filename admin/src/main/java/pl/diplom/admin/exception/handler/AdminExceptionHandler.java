@@ -1,5 +1,6 @@
 package pl.diplom.admin.exception.handler;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -48,6 +49,12 @@ public class AdminExceptionHandler {
         @ExceptionHandler(value = { IllegalArgumentException.class })
         public ResponseEntity illegalArgumentExceptionHandler(IllegalArgumentException ex) {
             HttpStatus status = HttpStatus.BAD_REQUEST;
+            return new ResponseEntity(ex.getMessage(), status);
+        }
+
+        @ExceptionHandler(value = { EntityNotFoundException.class })
+        public ResponseEntity entityNotFoundExceptionHandler(EntityNotFoundException ex) {
+            HttpStatus status = HttpStatus.NOT_FOUND;
             return new ResponseEntity(ex.getMessage(), status);
         }
 }

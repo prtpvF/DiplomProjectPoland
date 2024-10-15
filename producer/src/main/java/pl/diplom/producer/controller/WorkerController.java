@@ -1,6 +1,9 @@
 package pl.diplom.producer.controller;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.diplom.producer.dto.PersonOrderDto;
@@ -21,7 +24,9 @@ public class WorkerController {
             return workerService.changeOrderStatus(orderId, token);
         }
 
-//        public List<PersonOrderDto> getAllOrders(@RequestHeader("token") String token) {
-//
-//        }
+        @GetMapping("/all")
+        public Page<PersonOrderDto> getAllOrders(@RequestHeader("token") String token,
+                                                 Pageable pageable) {
+            return workerService.getOrderPage(pageable);
+        }
 }

@@ -1,6 +1,8 @@
 package pl.diplom.producer.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,9 @@ import pl.diplom.common.model.Person;
 import pl.diplom.common.model.PersonOrder;
 import pl.diplom.common.model.enums.PersonOrderStatusEnum;
 import pl.diplom.common.model.enums.PersonRolesEnum;
+import pl.diplom.common.repository.PersonOrderRepository;
 import pl.diplom.common.repository.PersonRepository;
+import pl.diplom.producer.dto.PersonOrderDto;
 import pl.diplom.producer.exception.PersonNotFoundException;
 import pl.diplom.security.jwt.JwtUtil;
 
@@ -19,6 +23,7 @@ public class WorkerService {
         private final PersonRepository personRepository;
         private final PersonOrderService personOrderService;
         private final JwtUtil jwtUtil;
+        private final PersonOrderRepository personOrderRepository;
 
         public HttpStatus changeOrderStatus(Integer personOrderId,
                                             String token) {
@@ -35,6 +40,12 @@ public class WorkerService {
                         changeStatusAsCook(personOrder);
                 }
                 return personOrderService.save(personOrder);
+        }
+
+        public Page<PersonOrderDto> getOrderPage(Pageable pageable) {
+                Page<PersonOrder> page = personOrderRepository.findAll(pageable);
+                Page<PersonOrderDto> dtoPage = page.map(order -> personOrderService.convertToDto(order));
+                return dtoPage;
         }
 
         private static void changeStatusAsCook(PersonOrder personOrder) {

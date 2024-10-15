@@ -682,3 +682,337 @@ List of constraint violations:[
 2024-10-15T00:51:37.741-07:00  INFO 99205 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-10-15T00:51:37.745-07:00  INFO 99205 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-10-15T00:51:37.748-07:00  INFO 99205 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-15T01:22:15.224-07:00  INFO 99987 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 99987 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
+2024-10-15T01:22:15.228-07:00  INFO 99987 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-10-15T01:22:15.880-07:00  INFO 99987 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-15T01:22:15.954-07:00  INFO 99987 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 12 JPA repository interfaces.
+2024-10-15T01:22:16.967-07:00  INFO 99987 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-15T01:22:16.978-07:00  INFO 99987 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-15T01:22:16.979-07:00  INFO 99987 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-15T01:22:17.045-07:00  INFO 99987 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-15T01:22:17.046-07:00  INFO 99987 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1766 ms
+2024-10-15T01:22:17.213-07:00  INFO 99987 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-15T01:22:17.282-07:00  INFO 99987 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-10-15T01:22:17.326-07:00  INFO 99987 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-15T01:22:17.672-07:00  INFO 99987 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-15T01:22:17.708-07:00  INFO 99987 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-15T01:22:17.797-07:00  INFO 99987 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26f5e45d
+2024-10-15T01:22:17.800-07:00  INFO 99987 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-15T01:22:17.838-07:00  WARN 99987 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-15T01:22:19.314-07:00  INFO 99987 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-15T01:22:19.559-07:00  INFO 99987 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:22:19.962-07:00  INFO 99987 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-15T01:22:21.102-07:00  WARN 99987 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-15T01:22:21.257-07:00  INFO 99987 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-15T01:22:21.615-07:00  INFO 99987 --- [common] [main] pl.diplom.admin.AdminApplication         : Started AdminApplication in 6.967 seconds (process running for 7.692)
+2024-10-15T01:23:27.159-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-15T01:23:27.161-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-15T01:23:27.347-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 185 ms
+2024-10-15T01:23:27.450-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name personDetailsService
+2024-10-15T01:23:27.802-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:23:27.992-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:23:27.997-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:23:28.000-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:23:28.146-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:23:28.150-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:23:28.171-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:23:28.174-07:00  INFO 99987 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:23:59.690-07:00  INFO 99987 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:23:59.695-07:00  INFO 99987 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:23:59.701-07:00  INFO 99987 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:23:59.705-07:00  INFO 99987 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:23:59.726-07:00  INFO 99987 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:23:59.729-07:00  INFO 99987 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:23:59.734-07:00  INFO 99987 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:23:59.738-07:00  INFO 99987 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:13.412-07:00  INFO 99987 --- [common] [http-nio-8080-exec-4] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:13.421-07:00  INFO 99987 --- [common] [http-nio-8080-exec-4] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:13.422-07:00  INFO 99987 --- [common] [http-nio-8080-exec-4] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:13.427-07:00  INFO 99987 --- [common] [http-nio-8080-exec-4] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:13.434-07:00  INFO 99987 --- [common] [http-nio-8080-exec-4] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:13.439-07:00  INFO 99987 --- [common] [http-nio-8080-exec-4] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:13.443-07:00  INFO 99987 --- [common] [http-nio-8080-exec-4] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:13.447-07:00  INFO 99987 --- [common] [http-nio-8080-exec-4] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:21.829-07:00  INFO 99987 --- [common] [http-nio-8080-exec-5] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:21.833-07:00  INFO 99987 --- [common] [http-nio-8080-exec-5] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:21.834-07:00  INFO 99987 --- [common] [http-nio-8080-exec-5] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:21.838-07:00  INFO 99987 --- [common] [http-nio-8080-exec-5] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:21.841-07:00  INFO 99987 --- [common] [http-nio-8080-exec-5] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:21.844-07:00  INFO 99987 --- [common] [http-nio-8080-exec-5] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:24.387-07:00  INFO 99987 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:24.391-07:00  INFO 99987 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:24.392-07:00  INFO 99987 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:24.395-07:00  INFO 99987 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:45.260-07:00  INFO 99987 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:45.265-07:00  INFO 99987 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:45.266-07:00  INFO 99987 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:45.274-07:00  INFO 99987 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:45.291-07:00  INFO 99987 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:45.295-07:00  INFO 99987 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:24:45.300-07:00  INFO 99987 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:24:45.304-07:00  INFO 99987 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:25:09.572-07:00  INFO 99987 --- [common] [http-nio-8080-exec-8] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:25:09.576-07:00  INFO 99987 --- [common] [http-nio-8080-exec-8] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:25:09.576-07:00  INFO 99987 --- [common] [http-nio-8080-exec-8] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:25:09.579-07:00  INFO 99987 --- [common] [http-nio-8080-exec-8] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:25:09.586-07:00 ERROR 99987 --- [common] [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: jakarta.persistence.EntityNotFoundException: Ingredient with id 1 not found] with root cause
+
+jakarta.persistence.EntityNotFoundException: Ingredient with id 1 not found
+	at pl.diplom.admin.service.IngredientService.lambda$getIngredientById$0(IngredientService.java:30) ~[classes/:na]
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403) ~[na:na]
+	at pl.diplom.admin.service.IngredientService.getIngredientById(IngredientService.java:30) ~[classes/:na]
+	at pl.diplom.admin.controller.AdminController.getIngredient(AdminController.java:72) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at pl.diplom.security.filter.JwtFilter.doFilter(JwtFilter.java:53) ~[classes/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at pl.diplom.security.filter.JwtFilter.doFilter(JwtFilter.java:53) ~[classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.1.jar:6.3.1]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.1.jar:6.3.1]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+
+2024-10-15T01:25:09.595-07:00  INFO 99987 --- [common] [http-nio-8080-exec-8] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:25:09.598-07:00  INFO 99987 --- [common] [http-nio-8080-exec-8] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:26:06.370-07:00  INFO 99987 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:26:06.378-07:00  INFO 99987 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-15T01:26:06.381-07:00  INFO 99987 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-15T01:26:10.533-07:00  INFO 216 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 216 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
+2024-10-15T01:26:10.536-07:00  INFO 216 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-10-15T01:26:11.269-07:00  INFO 216 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-15T01:26:11.346-07:00  INFO 216 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 12 JPA repository interfaces.
+2024-10-15T01:26:12.432-07:00  INFO 216 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-15T01:26:12.446-07:00  INFO 216 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-15T01:26:12.447-07:00  INFO 216 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-15T01:26:12.502-07:00  INFO 216 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-15T01:26:12.503-07:00  INFO 216 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1908 ms
+2024-10-15T01:26:12.678-07:00  INFO 216 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-15T01:26:12.739-07:00  INFO 216 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-10-15T01:26:12.788-07:00  INFO 216 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-15T01:26:13.148-07:00  INFO 216 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-15T01:26:13.176-07:00  INFO 216 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-15T01:26:13.279-07:00  INFO 216 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@598778cc
+2024-10-15T01:26:13.281-07:00  INFO 216 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-15T01:26:13.314-07:00  WARN 216 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-15T01:26:14.816-07:00  INFO 216 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-15T01:26:15.057-07:00  INFO 216 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:26:15.474-07:00  INFO 216 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-15T01:26:16.634-07:00  WARN 216 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-15T01:26:16.769-07:00  INFO 216 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-15T01:26:17.123-07:00  INFO 216 --- [common] [main] pl.diplom.admin.AdminApplication         : Started AdminApplication in 7.205 seconds (process running for 7.936)
+2024-10-15T01:26:29.562-07:00  INFO 216 --- [common] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-15T01:26:29.563-07:00  INFO 216 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-15T01:26:29.737-07:00  INFO 216 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 174 ms
+2024-10-15T01:26:29.807-07:00  INFO 216 --- [common] [http-nio-8080-exec-2] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name personDetailsService
+2024-10-15T01:26:30.155-07:00  INFO 216 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:26:30.313-07:00  INFO 216 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:26:30.317-07:00  INFO 216 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:26:30.321-07:00  INFO 216 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:26:53.384-07:00  INFO 216 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:26:53.390-07:00  INFO 216 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:26:53.396-07:00  INFO 216 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:26:53.399-07:00  INFO 216 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:26:53.466-07:00  INFO 216 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:26:53.470-07:00  INFO 216 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:26:53.484-07:00  INFO 216 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:26:53.489-07:00  INFO 216 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:27:25.973-07:00  INFO 216 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:27:25.977-07:00  INFO 216 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-15T01:27:25.980-07:00  INFO 216 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-15T01:27:30.740-07:00  INFO 287 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 287 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
+2024-10-15T01:27:30.743-07:00  INFO 287 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-10-15T01:27:31.486-07:00  INFO 287 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-15T01:27:31.563-07:00  INFO 287 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 12 JPA repository interfaces.
+2024-10-15T01:27:32.660-07:00  INFO 287 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-15T01:27:32.674-07:00  INFO 287 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-15T01:27:32.674-07:00  INFO 287 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-15T01:27:32.729-07:00  INFO 287 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-15T01:27:32.730-07:00  INFO 287 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1921 ms
+2024-10-15T01:27:32.956-07:00  INFO 287 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-15T01:27:33.018-07:00  INFO 287 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-10-15T01:27:33.053-07:00  INFO 287 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-15T01:27:33.400-07:00  INFO 287 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-15T01:27:33.428-07:00  INFO 287 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-15T01:27:33.528-07:00  INFO 287 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@12670e55
+2024-10-15T01:27:33.530-07:00  INFO 287 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-15T01:27:33.562-07:00  WARN 287 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-15T01:27:35.054-07:00  INFO 287 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-15T01:27:35.277-07:00  INFO 287 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:27:35.707-07:00  INFO 287 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-15T01:27:36.835-07:00  WARN 287 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-15T01:27:36.972-07:00  INFO 287 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-15T01:27:37.337-07:00  INFO 287 --- [common] [main] pl.diplom.admin.AdminApplication         : Started AdminApplication in 7.211 seconds (process running for 7.899)
+2024-10-15T01:27:44.356-07:00  INFO 287 --- [common] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-15T01:27:44.356-07:00  INFO 287 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-15T01:27:44.527-07:00  INFO 287 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 171 ms
+2024-10-15T01:27:44.589-07:00  INFO 287 --- [common] [http-nio-8080-exec-2] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name personDetailsService
+2024-10-15T01:27:44.908-07:00  INFO 287 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:27:45.058-07:00  INFO 287 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:27:45.066-07:00  INFO 287 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:27:45.070-07:00  INFO 287 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:27:45.247-07:00  WARN 287 --- [common] [http-nio-8080-exec-2] PageModule$PlainPageSerializationWarning : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2024-10-15T01:28:58.388-07:00  INFO 287 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:28:58.392-07:00  INFO 287 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:28:58.393-07:00  INFO 287 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:28:58.397-07:00  INFO 287 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:29:07.503-07:00  INFO 287 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:29:07.507-07:00  INFO 287 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-15T01:29:07.510-07:00  INFO 287 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-15T01:30:32.223-07:00  INFO 368 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 368 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
+2024-10-15T01:30:32.226-07:00  INFO 368 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-10-15T01:30:32.957-07:00  INFO 368 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-15T01:30:33.033-07:00  INFO 368 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 12 JPA repository interfaces.
+2024-10-15T01:30:34.164-07:00  INFO 368 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-15T01:30:34.182-07:00  INFO 368 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-15T01:30:34.183-07:00  INFO 368 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-15T01:30:34.239-07:00  INFO 368 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-15T01:30:34.240-07:00  INFO 368 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1960 ms
+2024-10-15T01:30:34.454-07:00  INFO 368 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-15T01:30:34.523-07:00  INFO 368 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-10-15T01:30:34.559-07:00  INFO 368 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-15T01:30:34.933-07:00  INFO 368 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-15T01:30:34.963-07:00  INFO 368 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-15T01:30:35.086-07:00  INFO 368 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@37986daf
+2024-10-15T01:30:35.088-07:00  INFO 368 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-15T01:30:35.122-07:00  WARN 368 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-15T01:30:36.640-07:00  INFO 368 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-15T01:30:36.863-07:00  INFO 368 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:30:37.310-07:00  INFO 368 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-15T01:30:38.444-07:00  WARN 368 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-15T01:30:38.580-07:00  INFO 368 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-15T01:30:38.942-07:00  INFO 368 --- [common] [main] pl.diplom.admin.AdminApplication         : Started AdminApplication in 7.325 seconds (process running for 8.025)
+2024-10-15T01:31:24.806-07:00  INFO 368 --- [common] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-15T01:31:24.807-07:00  INFO 368 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-15T01:31:24.988-07:00  INFO 368 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 181 ms
+2024-10-15T01:31:25.056-07:00  INFO 368 --- [common] [http-nio-8080-exec-2] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name personDetailsService
+2024-10-15T01:31:25.432-07:00  INFO 368 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:31:25.586-07:00  INFO 368 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:31:25.595-07:00  INFO 368 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:31:25.599-07:00  INFO 368 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:31:59.878-07:00  INFO 368 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:31:59.883-07:00  INFO 368 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-15T01:31:59.894-07:00  INFO 368 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-15T01:32:04.946-07:00  INFO 414 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 414 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
+2024-10-15T01:32:04.950-07:00  INFO 414 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-10-15T01:32:05.660-07:00  INFO 414 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-15T01:32:05.739-07:00  INFO 414 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 12 JPA repository interfaces.
+2024-10-15T01:32:06.826-07:00  INFO 414 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-15T01:32:06.842-07:00  INFO 414 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-15T01:32:06.842-07:00  INFO 414 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-15T01:32:06.899-07:00  INFO 414 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-15T01:32:06.900-07:00  INFO 414 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1893 ms
+2024-10-15T01:32:07.114-07:00  INFO 414 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-15T01:32:07.185-07:00  INFO 414 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-10-15T01:32:07.220-07:00  INFO 414 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-15T01:32:07.577-07:00  INFO 414 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-15T01:32:07.606-07:00  INFO 414 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-15T01:32:07.708-07:00  INFO 414 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@12670e55
+2024-10-15T01:32:07.710-07:00  INFO 414 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-15T01:32:07.741-07:00  WARN 414 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-15T01:32:09.263-07:00  INFO 414 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-15T01:32:09.483-07:00  INFO 414 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:32:09.923-07:00  INFO 414 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-15T01:32:11.048-07:00  WARN 414 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-15T01:32:11.186-07:00  INFO 414 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-15T01:32:11.548-07:00  INFO 414 --- [common] [main] pl.diplom.admin.AdminApplication         : Started AdminApplication in 7.225 seconds (process running for 7.946)
+2024-10-15T01:32:21.242-07:00  INFO 414 --- [common] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-15T01:32:21.242-07:00  INFO 414 --- [common] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-15T01:32:21.407-07:00  INFO 414 --- [common] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 165 ms
+2024-10-15T01:32:21.464-07:00  INFO 414 --- [common] [http-nio-8080-exec-1] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name personDetailsService
+2024-10-15T01:32:21.748-07:00  INFO 414 --- [common] [http-nio-8080-exec-1] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:32:21.901-07:00  INFO 414 --- [common] [http-nio-8080-exec-1] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:32:21.909-07:00  INFO 414 --- [common] [http-nio-8080-exec-1] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T01:32:21.914-07:00  INFO 414 --- [common] [http-nio-8080-exec-1] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T01:32:29.358-07:00  INFO 414 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T01:32:29.362-07:00  INFO 414 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-15T01:32:29.365-07:00  INFO 414 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

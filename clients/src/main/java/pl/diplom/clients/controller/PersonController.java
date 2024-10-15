@@ -32,27 +32,6 @@ public class PersonController {
     private final ProductService productService;
     private final AddressService addressService;
 
-    @GetMapping("/pizza")
-    public String getAllPizza(Pageable pageable, Model model) {
-        Page<Pizza> pizzaPage = productService.convertPizzaListToDto(pageable);
-        model.addAttribute("pizza", pizzaPage);
-        return "/pizza/all";
-    }
-
-    @GetMapping("/drinks")
-    public String getAllDrinks(Pageable pageable, Model model) {
-        Page<Drink> drinkPage = productService.convertDrinkListToDto(pageable);
-        model.addAttribute("drinks", drinkPage);
-        return "/drink/all";
-    }
-
-    @GetMapping("/snacks")
-    public String getAllSnacks(Pageable pageable, Model model) {
-        Page<Snack> snackPage = productService.convertSnackListToDto(pageable);
-        model.addAttribute("snacks", snackPage);
-        return "/snack/all";
-    }
-
     @PostMapping("/order")
     public void createOrder(@RequestBody PersonOrderDto order,
                             @RequestHeader("token") String token) {

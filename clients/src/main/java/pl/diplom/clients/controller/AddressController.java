@@ -23,15 +23,15 @@ public class AddressController {
             return addressService.getAllPersonAddresses(token);
         }
 
-        @GetMapping("/")
+        @GetMapping
         public AddressDto getAddress(@RequestParam("address") String address,
                                      @RequestHeader("token") String token) {
             Person person = personService.getPersonFromToken(token);
             return addressService.getAddress(address, person);
         }
 
-        @PostMapping("/")
-        public HttpStatus createAddress(@RequestParam("address") String address,
+        @PostMapping
+        public HttpStatus createAddress(@RequestBody String address,
                                         @RequestHeader("token") String token) {
             return addressService.createAddress(token, address);
         }

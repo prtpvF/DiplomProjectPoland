@@ -45,11 +45,12 @@ public class PersonService {
         }
 
         public List<PersonDto> getAllWorkers() {
-            Role role = roleService.findRoleByName(ADMIN_ROLE);
-            List<Person> workers = personRepository.findByRole(role);
+            List<Person> persons = personRepository.findAll();
             List<PersonDto> personDtos = new ArrayList<>();
 
-            for (Person person : workers) {
+            for (Person person : persons) {
+                if(!person.getRole().getRoleName().equals("USER")
+                        && !person.getRole().getRoleName().equals("ADMIN"))
                 personDtos.add(convertPersonTpoDto(person));
             }
             return personDtos;
