@@ -2,6 +2,7 @@ package pl.diplom.admin.controller.drink;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,12 +25,10 @@ import java.util.Optional;
 public class DrinkController {
 
     private final ProductService productService;
-    private final DrinkRepository drinkRepository;
 
-    @PostMapping("/drink/create")
-    public HttpStatus createDrink(@RequestPart("drinkDto") DrinkDto drinkDto,
-                                  @RequestPart("image") MultipartFile image) throws IOException {
-        productService.createDrink(drinkDto, image);
+    @PostMapping(value = "/drink/create")
+    public HttpStatus createDrink(@ModelAttribute DrinkDto drinkDto) throws IOException {
+        productService.createDrink(drinkDto, drinkDto.getFile());
         return HttpStatus.CREATED;
     }
 

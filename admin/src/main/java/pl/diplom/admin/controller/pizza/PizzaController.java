@@ -34,12 +34,11 @@ public class PizzaController {
 
     private final ProductService productService;
 
-    @PostMapping(value = "/pizza/create", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public HttpStatus createPizza(@ModelAttribute @Valid PizzaDto pizzaDto,
-                              @RequestPart("image") MultipartFile image) {
+    @PostMapping(value = "/pizza/create")
+    public HttpStatus createPizza(@ModelAttribute PizzaDto pizzaDto) {
 
         try {
-            productService.createPizza(pizzaDto, image);
+            productService.createPizza(pizzaDto, pizzaDto.getImage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +47,7 @@ public class PizzaController {
 
     @PatchMapping("/pizza/{id}")
     public HttpStatus updatePizza(@PathVariable("id") Integer pizzaId,
-                                  @RequestPart PizzaDto pizzaDto) {
+                                  @RequestBody PizzaDto pizzaDto) {
         return productService.updatePizza(pizzaId, pizzaDto);
     }
 

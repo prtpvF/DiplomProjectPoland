@@ -3,6 +3,7 @@ package pl.diplom.admin.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class DrinkDto {
         private String taste;
 
         private Double volume;
+
+        private MultipartFile file;
 
         private List<Integer> personOrderIds = new ArrayList<>();
 }

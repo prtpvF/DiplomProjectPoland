@@ -34,13 +34,12 @@ public class SnackController {
 
     @PatchMapping("/snack/{id}")
     public HttpStatus updateSnack(@PathVariable("id") Integer snackId,
-                                  @RequestPart SnackDto snackDto) {
+                                  @RequestBody SnackDto snackDto) {
         return productService.updateSnack(snackId, snackDto);
     }
 
     @PostMapping("/snack/create")
-    public HttpStatus createSnack(@ModelAttribute @Valid SnackDto snackDto,
-                                  @RequestPart("image") MultipartFile image) throws IOException {
-        return productService.createSnack(snackDto,image);
+    public HttpStatus createSnack(@ModelAttribute SnackDto snackDto) throws IOException {
+        return productService.createSnack(snackDto, snackDto.getFile());
     }
 }
