@@ -138,6 +138,7 @@ public class ProductService {
             snackDto.setCost(snack.getCost());
             snackDto.setWeight(snack.getWeight());
             snackDto.setId(snack.getId());
+            snackDto.setPathToImage(snack.getPathToImage());
             return snackDto;
         }
 
@@ -148,6 +149,7 @@ public class ProductService {
             dto.setTaste(drink.getTaste());
             dto.setVolume(drink.getVolume());
             dto.setCost(drink.getCost());
+            dto.setPathToImage(drink.getPathToImage());
             return dto;
         }
 
