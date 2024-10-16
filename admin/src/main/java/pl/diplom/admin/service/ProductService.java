@@ -1,28 +1,24 @@
 package pl.diplom.admin.service;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import pl.diplom.admin.dto.DrinkDto;
-import pl.diplom.admin.dto.PizzaDto;
-import pl.diplom.admin.dto.PortionDto;
-import pl.diplom.admin.dto.SnackDto;
+import pl.diplom.admin.dto.*;
 import pl.diplom.common.model.Image;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.PersonOrder;
-import pl.diplom.common.model.Portion;
 import pl.diplom.common.model.enums.PizzaCreatorEnum;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
 import pl.diplom.common.model.product.Snack;
 import pl.diplom.common.repository.IngredientRepository;
 import pl.diplom.common.repository.PersonOrderRepository;
-import pl.diplom.common.repository.PortionRepository;
 import pl.diplom.common.repository.product.DrinkRepository;
 import pl.diplom.common.repository.product.PizzaRepository;
 import pl.diplom.common.repository.product.SnackRepository;
@@ -40,14 +36,20 @@ import static org.springframework.http.HttpStatus.OK;
 public class ProductService {
 
         private final PizzaRepository pizzaRepository;
-        private final PortionService portionService;
         private final DrinkRepository drinkRepository;
         private final SnackRepository snackRepository;
         private final PersonOrderRepository personOrderRepository;
+        private final IngredientRepository inventoryRepository;
         private final ImageService imageService;
 
         private final ModelMapper modelMapper;
         private final IngredientRepository ingredientRepository;
+
+        public Page<PizzaDtoResponse> getPizzaPage(Pageable pageable) {
+                Page<Pizza> pizzaPage = pizzaRepository.findAll(pageable);
+                Page<PizzaDtoResponse> dtoPage = pizzaPage.map(pizza -> getPizzaDto(pizza));
+                return dtoPage;
+        }
 
         @Transactional
         public HttpStatus createDrink(DrinkDto drinkDto,
@@ -70,18 +72,22 @@ public class ProductService {
         @Transactional
         public HttpStatus createPizza(PizzaDto pizzaDto,
                                       MultipartFile file) throws IOException {
-
                 Pizza pizza = mapAdditionalFields(pizzaDto);
-
-                pizza.setPortions(convertDtoListToPortionList(
-                        portionService.findAllOrCreate(
-                                pizzaDto.getPortions()
-                        ))
+                pizza.setIngredients(
+                        ingredientRepository.findAllById(
+                                pizzaDto.getIngredients()
+                        )
                 );
                 pizza.setStatus(PizzaCreatorEnum.ADMIN.name());
                 String filePath = imageService.savePhotoLocal(file);
                 pizza.setPathToImage(filePath);
+                List<Ingredient> ingredients = ingredientRepository.findAllById(pizzaDto.getIngredients());
+                pizza.setIngredients(ingredients);
+                for(Ingredient ingredient : pizza.getIngredients()) {
+                        ingredient.getPizza().add(pizza);
+                }
                 pizzaRepository.save(pizza);
+                ingredientRepository.saveAll(ingredients);
                 return CREATED;
         }
 
@@ -102,10 +108,10 @@ public class ProductService {
 
                 Pizza pizza = getPizzaById(pizzaNeedToBeUpdatedId);
                 pizza.setId(pizza.getId());
-                pizza.setPortions(convertDtoListToPortionList(
-                        portionService.findAllOrCreate(
-                                pizzaDto.getPortions()
-                        ))
+                pizza.setIngredients(
+                        ingredientRepository.findAllById(
+                                pizzaDto.getIngredients()
+                        )
                 );
                 pizza.setCost(pizzaDto.getCost());
                 pizza.setName(pizzaDto.getName());
@@ -215,22 +221,6 @@ public class ProductService {
                 return pizza;
         }
 
-        private List<Portion> convertDtoListToPortionList(List<PortionDto> dtos) {
-                List<Portion> portions = new ArrayList<>();
-                for (PortionDto dto : dtos) {
-                        Portion portion = new Portion();
-                        portion.setId(dto.getId());
-                        Ingredient ingredient = ingredientRepository.findById(dto.getIngredientId())
-                                .orElseThrow(() -> new EntityNotFoundException("cannot find ingredient with this id"));
-                        portion.setIngredient(ingredient);
-                        if(!dto.getPizzaIds().isEmpty()) {
-                                portion.setPizza(pizzaRepository.findAllById(dto.getPizzaIds()));
-                        }
-                        portions.add(portion);
-                }
-                return portions;
-        }
-
         private static Image toImageEntity(MultipartFile file1) throws IOException { //конвертирование фотографии в сущность
                 Image image = new Image();
                 image.setName(file1.getName());
@@ -239,5 +229,28 @@ public class ProductService {
                 image.setSize(file1.getSize());
                 image.setBytes(file1.getBytes());
                 return image;
+        }
+
+        private PizzaDtoResponse getPizzaDto(Pizza pizza) {
+                PizzaDtoResponse pizzaDto = new PizzaDtoResponse();
+                pizzaDto.setId(pizza.getId());
+                pizzaDto.setName(pizza.getName());
+                pizzaDto.setCost(pizza.getCost());
+                pizzaDto.setPathToImage(pizza.getPathToImage());
+                List<IngredientDto> ingredientDtos = new ArrayList<>();
+                for (Ingredient portion : pizza.getIngredients()) {
+                        ingredientDtos.add(convertAnyIngredientToDto(portion));
+                }
+                pizzaDto.setIngredients(ingredientDtos);
+                return pizzaDto;
+        }
+
+        private IngredientDto convertAnyIngredientToDto(Ingredient ingredient) {
+                IngredientDto ingredientDto = new IngredientDto();
+                ingredientDto.setId(ingredient.getId());
+                ingredientDto.setName(ingredient.getName());
+                ingredientDto.setCost(ingredient.getCost());
+                ingredientDto.setWeight(ingredient.getWeight());
+                return ingredientDto;
         }
 }

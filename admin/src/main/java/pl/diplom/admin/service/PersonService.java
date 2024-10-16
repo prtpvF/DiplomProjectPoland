@@ -146,6 +146,7 @@ public class PersonService {
             personDto.setRole(person.getRole().getRoleName());
             personDto.setFirstName(person.getFirstName());
             personDto.setLastName(person.getLastName());
+            personDto.setActive(person.isActive());
             personDto.setAge(person.getAge());
             return personDto;
         }

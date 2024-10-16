@@ -46,7 +46,6 @@ import java.util.List;
             return productService.findProductsByName(name);
         }
 
-
         @GetMapping("/pizza/{id}")
         public PizzaDto getPizzaById(@PathVariable("id") Integer id) {
             return productService.getPizza(id);

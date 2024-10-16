@@ -48,7 +48,13 @@ public class AdminController {
 
         private final AdminService adminService;
         private final PersonService personService;
+        private final ProductService productService;
         private final IngredientService ingredientService;
+
+        @GetMapping("/pizza")
+        public Page<PizzaDtoResponse> getPizzas(Pageable pageable) {
+            return productService.getPizzaPage(pageable);
+        }
 
         @PostMapping("/ingredient")
         public HttpStatus createIngredient(@RequestBody IngredientDto ingredientDto) {

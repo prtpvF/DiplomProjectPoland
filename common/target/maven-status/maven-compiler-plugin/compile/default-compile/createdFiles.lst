@@ -7,7 +7,6 @@ pl/diplom/common/model/Ingredient.class
 pl/diplom/common/repository/PersonRepository.class
 pl/diplom/common/model/Status.class
 pl/diplom/common/repository/product/PizzaRepository.class
-pl/diplom/common/model/Portion.class
 pl/diplom/common/model/Person.class
 pl/diplom/common/model/product/Pizza.class
 pl/diplom/common/model/product/Snack.class
@@ -27,4 +26,3 @@ pl/diplom/common/repository/ImageRepo.class
 pl/diplom/common/repository/product/SnackRepository.class
 pl/diplom/common/model/Address.class
 pl/diplom/common/repository/PersonOrderRepository.class
-pl/diplom/common/repository/PortionRepository.class

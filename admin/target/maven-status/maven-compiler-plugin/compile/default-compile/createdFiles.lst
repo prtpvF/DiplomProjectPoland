@@ -5,11 +5,9 @@ pl/diplom/admin/dto/AddressDto.class
 pl/diplom/admin/service/OrderStatusService.class
 pl/diplom/admin/service/AdminService.class
 pl/diplom/admin/exception/InvalidFileSizeException.class
-pl/diplom/admin/dto/PortionDto.class
 pl/diplom/admin/service/PersonService.class
 pl/diplom/admin/service/AddressService.class
 pl/diplom/admin/AdminApplication.class
-pl/diplom/admin/service/PortionService.class
 pl/diplom/admin/exception/handler/AdminExceptionHandler.class
 pl/diplom/admin/exception/RecipeNotFoundException.class
 pl/diplom/admin/exception/IllegalPersonDataException.class
@@ -18,6 +16,7 @@ pl/diplom/admin/dto/worker/RegistrationDto.class
 pl/diplom/admin/dto/PersonDto.class
 pl/diplom/admin/service/IngredientService.class
 pl/diplom/admin/controller/AdminController.class
+pl/diplom/admin/dto/PizzaDtoResponse.class
 pl/diplom/admin/service/kafka/KafkaService.class
 pl/diplom/admin/exception/PersonNotFoundException.class
 pl/diplom/admin/dto/worker/UpdateWorkerDto.class

@@ -18,6 +18,8 @@ public class PizzaDto {
         @NotBlank(message = "cannot be empty")
         private String name;
 
+        private Integer id;
+
         private Double cost;
 
         private String pathToImage;
@@ -26,7 +28,7 @@ public class PizzaDto {
 
         private MultipartFile image;
 
-        private List<PortionDto> portions = new ArrayList<>();
+        private List<Integer> ingredients = new ArrayList<>();
 
         private List<Integer> personOrderIds = new ArrayList<>();
 }

@@ -4,7 +4,6 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/model/Ingredient.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/model/Person.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/model/PersonOrder.java
-/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/model/Portion.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/model/Role.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/model/Status.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/model/enums/AdminOrderStatusEnum.java
@@ -21,7 +20,6 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/repository/OrderRepository.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/repository/PersonOrderRepository.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/repository/PersonRepository.java
-/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/repository/PortionRepository.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/repository/RoleRepository.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/repository/StatusRepository.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/common/src/main/java/pl/diplom/common/repository/product/DrinkRepository.java

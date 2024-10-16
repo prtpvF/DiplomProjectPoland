@@ -6,6 +6,7 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/public/src/main/java/pl/diplom/publicapi/controller/PizzaController.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/public/src/main/java/pl/diplom/publicapi/controller/ProductController.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/public/src/main/java/pl/diplom/publicapi/dto/DrinkDto.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/public/src/main/java/pl/diplom/publicapi/dto/IngredientDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/public/src/main/java/pl/diplom/publicapi/dto/PizzaDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/public/src/main/java/pl/diplom/publicapi/dto/ProductDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/public/src/main/java/pl/diplom/publicapi/dto/SnackDto.java

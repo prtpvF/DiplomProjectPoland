@@ -1,10 +1,8 @@
 package pl.diplom.publicapi.service;
 
+import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.product.Product;
-import pl.diplom.publicapi.dto.DrinkDto;
-import pl.diplom.publicapi.dto.PizzaDto;
-import pl.diplom.publicapi.dto.ProductDto;
-import pl.diplom.publicapi.dto.SnackDto;
+import pl.diplom.publicapi.dto.*;
 import pl.diplom.publicapi.exception.PizzaNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -56,22 +54,25 @@ public class ProductService {
 
             List<ProductDto> productDtoList = new ArrayList<>();
 
-            int randomPizzaId = getRandomProductId(countOfPizza);
-            int randomDrinkId = getRandomProductId(countOfDrinks);
-            int randomSnackId = getRandomProductId(countOfSnacks);
+           if(countOfPizza > 1) {
+               int randomPizzaId = getRandomProductId(countOfPizza);
+               productDtoList.add(
+                       convertAnyProductToDto(pizzaRepository.findById(randomPizzaId).get(), randomPizzaId)
+               );
+           }
+            if(countOfDrinks > 1) {
+                int randomDrinkId = getRandomProductId(countOfDrinks);
+                productDtoList.add(
+                        convertAnyProductToDto(drinkRepository.findById(randomDrinkId).get(), randomDrinkId)
+                );
+            }
 
-            productDtoList.add(
-                    convertAnyProductToDto(drinkRepository.findById(randomDrinkId).get(), randomDrinkId)
-            );
-
-            productDtoList.add(
-                    convertAnyProductToDto(pizzaRepository.findById(randomPizzaId).get(), randomPizzaId)
-            );
-
-            productDtoList.add(
-                    convertAnyProductToDto(snackRepository.findById(randomSnackId).get(), randomSnackId)
-            );
-
+            if(countOfSnacks > 1){
+                int randomSnackId = getRandomProductId(countOfSnacks);
+                productDtoList.add(
+                        convertAnyProductToDto(snackRepository.findById(randomSnackId).get(), randomSnackId)
+                );
+            }
             return productDtoList;
         }
 
@@ -159,6 +160,11 @@ public class ProductService {
             pizzaDto.setName(pizza.getName());
             pizzaDto.setCost(pizza.getCost());
             pizzaDto.setPathToImage(pizza.getPathToImage());
+            List<IngredientDto> ingredientDtos = new ArrayList<>();
+            for (Ingredient portion : pizza.getIngredients()) {
+                ingredientDtos.add(convertAnyIngredientToDto(portion));
+            }
+            pizzaDto.setIngredients(ingredientDtos);
             return pizzaDto;
         }
 
@@ -178,5 +184,14 @@ public class ProductService {
             }
             Random random = new Random();
             return random.nextInt(1, size+1);
+        }
+
+        private IngredientDto convertAnyIngredientToDto(Ingredient ingredient) {
+            IngredientDto ingredientDto = new IngredientDto();
+            ingredientDto.setId(ingredient.getId());
+            ingredientDto.setName(ingredient.getName());
+            ingredientDto.setCost(ingredient.getCost());
+            ingredientDto.setWeight(ingredient.getWeight());
+            return ingredientDto;
         }
 }

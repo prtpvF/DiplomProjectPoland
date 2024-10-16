@@ -1,13 +1,10 @@
 package pl.diplom.common.model.product;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 import pl.diplom.common.model.Image;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.PersonOrder;
-import pl.diplom.common.model.Portion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +22,7 @@ public class Pizza extends Product{
         private int id;
 
         @ManyToMany(mappedBy = "pizza", cascade = CascadeType.REFRESH)
-        private List<Portion> portions = new ArrayList<>();
+        private List<Ingredient> ingredients = new ArrayList<>();
 
         private String pathToImage;
 

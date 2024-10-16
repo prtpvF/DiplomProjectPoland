@@ -28,4 +28,6 @@ public class IngredientDto {
         private Double cost;
 
         private List<Integer> pizzaIdList = new ArrayList<>();
+
+        private Double weight;
 }

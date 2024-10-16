@@ -12,7 +12,7 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/PersonDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/PersonOrderDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/PizzaDto.java
-/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/PortionDto.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/PizzaDtoResponse.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/SnackDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/worker/RegistrationDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/worker/UpdateWorkerDto.java
@@ -33,7 +33,6 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/service/OrderStatusService.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/service/PersonOrderService.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/service/PersonService.java
-/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/service/PortionService.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/service/ProductService.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/service/RoleService.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/service/kafka/KafkaService.java

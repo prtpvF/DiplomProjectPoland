@@ -24,6 +24,8 @@ public class PizzaDto {
 
         private String description;
 
+        private List<IngredientDto> ingredients = new ArrayList<>();
+
         private String status;
 
         private List<Integer> personOrderIds = new ArrayList<>();

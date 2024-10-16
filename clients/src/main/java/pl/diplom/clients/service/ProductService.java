@@ -4,14 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import pl.diplom.clients.dto.DrinkDto;
-import pl.diplom.clients.dto.PizzaDto;
 import pl.diplom.clients.dto.PortionDto;
-import pl.diplom.clients.dto.SnackDto;
 import pl.diplom.clients.exception.DrinkNotFoundException;
 import pl.diplom.clients.exception.PizzaNotFoundException;
 import pl.diplom.clients.exception.SnackNotFoundException;
-import pl.diplom.common.model.Portion;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
 import pl.diplom.common.model.product.Product;
@@ -76,18 +72,7 @@ public class ProductService {
         return pizzaRepository.findAll(pageable);
     }
 
-        private List<PortionDto> convertPortionsListToDto(List<Portion> portions) {
-            List<PortionDto> dtos = new ArrayList<>();
-            for(Portion portion : portions) {
-                PortionDto portionDto = new PortionDto();
-                portionDto.setId(portion.getId());
-                portionDto.setWeight(portion.getWeight());
-                portionDto.setIngredientId(portion.getIngredient().getId());
-                portionDto.setIngredientName(portion.getIngredient().getName());
-                dtos.add(portionDto);
-            }
-            return dtos;
-        }
+
 
     public Page<Snack> convertSnackListToDto(Pageable pageable) {
         Page<Snack> snacks = snackRepository.findAll(pageable);

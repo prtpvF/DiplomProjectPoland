@@ -3,6 +3,7 @@ pl/diplom/publicapi/exception/PersonNotFoundException.class
 pl/diplom/publicapi/exception/handler/PublicExceptionHandler.class
 pl/diplom/publicapi/service/PizzaService.class
 pl/diplom/publicapi/controller/PersonRoleController.class
+pl/diplom/publicapi/dto/IngredientDto.class
 pl/diplom/publicapi/controller/OrderStatusController.class
 pl/diplom/publicapi/controller/PersonController.class
 pl/diplom/publicapi/exception/PizzaNotFoundException.class
