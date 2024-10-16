@@ -8,6 +8,8 @@ import pl.diplom.admin.service.ProductService;
 
 import java.io.IOException;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
@@ -18,19 +20,19 @@ public class DrinkController {
     @PostMapping(value = "/drink/create")
     public HttpStatus createDrink(@ModelAttribute DrinkDto drinkDto) throws IOException {
         productService.createDrink(drinkDto, drinkDto.getImage());
-        return HttpStatus.CREATED;
+        return CREATED;
     }
 
     @PatchMapping("/drink/{id}")
     public HttpStatus updateDrink(@PathVariable("id") Integer drinkId,
                                   @RequestBody DrinkDto drinkDto) {
          productService.updateDrink(drinkId, drinkDto);
-         return HttpStatus.CREATED;
+         return CREATED;
     }
 
     @DeleteMapping("/delete/drink/{id}")
     public HttpStatus deleteDrink(@PathVariable("id") Integer drinkId) {
         productService.deleteDrink(drinkId);
-        return HttpStatus.CREATED;
+        return CREATED;
     }
 }

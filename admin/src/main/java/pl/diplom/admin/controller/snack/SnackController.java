@@ -9,6 +9,8 @@ import pl.diplom.admin.service.ProductService;
 
 import java.io.IOException;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor
@@ -19,19 +21,19 @@ public class SnackController {
     @DeleteMapping("/snack/{id}")
     public HttpStatus deleteSnack(@PathVariable("id") Integer snackId) {
          productService.deleteSnack(snackId);
-        return HttpStatus.CREATED;
+        return CREATED;
     }
 
     @PatchMapping("/snack/{id}")
     public HttpStatus updateSnack(@PathVariable("id") Integer snackId,
                                   @RequestBody SnackDto snackDto) {
          productService.updateSnack(snackId, snackDto);
-        return HttpStatus.CREATED;
+        return CREATED;
     }
 
     @PostMapping("/snack/create")
     public HttpStatus createSnack(@ModelAttribute SnackDto snackDto) throws IOException {
          productService.createSnack(snackDto, snackDto.getImage());
-        return HttpStatus.CREATED;
+        return CREATED;
     }
 }
