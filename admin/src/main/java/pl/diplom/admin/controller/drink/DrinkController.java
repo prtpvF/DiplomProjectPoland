@@ -24,12 +24,13 @@ public class DrinkController {
     @PatchMapping("/drink/{id}")
     public HttpStatus updateDrink(@PathVariable("id") Integer drinkId,
                                   @RequestBody DrinkDto drinkDto) {
-        return productService.updateDrink(drinkId, drinkDto);
+         productService.updateDrink(drinkId, drinkDto);
+         return HttpStatus.CREATED;
     }
 
-    @PostMapping("/delete/drink/{id}")
+    @DeleteMapping("/delete/drink/{id}")
     public HttpStatus deleteDrink(@PathVariable("id") Integer drinkId) {
         productService.deleteDrink(drinkId);
-        return HttpStatus.OK;
+        return HttpStatus.CREATED;
     }
 }

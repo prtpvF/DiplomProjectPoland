@@ -18,17 +18,20 @@ public class SnackController {
 
     @DeleteMapping("/snack/{id}")
     public HttpStatus deleteSnack(@PathVariable("id") Integer snackId) {
-        return productService.deleteSnack(snackId);
+         productService.deleteSnack(snackId);
+        return HttpStatus.CREATED;
     }
 
     @PatchMapping("/snack/{id}")
     public HttpStatus updateSnack(@PathVariable("id") Integer snackId,
                                   @RequestBody SnackDto snackDto) {
-        return productService.updateSnack(snackId, snackDto);
+         productService.updateSnack(snackId, snackDto);
+        return HttpStatus.CREATED;
     }
 
     @PostMapping("/snack/create")
     public HttpStatus createSnack(@ModelAttribute SnackDto snackDto) throws IOException {
-        return productService.createSnack(snackDto, snackDto.getImage());
+         productService.createSnack(snackDto, snackDto.getImage());
+        return HttpStatus.CREATED;
     }
 }

@@ -42,17 +42,19 @@ public class PizzaController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return HttpStatus.OK;
+        return HttpStatus.CREATED;
     }
 
     @PatchMapping("/pizza/{id}")
     public HttpStatus updatePizza(@PathVariable("id") Integer pizzaId,
                                   @RequestBody PizzaDto pizzaDto) {
-        return productService.updatePizza(pizzaId, pizzaDto);
+         productService.updatePizza(pizzaId, pizzaDto);
+        return HttpStatus.CREATED;
     }
 
     @DeleteMapping("/pizza/{id}")
     public HttpStatus deletePizza(@PathVariable("id") Integer pizzaId) {
-        return productService.deletePizza(pizzaId);
+         productService.deletePizza(pizzaId);
+            return HttpStatus.CREATED;
     }
 }
