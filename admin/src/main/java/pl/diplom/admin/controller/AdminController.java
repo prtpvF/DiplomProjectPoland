@@ -62,8 +62,13 @@ public class AdminController {
         }
 
         @GetMapping("/ingredients")
-        public List<IngredientDto> allIngredient() { //pagination
-            return ingredientService.getAllIngredients();
+        public Page<IngredientDto> allIngredient(Pageable pageable) {
+            return ingredientService.getAllIngredients(pageable);
+        }
+
+        @GetMapping("/ingredients/list")
+        public List<IngredientDto> allIngredientList() { //pagination
+            return ingredientService.getAllIngredientsList();
         }
 
         @GetMapping("/ingredient/{id}")

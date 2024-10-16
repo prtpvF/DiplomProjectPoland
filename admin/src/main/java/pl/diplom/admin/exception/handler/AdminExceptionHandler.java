@@ -41,9 +41,8 @@ public class AdminExceptionHandler {
         }
 
         @ExceptionHandler(value = { IllegalPersonDataException.class })
-        public ResponseEntity illegalPersonDataExceptionHandler(IllegalPersonDataException ex) {
-            HttpStatus status = HttpStatus.BAD_REQUEST;
-            return new ResponseEntity(ex.getMessage(), status);
+        public HttpStatus illegalPersonDataExceptionHandler(IllegalPersonDataException ex) {
+            return HttpStatus.BAD_REQUEST;
         }
 
         @ExceptionHandler(value = { IllegalArgumentException.class })

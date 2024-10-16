@@ -1016,3 +1016,37 @@ jakarta.persistence.EntityNotFoundException: Ingredient with id 1 not found
 2024-10-15T01:32:29.358-07:00  INFO 414 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-10-15T01:32:29.362-07:00  INFO 414 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-10-15T01:32:29.365-07:00  INFO 414 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-15T20:07:44.115-07:00  INFO 3066 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 3066 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
+2024-10-15T20:07:44.119-07:00  INFO 3066 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-10-15T20:07:44.919-07:00  INFO 3066 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-15T20:07:45.016-07:00  INFO 3066 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 12 JPA repository interfaces.
+2024-10-15T20:07:46.285-07:00  INFO 3066 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-15T20:07:46.301-07:00  INFO 3066 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-15T20:07:46.302-07:00  INFO 3066 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-15T20:07:46.387-07:00  INFO 3066 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-15T20:07:46.387-07:00  INFO 3066 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2210 ms
+2024-10-15T20:07:46.598-07:00  INFO 3066 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-15T20:07:46.663-07:00  INFO 3066 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-10-15T20:07:46.702-07:00  INFO 3066 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-15T20:07:47.121-07:00  INFO 3066 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-15T20:07:47.157-07:00  INFO 3066 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-15T20:07:47.320-07:00  INFO 3066 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5a90fcaa
+2024-10-15T20:07:47.322-07:00  INFO 3066 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-15T20:07:47.377-07:00  WARN 3066 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-15T20:07:48.993-07:00  INFO 3066 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-15T20:07:49.266-07:00  INFO 3066 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T20:07:49.775-07:00  INFO 3066 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-15T20:07:50.984-07:00  WARN 3066 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-15T20:07:51.132-07:00  INFO 3066 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-15T20:07:51.508-07:00  INFO 3066 --- [common] [main] pl.diplom.admin.AdminApplication         : Started AdminApplication in 8.095 seconds (process running for 8.961)
+2024-10-15T20:10:07.798-07:00  INFO 3066 --- [common] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-15T20:10:07.803-07:00  INFO 3066 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-15T20:10:08.089-07:00  INFO 3066 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 285 ms
+2024-10-15T20:10:08.175-07:00  INFO 3066 --- [common] [http-nio-8080-exec-2] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name personDetailsService
+2024-10-15T20:10:08.651-07:00  INFO 3066 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T20:10:08.885-07:00  INFO 3066 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T20:10:08.893-07:00  INFO 3066 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
+2024-10-15T20:10:08.900-07:00  INFO 3066 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
+2024-10-15T20:27:28.277-07:00  INFO 3066 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-15T20:27:28.324-07:00  INFO 3066 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-15T20:27:28.349-07:00  INFO 3066 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

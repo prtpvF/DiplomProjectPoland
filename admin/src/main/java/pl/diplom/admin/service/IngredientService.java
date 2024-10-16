@@ -32,7 +32,13 @@ public class IngredientService {
             return convertToDto(ingredient);
         }
 
-        public List<IngredientDto> getAllIngredients() {
+        public Page<IngredientDto> getAllIngredients(Pageable pageable) {
+            Page<Ingredient> ingredients = ingredientRepository.findAll(pageable);
+            Page<IngredientDto> dtoPage = ingredients.map(ingredient -> convertToDto(ingredient));
+            return dtoPage;
+        }
+
+        public List<IngredientDto> getAllIngredientsList() {
             List<Ingredient> ingredients = ingredientRepository.findAll();
             List<IngredientDto> dtoPage = new ArrayList<>();
             for (Ingredient ingredient : ingredients) {
