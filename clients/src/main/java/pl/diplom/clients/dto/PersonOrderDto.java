@@ -24,7 +24,5 @@ public class PersonOrderDto {
 
     private List<Integer> snacksIdList = new ArrayList<>();
 
-    private List<PortionDto> portions = new ArrayList<>();
-
     private Double cost;
 }

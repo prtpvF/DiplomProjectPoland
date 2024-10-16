@@ -17,3 +17,4 @@ pl/diplom/publicapi/controller/PizzaController.class
 pl/diplom/publicapi/dto/PizzaDto.class
 pl/diplom/publicapi/dto/DrinkDto.class
 pl/diplom/publicapi/controller/ProductController.class
+pl/diplom/publicapi/controller/ImageController.class
