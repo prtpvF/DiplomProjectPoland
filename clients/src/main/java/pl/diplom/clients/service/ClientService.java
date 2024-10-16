@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pl.diplom.clients.dto.PersonOrderDto;
+import pl.diplom.clients.dto.PersonOrderDtoResponse;
 import pl.diplom.clients.exception.*;
 import pl.diplom.common.model.*;
 import pl.diplom.common.repository.*;
@@ -38,8 +39,8 @@ public class ClientService {
               return personOrderService.deleteOrder(orderId, person);
         }
 
-        public Page<PersonOrderDto> findAllPersonOrders(Person person,
-                                                        Pageable pageable) {
+        public Page<PersonOrderDtoResponse> findAllPersonOrders(Person person,
+                                                                Pageable pageable) {
                 return personOrderService.getPersonOrderHistoryAsDtoList(person,
                         pageable);
         }

@@ -6,6 +6,7 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/AddressDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/DrinkDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/PersonOrderDto.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/PersonOrderDtoResponse.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/PizzaDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/PortionDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/ProductDto.java

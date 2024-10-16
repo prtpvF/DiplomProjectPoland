@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pl.diplom.clients.dto.PersonOrderDto;
+import pl.diplom.clients.dto.PersonOrderDtoResponse;
 import pl.diplom.clients.exception.CannotDeleteOrderException;
 import pl.diplom.clients.exception.IllegalOrderOwnerException;
 import pl.diplom.clients.exception.PersonOrderNotFoundException;
@@ -57,15 +58,15 @@ public class PersonOrderService {
             return OK;
         }
 
-        public Page<PersonOrderDto> getPersonOrderHistoryAsDtoList(Person person,
+        public Page<PersonOrderDtoResponse> getPersonOrderHistoryAsDtoList(Person person,
                                                                    Pageable pageable) {
             Page<PersonOrder> foundedOrders = personOrderRepository
                     .findByPerson(person, pageable);
-            Page<PersonOrderDto> dtos = foundedOrders.map(objectMapper::convertPersonOrderToDto);
+            Page<PersonOrderDtoResponse> dtos = foundedOrders.map(objectMapper::convertPersonOrderToDto);
             return dtos;
         }
 
-        public PersonOrderDto getPersonOrder(Integer personOrderId) {
+        public PersonOrderDtoResponse getPersonOrder(Integer personOrderId) {
             PersonOrder order = getPersonOrderById(personOrderId);
             return objectMapper.convertPersonOrderToDto(order);
         }

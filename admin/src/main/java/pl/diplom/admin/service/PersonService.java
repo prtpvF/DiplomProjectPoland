@@ -60,7 +60,7 @@ public class PersonService {
             Person person = mapAdttionalFieldToperson(registrationDto);
             isUsernameAndEmailTaken(registrationDto.getUsername(),
                                     registrationDto.getEmail());
-            person.setPassword(passwordEncoder.encode(person.getPassword()));
+            person.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
             person.setRole(roleService.findRoleByName(
                     registrationDto.getRoleName()));
             personRepository.save(person);

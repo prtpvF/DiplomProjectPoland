@@ -30,14 +30,16 @@ public class WorkerService {
                 Person worker  = getPersonFromToken(token);
                 PersonOrder personOrder = personOrderService.getPersonOrderById(personOrderId);
 
-                if(worker.getRole().getRoleName()
-                        .equals(PersonRolesEnum.DELIVERYMAN.name())) {
-                        changeStatusAsDeliveryman(personOrder);
-                }
+                if(!worker.getRole().getRoleName().equals("ADMIN")) {
+                        if(worker.getRole().getRoleName()
+                                .equals(PersonRolesEnum.DELIVERYMAN.name())) {
+                                changeStatusAsDeliveryman(personOrder);
+                        }
 
-                else if(worker.getRole().getRoleName()
-                        .equals(PersonRolesEnum.COOK.name())) {
-                        changeStatusAsCook(personOrder);
+                        else if(worker.getRole().getRoleName()
+                                .equals(PersonRolesEnum.COOK.name())) {
+                                changeStatusAsCook(personOrder);
+                        }
                 }
                 return personOrderService.save(personOrder);
         }

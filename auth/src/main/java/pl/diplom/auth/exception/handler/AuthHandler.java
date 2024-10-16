@@ -13,12 +13,14 @@ import pl.diplom.auth.exception.PersonDoesntExistException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
 @ControllerAdvice
 public class AuthHandler {
 
         @ExceptionHandler(PersonAlreadyExistsException.class)
         public ResponseEntity<Object> personAlreadyExistsExceptionHandler(PersonAlreadyExistsException e){
-            HttpStatus status = HttpStatus.BAD_REQUEST;
+            HttpStatus status = BAD_REQUEST;
             return new ResponseEntity<>(e.getMessage(), status);
         }
 
@@ -38,8 +40,13 @@ public class AuthHandler {
 
         @ExceptionHandler(IncorrectPasswordException.class)
         public ResponseEntity<Object> incorrectPasswordExceptionHandler(IncorrectPasswordException e){
-            HttpStatus status = HttpStatus.BAD_REQUEST;
+            HttpStatus status = BAD_REQUEST;
             ApiException exception = new ApiException(e.getMessage(),e, status, ZonedDateTime.now(ZoneId.of("Z")));
             return new ResponseEntity<>(exception,status);
+        }
+
+        @ExceptionHandler(IllegalArgumentException.class)
+        public HttpStatus illegalArgumentExceptionHandler(IllegalArgumentException e){
+            return BAD_REQUEST;
         }
 }

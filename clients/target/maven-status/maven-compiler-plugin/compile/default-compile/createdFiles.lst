@@ -10,6 +10,7 @@ pl/diplom/clients/dto/AddressDto.class
 pl/diplom/clients/dto/PizzaDto.class
 pl/diplom/clients/dto/DrinkDto.class
 pl/diplom/clients/exception/DrinkNotFoundException.class
+pl/diplom/clients/dto/PersonOrderDtoResponse.class
 pl/diplom/clients/service/NotificationService.class
 pl/diplom/clients/exception/handler/PersonExceptionHandler.class
 pl/diplom/clients/dto/PersonOrderDto.class

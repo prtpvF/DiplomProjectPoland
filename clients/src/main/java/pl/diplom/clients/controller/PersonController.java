@@ -8,10 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.diplom.clients.dto.DrinkDto;
-import pl.diplom.clients.dto.PersonOrderDto;
-import pl.diplom.clients.dto.PizzaDto;
-import pl.diplom.clients.dto.SnackDto;
+import pl.diplom.clients.dto.*;
 import pl.diplom.clients.service.*;
 import pl.diplom.common.model.Person;
 import pl.diplom.common.model.product.Drink;
@@ -39,14 +36,14 @@ public class PersonController {
     }
 
     @GetMapping("/order/history")
-    public Page<PersonOrderDto> getAllOrders(@RequestHeader("token") String token,
+    public Page<PersonOrderDtoResponse> getAllOrders(@RequestHeader("token") String token,
                                              Pageable pageable) {
         Person person = personService.getPersonFromToken(token);
         return clientService.findAllPersonOrders(person, pageable);
     }
 
     @GetMapping("/order/{id}")
-    public PersonOrderDto getPersonOrderDto(@PathVariable("id") Integer id) {
+    public PersonOrderDtoResponse getPersonOrderDto(@PathVariable("id") Integer id) {
         return personOrderService.getPersonOrder(id);
     }
 

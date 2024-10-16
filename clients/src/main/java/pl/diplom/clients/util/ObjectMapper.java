@@ -1,7 +1,7 @@
 package pl.diplom.clients.util;
 
 import org.springframework.stereotype.Component;
-import pl.diplom.clients.dto.PersonOrderDto;
+import pl.diplom.clients.dto.*;
 import pl.diplom.common.model.PersonOrder;
 import pl.diplom.common.model.product.Drink;
 import pl.diplom.common.model.product.Pizza;
@@ -13,8 +13,8 @@ import java.util.List;
 @Component
 public class ObjectMapper {
 
-        public PersonOrderDto convertPersonOrderToDto(PersonOrder personOrder) {
-            PersonOrderDto personOrderDto = new PersonOrderDto();
+        public PersonOrderDtoResponse convertPersonOrderToDto(PersonOrder personOrder) {
+            PersonOrderDtoResponse personOrderDto = new PersonOrderDtoResponse();
             personOrderDto.setPerson(personOrder.getPerson().getId());
             personOrderDto.setCost(personOrder.getCost());
             personOrderDto.setStatus(personOrder.getStatus());
@@ -31,29 +31,53 @@ public class ObjectMapper {
            return personOrderDto;
         }
 
-        private List<Integer> getAllPizzaIdList(PersonOrder personOrder) {
-            List<Integer> pizzaIdList = new ArrayList<>();
+        private List<PizzaDto> getAllPizzaIdList(PersonOrder personOrder) {
+            List<PizzaDto> pizzaIdList = new ArrayList<>();
             for(Pizza pizza : personOrder.getPizzas()) {
-                pizzaIdList.add(pizza.getId());
+                pizzaIdList.add(convertPizzaToDto(pizza));
             }
             return pizzaIdList;
         }
 
-        private List<Integer> getAllSnackIdList(PersonOrder personOrder) {
-            List<Integer> snackIdList = new ArrayList<>();
+        private List<SnackDto> getAllSnackIdList(PersonOrder personOrder) {
+            List<SnackDto> snackIdList = new ArrayList<>();
 
             for(Snack snack : personOrder.getSnacks()) {
-                snackIdList.add(snack.getId());
+                snackIdList.add(convertSnackToDto(snack));
             }
             return snackIdList;
         }
 
-        private List<Integer> getAllDrinksIdList(PersonOrder personOrder) {
-            List<Integer> drunkIdList = new ArrayList<>();
+    private List<DrinkDto> getAllDrinksIdList(PersonOrder personOrder) {
+            List<DrinkDto> drunkIdList = new ArrayList<>();
 
             for(Drink drink : personOrder.getDrinks()) {
-                drunkIdList.add(drink.getId());
+                drunkIdList.add(convertDrinkToDto(drink));
             }
             return drunkIdList;
+        }
+
+        private PizzaDto convertPizzaToDto(Pizza pizza) {
+            PizzaDto pizzaDto = new PizzaDto();
+            pizzaDto.setId(pizza.getId());
+            pizzaDto.setName(pizza.getName());
+            pizzaDto.setCost(pizza.getCost());
+            return pizzaDto;
+        }
+
+        private SnackDto convertSnackToDto(Snack snack) {
+            SnackDto snackDto = new SnackDto();
+            snackDto.setId(snack.getId());
+            snackDto.setName(snack.getName());
+            snackDto.setCost(snack.getCost());
+            return snackDto;
+        }
+
+        private DrinkDto convertDrinkToDto(Drink drink) {
+            DrinkDto snackDto = new DrinkDto();
+            snackDto.setId(drink.getId());
+            snackDto.setName(drink.getName());
+            snackDto.setCost(drink.getCost());
+            return snackDto;
         }
 }
