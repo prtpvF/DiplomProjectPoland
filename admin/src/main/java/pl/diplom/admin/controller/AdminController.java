@@ -51,10 +51,9 @@ public class AdminController {
         private final IngredientService ingredientService;
 
         @PostMapping("/ingredient")
-        public ResponseEntity createIngredient(@RequestBody IngredientDto ingredientDto) {
-
-            return new ResponseEntity("Ingredient created",
-                    adminService.createIngredient(ingredientDto));
+        public HttpStatus createIngredient(@RequestBody IngredientDto ingredientDto) {
+                    adminService.createIngredient(ingredientDto);
+                    return HttpStatus.CREATED;
         }
 
         @DeleteMapping("/ingredient/{id}")
@@ -63,8 +62,8 @@ public class AdminController {
         }
 
         @GetMapping("/ingredients")
-        public Page<IngredientDto> allIngredient(@RequestHeader("token") String token, Pageable pageable) { //pagination
-            return ingredientService.getAllIngredients(pageable);
+        public List<IngredientDto> allIngredient() { //pagination
+            return ingredientService.getAllIngredients();
         }
 
         @GetMapping("/ingredient/{id}")

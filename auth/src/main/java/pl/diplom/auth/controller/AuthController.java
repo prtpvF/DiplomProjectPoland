@@ -34,13 +34,9 @@ public class AuthController {
         }
 
         @PostMapping("/registration")
-        public ResponseEntity<List<?>> registration(@Valid @RequestBody RegistrationDto registrationDto,
-                                                                BindingResult bindingResult) {
-            if (bindingResult.hasErrors()) {
-                return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
-            }
+        public HttpStatus registration(@Valid @RequestBody RegistrationDto registrationDto) {
             authService.registration(registrationDto);
-            return new ResponseEntity("success", HttpStatus.CREATED);
+           return HttpStatus.CREATED;
         }
 
         @PostMapping("/login")

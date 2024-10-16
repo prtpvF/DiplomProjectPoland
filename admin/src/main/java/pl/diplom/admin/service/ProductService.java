@@ -49,16 +49,17 @@ public class ProductService {
         private final ModelMapper modelMapper;
         private final IngredientRepository ingredientRepository;
 
+        @Transactional
         public HttpStatus createDrink(DrinkDto drinkDto,
                                       MultipartFile file) throws IOException {
                 Drink drink = new Drink();
                 modelMapper.map(drinkDto, drink);
                 Image image;
-                if (file.getSize() != 0) {
+
                         image = toImageEntity(file);
                         image.setPreviewImage(true);
                         drink.addImage(image);
-                }
+
                 drink.setPersonOrderList(Collections.emptyList());
                 String filePath = imageService.savePhotoLocal(file);
                 drink.setPathToImage(filePath);
@@ -84,6 +85,7 @@ public class ProductService {
                 return CREATED;
         }
 
+        @Transactional
         public HttpStatus createSnack(SnackDto snackDto,
                                       MultipartFile file) throws IOException {
                 Snack snack = new Snack();
