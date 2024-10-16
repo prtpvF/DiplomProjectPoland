@@ -22,7 +22,7 @@ public class ImageController {
 
         private final String uploadDir = "uploads/";
 
-        @GetMapping("/")
+        @GetMapping
         public ResponseEntity<InputStreamResource> downloadFile(@RequestParam String filename) {
             File file = new File(uploadDir + filename); // Укажите путь к файлу
 
