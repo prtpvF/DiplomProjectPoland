@@ -18,11 +18,11 @@ public class PersonOrderDto {
 
     private String address;
 
-    private List<Integer> pizzaIdList = new ArrayList<>();
+    private List<Integer> pizzas = new ArrayList<>();
 
-    private List<Integer> drinksIdList = new ArrayList<>();
+    private List<Integer> drinks = new ArrayList<>();
 
-    private List<Integer> snacksIdList = new ArrayList<>();
+    private List<Integer> snacks = new ArrayList<>();
 
     private Double cost;
 }

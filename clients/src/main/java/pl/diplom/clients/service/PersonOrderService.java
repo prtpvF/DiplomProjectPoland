@@ -77,26 +77,26 @@ public class PersonOrderService {
         }
 
         private void setDrinksIfNotEmpty(PersonOrderDto personOrder, PersonOrder order) {
-            if(!personOrder.getDrinksIdList().isEmpty()) {
+            if(!personOrder.getDrinks().isEmpty()) {
                 order.setDrinks(productService
                         .getConvertedDrinkList(personOrder
-                                .getDrinksIdList()));
+                                .getDrinks()));
             }
         }
 
         private void setPizzaIfNotEmpty(PersonOrderDto personOrder, PersonOrder order) {
-            if(!personOrder.getPizzaIdList().isEmpty()) {
+            if(!personOrder.getPizzas().isEmpty()) {
                 order.setPizzas(productService
                         .getConvertedPizzaList(personOrder
-                                .getPizzaIdList()));
+                                .getPizzas()));
             }
         }
 
         private void setSnackIfNotEmpty(PersonOrderDto personOrder, PersonOrder order) {
-            if(!personOrder.getSnacksIdList().isEmpty()) {
+            if(!personOrder.getSnacks().isEmpty()) {
                 order.setSnacks(productService
                         .getConvertedSnackList(personOrder
-                                .getSnacksIdList()));
+                                .getSnacks()));
             }
         }
 
@@ -141,9 +141,9 @@ public class PersonOrderService {
         }
 
         private void isPersonOrderDataValid(PersonOrderDto personOrderDto) {
-            if(personOrderDto.getDrinksIdList().isEmpty()
-                    && personOrderDto.getPizzaIdList().isEmpty()
-                && personOrderDto.getSnacksIdList().isEmpty()) {
+            if(personOrderDto.getDrinks().isEmpty()
+                    && personOrderDto.getPizzas().isEmpty()
+                && personOrderDto.getSnacks().isEmpty()) {
                 throw new IllegalArgumentException("you can not create an order without any products");
             }
         }

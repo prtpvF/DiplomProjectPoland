@@ -19,13 +19,13 @@ public class ObjectMapper {
             personOrderDto.setCost(personOrder.getCost());
             personOrderDto.setStatus(personOrder.getStatus());
            if(!personOrder.getPizzas().isEmpty()) {
-               personOrderDto.setPizzaIdList(getAllPizzaIdList(personOrder));
+               personOrderDto.setPizzas(getAllPizzaIdList(personOrder));
            }
            if(!personOrder.getSnacks().isEmpty()) {
-               personOrderDto.setSnacksIdList(getAllSnackIdList(personOrder));
+               personOrderDto.setSnacks(getAllSnackIdList(personOrder));
            }
            if(!personOrder.getDrinks().isEmpty()) {
-               personOrderDto.setDrinksIdList(getAllDrinksIdList(personOrder));
+               personOrderDto.setDrinks(getAllDrinksIdList(personOrder));
            }
            personOrderDto.setAddress(personOrder.getAddress().getAddress());
            return personOrderDto;
