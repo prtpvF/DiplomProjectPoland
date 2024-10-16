@@ -1,22 +1,11 @@
 package pl.diplom.admin.controller.snack;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import pl.diplom.admin.dto.SnackDto;
 import pl.diplom.admin.service.ProductService;
-import pl.diplom.common.model.product.Snack;
-import pl.diplom.common.repository.product.SnackRepository;
 
 import java.io.IOException;
 
@@ -40,6 +29,6 @@ public class SnackController {
 
     @PostMapping("/snack/create")
     public HttpStatus createSnack(@ModelAttribute SnackDto snackDto) throws IOException {
-        return productService.createSnack(snackDto, snackDto.getFile());
+        return productService.createSnack(snackDto, snackDto.getImage());
     }
 }

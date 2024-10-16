@@ -22,7 +22,7 @@ public class SnackDto {
 
         private String pathToImage;
 
-        private MultipartFile file;
+        private MultipartFile image;
 
         @NotNull(message = "cannot be empty")
         private Double cost;

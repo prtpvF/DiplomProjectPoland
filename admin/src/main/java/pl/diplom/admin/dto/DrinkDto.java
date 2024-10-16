@@ -23,7 +23,7 @@ public class DrinkDto {
 
         private Double volume;
 
-        private MultipartFile file;
+        private MultipartFile image;
 
         private List<Integer> personOrderIds = new ArrayList<>();
 }
