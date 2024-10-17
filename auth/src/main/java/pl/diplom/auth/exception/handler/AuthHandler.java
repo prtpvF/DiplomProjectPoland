@@ -46,7 +46,8 @@ public class AuthHandler {
         }
 
         @ExceptionHandler(IllegalArgumentException.class)
-        public HttpStatus illegalArgumentExceptionHandler(IllegalArgumentException e){
-            return BAD_REQUEST;
+        public ResponseEntity illegalArgumentExceptionHandler(IllegalArgumentException e){
+            HttpStatus status =  BAD_REQUEST;
+            return new ResponseEntity(e.getMessage(), status);
         }
 }

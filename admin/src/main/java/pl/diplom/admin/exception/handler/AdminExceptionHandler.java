@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import pl.diplom.admin.exception.*;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
 @ControllerAdvice
 public class AdminExceptionHandler {
 
@@ -41,13 +43,14 @@ public class AdminExceptionHandler {
         }
 
         @ExceptionHandler(value = { IllegalPersonDataException.class })
-        public HttpStatus illegalPersonDataExceptionHandler(IllegalPersonDataException ex) {
-            return HttpStatus.BAD_REQUEST;
+        public ResponseEntity illegalPersonDataExceptionHandler(IllegalPersonDataException ex) {
+            HttpStatus status = BAD_REQUEST;
+            return new ResponseEntity(ex.getMessage(), status);
         }
 
         @ExceptionHandler(value = { IllegalArgumentException.class })
         public ResponseEntity illegalArgumentExceptionHandler(IllegalArgumentException ex) {
-            HttpStatus status = HttpStatus.BAD_REQUEST;
+            HttpStatus status = BAD_REQUEST;
             return new ResponseEntity(ex.getMessage(), status);
         }
 
