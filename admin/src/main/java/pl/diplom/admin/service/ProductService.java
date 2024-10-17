@@ -103,26 +103,31 @@ public class ProductService {
                 return CREATED;
         }
 
-        public HttpStatus updatePizza(Integer pizzaNeedToBeUpdatedId,
-                                      PizzaDto pizzaDto) {
-
+        public HttpStatus updatePizza(Integer pizzaNeedToBeUpdatedId, PizzaDto pizzaDto) {
                 Pizza pizza = getPizzaById(pizzaNeedToBeUpdatedId);
-                pizza.setId(pizza.getId());
-                pizza.setIngredients(
-                        ingredientRepository.findAllById(
-                                pizzaDto.getIngredients()
-                        )
-                );
+                List<Ingredient> ingredients = ingredientRepository.findAllById(pizzaDto.getIngredients());
+                pizza.setIngredients(ingredients);
+                for (Ingredient ingredient : ingredients) {
+                        ingredient.getPizza().remove(pizza);
+                }
+                ingredientRepository.saveAll(ingredients);
                 pizza.setCost(pizzaDto.getCost());
                 pizza.setName(pizzaDto.getName());
                 if (!pizza.getPersonOrders().isEmpty()) {
                         pizza.setPersonOrders(pizza.getPersonOrders());
-                }
-                else {
+                } else {
                         pizza.setPathToImage(pizza.getPathToImage());
                 }
-                pizzaRepository.save(pizza);
-                return OK;
+                pizza.setIngredients(Collections.emptyList());
+                Pizza pizza1  = pizzaRepository.save(pizza);
+                for (Ingredient ingredient : ingredients) {
+                        ingredient.getPizza().add(pizza1);
+                }
+                pizza1.setIngredients(ingredients);
+                pizzaRepository.save(pizza1);
+                ingredientRepository.saveAll(ingredients);
+
+                return HttpStatus.OK;
         }
 
         public HttpStatus updateDrink(Integer drinkNeedToBeUpdatedId,
