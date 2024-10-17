@@ -48,29 +48,34 @@ public class ProductService {
         }
 
         public List<ProductDto> getPopularProducts() {
-            int countOfPizza = pizzaRepository.findAll().size();
-            int countOfDrinks = drinkRepository.findAll().size();
-            int countOfSnacks = snackRepository.findAll().size();
+
+            List<Pizza> pizzas = pizzaRepository.findAll();
+            List<Drink> drinks = drinkRepository.findAll();
+            List<Snack> snacks = snackRepository.findAll();
+
+            int countOfPizza = pizzas.size();
+            int countOfDrinks = drinks.size();
+            int countOfSnacks = snacks.size();
 
             List<ProductDto> productDtoList = new ArrayList<>();
 
            if(countOfPizza > 1) {
                int randomPizzaId = getRandomProductId(countOfPizza);
                productDtoList.add(
-                       convertAnyProductToDto(pizzaRepository.findById(randomPizzaId).get(), randomPizzaId)
+                       convertAnyProductToDto(pizzas.get(randomPizzaId-1), pizzas.get(randomPizzaId-1).getId())
                );
            }
             if(countOfDrinks > 1) {
                 int randomDrinkId = getRandomProductId(countOfDrinks);
                 productDtoList.add(
-                        convertAnyProductToDto(drinkRepository.findById(randomDrinkId).get(), randomDrinkId)
+                        convertAnyProductToDto(drinks.get(randomDrinkId-1), drinks.get(randomDrinkId-1).getId())
                 );
             }
 
             if(countOfSnacks > 1){
                 int randomSnackId = getRandomProductId(countOfSnacks);
                 productDtoList.add(
-                        convertAnyProductToDto(snackRepository.findById(randomSnackId).get(), randomSnackId)
+                        convertAnyProductToDto(snacks.get(randomSnackId-1), snacks.get(randomSnackId-1).getId())
                 );
             }
             return productDtoList;
@@ -173,7 +178,7 @@ public class ProductService {
             productDto.setId(id);
             productDto.setName(product.getName());
             productDto.setCost(product.getCost());
-            productDto.setPathToImage(productDto.getPathToImage());
+            productDto.setPathToImage(product.getPathToImage());
             return productDto;
         }
 

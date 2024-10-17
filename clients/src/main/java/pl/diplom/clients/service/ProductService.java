@@ -48,9 +48,6 @@ public class ProductService {
                                 .orElseThrow(() -> new DrinkNotFoundException(
                                         "cannot find drink with this id. Try again")));
             }
-            if(!convertedDrinkList.isEmpty()) {
-                checkProductQuantity(convertedDrinkList.get(0));
-            }
             return (convertedDrinkList);
         }
 
@@ -62,9 +59,6 @@ public class ProductService {
                                 .orElseThrow(() -> new SnackNotFoundException(
                                         "cannot find drink with this id. Try again")));
             }
-           if(!convertedSnackList.isEmpty()) {
-               checkProductQuantity(convertedSnackList.get(0));
-           }
             return (convertedSnackList);
         }
 
@@ -94,12 +88,6 @@ public class ProductService {
         return drinks;
     }
 
-
-    private void checkProductQuantity(Product product) {
-            if(product.getQuantity() < 100) {
-                notificationService.sendNotificationToAdmin(product);
-            }
-        }
 
 
 

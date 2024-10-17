@@ -65,8 +65,11 @@ public class AddressService {
         }
 
         private void isAddressExists(Person person, String address) {
-            addressRepository.findByAddressAndPerson(address, person)
-                    .ifPresent(ex -> new AddressAlreadyExistsException("address already exists"));
+            Optional<Address> address1 = addressRepository.findByAddressAndPerson(address, person);
+
+            if(address1.isPresent()) {
+                throw new AddressAlreadyExistsException("Address already exists");
+            }
         }
 
         private String convertAddressToLowerCase(String address) {

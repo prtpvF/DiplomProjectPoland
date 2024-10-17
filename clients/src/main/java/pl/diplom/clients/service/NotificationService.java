@@ -22,9 +22,9 @@ public class NotificationService {
         public void sendNotificationToAdmin(Product product) {
                 KafkaMessageModel message = new KafkaMessageModel();
                 String emailTo = personService.selectAdminForNotification();
-                String body = "product with name: " + product.getName() +
-                         "almost gone. Quantity: " + product.getQuantity();
-                message.setBody(body);
+//                String body = "product with name: " + product.getName() +
+//                         "almost gone. Quantity: " + product.getQuantity();
+             //   message.setBody(body);
                 message.setSentToEmail(emailTo);
                 kafkaTemplate.send(topicName, message);
         }

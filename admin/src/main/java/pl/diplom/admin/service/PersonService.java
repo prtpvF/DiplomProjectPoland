@@ -19,6 +19,7 @@ import pl.diplom.security.jwt.JwtUtil;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -84,8 +85,33 @@ public class PersonService {
             workerNeedToBeUpdated.setRole(roleService.findRoleByName(
                     updateWorkerDto.getRoleName()
             ));
-            isUsernameAndEmailTaken(updateWorkerDto.getUsername(),
-                                    updateWorkerDto.getEmail());
+           if(workerNeedToBeUpdated.getUsername().equals(updateWorkerDto.getUsername())) {
+               workerNeedToBeUpdated.setUsername(updateWorkerDto.getUsername());
+           }
+           else {
+               boolean isUsernameTaken = isUsernameTaken(updateWorkerDto.getUsername());
+               if(!isUsernameTaken) {
+                   workerNeedToBeUpdated.setUsername(updateWorkerDto.getUsername());
+               }
+               else {
+                   throw new IllegalPersonDataException("username is taken");
+               }
+           }
+
+           if(workerNeedToBeUpdated.getEmail().equals(updateWorkerDto.getEmail())) {
+               workerNeedToBeUpdated.setEmail(updateWorkerDto.getEmail());
+           }
+           else {
+               boolean isEmailTaken = isEmailTaken(updateWorkerDto.getEmail());
+
+               if(!isEmailTaken) {
+                   workerNeedToBeUpdated.setEmail(updateWorkerDto.getEmail());
+               }
+
+               else {
+                   throw new IllegalPersonDataException("email is taken");
+               }
+           }
             personRepository.save(workerNeedToBeUpdated);
             return CREATED;
         }
@@ -149,6 +175,16 @@ public class PersonService {
             personDto.setActive(person.isActive());
             personDto.setAge(person.getAge());
             return personDto;
+        }
+
+        private boolean isUsernameTaken(String username) {
+            Optional<Person> person = personRepository.findByUsername(username);
+            return person.isPresent();
+        }
+
+        private boolean isEmailTaken(String email) {
+            Optional<Person> person = personRepository.findByEmail(email);
+            return person.isPresent();
         }
 
 

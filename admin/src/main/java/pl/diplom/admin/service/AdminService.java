@@ -42,6 +42,7 @@ public class AdminService {
                 Ingredient ingredient = new Ingredient();
                 ingredient.setName(ingredientDto.getName());
                 ingredient.setCost(ingredientDto.getCost());
+                ingredient.setWeight(ingredientDto.getWeight());
                 ingredientRepository.save(ingredient);
                 return HttpStatus.CREATED;
         }

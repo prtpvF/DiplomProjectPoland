@@ -70,6 +70,7 @@ public class IngredientService {
             ingredientDto.setId(ingredient.getId());
             ingredientDto.setName(ingredient.getName());
             ingredientDto.setCost(ingredient.getCost());
+            ingredientDto.setWeight(ingredient.getWeight());
             return ingredientDto;
         }
 }

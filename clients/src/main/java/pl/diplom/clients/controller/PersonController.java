@@ -3,6 +3,7 @@ package pl.diplom.clients.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ import pl.diplom.security.util.PersonDetails;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
+
 @RestController
 @RequestMapping("/person")
 @RequiredArgsConstructor
@@ -30,9 +34,10 @@ public class PersonController {
     private final AddressService addressService;
 
     @PostMapping("/order")
-    public void createOrder(@RequestBody PersonOrderDto order,
-                            @RequestHeader("token") String token) {
+    public ResponseEntity createOrder(@RequestBody PersonOrderDto order,
+                                      @RequestHeader("token") String token) {
         clientService.createOrder(token, order);
+        return new ResponseEntity(CREATED);
     }
 
     @GetMapping("/order/history")
@@ -48,8 +53,9 @@ public class PersonController {
     }
 
     @DeleteMapping("/order/{id}")
-    public void deletePersonOrder(@PathVariable("id") int personOrderId,
+    public ResponseEntity deletePersonOrder(@PathVariable("id") int personOrderId,
                                   @RequestHeader("token") String token) {
         clientService.deleteOrder(token, personOrderId);
+        return new ResponseEntity(OK);
     }
 }

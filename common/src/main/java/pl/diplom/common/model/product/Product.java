@@ -23,5 +23,5 @@ public abstract class Product {
         @Max(value = 4000, message = "cost cannot be bigger than 4000")
         private Double cost;
 
-        private Integer quantity;
+        private String pathToImage;
 }

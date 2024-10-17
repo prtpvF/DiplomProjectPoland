@@ -2,6 +2,7 @@ package pl.diplom.clients.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.diplom.clients.dto.AddressDto;
 import pl.diplom.clients.service.AddressService;
@@ -9,6 +10,9 @@ import pl.diplom.clients.service.PersonService;
 import pl.diplom.common.model.Person;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,9 +35,10 @@ public class AddressController {
         }
 
         @PostMapping
-        public HttpStatus createAddress(@RequestBody String address,
-                                        @RequestHeader("token") String token) {
-            return addressService.createAddress(token, address);
+        public ResponseEntity createAddress(@RequestBody String address,
+                                            @RequestHeader("token") String token) {
+             addressService.createAddress(token, address);
+            return new ResponseEntity(CREATED);
         }
 
         @DeleteMapping("/{id}")

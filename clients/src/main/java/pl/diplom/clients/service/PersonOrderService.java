@@ -43,9 +43,8 @@ public class PersonOrderService {
             order.setStatus(PersonOrderStatusEnum.ACCEPTED.name());
 
             setProducts(personOrder, order);
-
             order.setCost(calculateOrderTotalPrice(order));
-            order.setAddress(addressRepository.findAddressByAddress(personOrder.getAddress()).get());
+            order.setAddress(addressRepository.findByAddressAndPerson(personOrder.getAddress(), person).get());
             personOrderRepository.save(order);
             return CREATED;
         }
