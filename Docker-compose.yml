@@ -88,7 +88,7 @@ services:
       DB: jdbc:postgresql://postgres:5432/poland  # Используем имя сервиса вместо localhost
       USER: postgres
       PASSWORD: postgres
-      PATH: value
+      PATH_TO_IMG: /Users/mihail/Desktop/
 
 
   zookeeper:

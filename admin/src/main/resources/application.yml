@@ -34,4 +34,4 @@ logging:
 server:
   port: 8080
 
-path_to_file: ${PATH}
+path_to_file: ${PATH_TO_IMG}

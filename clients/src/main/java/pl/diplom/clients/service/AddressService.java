@@ -48,11 +48,12 @@ public class AddressService {
             return addressDtos;
         }
 
-        public HttpStatus createAddress(String token, String address) {
+        public HttpStatus createAddress(String token, AddressDto addressDto) {
             Person person = personService.getPersonFromToken(token);
-            isAddressExists(person, address);
-            address = convertAddressToLowerCase(address);
-            Address addressModel = new Address(person, address);
+            String address = "";
+            isAddressExists(person, addressDto.getAddress());
+            address = convertAddressToLowerCase(addressDto);
+            Address addressModel = new Address(person, addressDto.getAddress());
             person.addAddress(addressModel);
             addressRepository.save(addressModel);
            return OK;
@@ -73,8 +74,8 @@ public class AddressService {
             }
         }
 
-        private String convertAddressToLowerCase(String address) {
-            return address.toLowerCase();
+        private String convertAddressToLowerCase(AddressDto address) {
+            return address.getAddress().toLowerCase();
         }
 
         private void isAddressExistsById(Integer addressId) {
