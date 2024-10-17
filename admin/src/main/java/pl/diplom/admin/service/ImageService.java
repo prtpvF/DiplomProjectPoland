@@ -1,5 +1,6 @@
 package pl.diplom.admin.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,8 @@ import java.nio.file.StandardCopyOption;
 @Slf4j
 public class ImageService {
 
-        private final String uploadDir = "uploads/";
+        @Value("${path_to_file}")
+        private  String uploadDir;
 
         public String savePhotoLocal(MultipartFile file) {
             try {

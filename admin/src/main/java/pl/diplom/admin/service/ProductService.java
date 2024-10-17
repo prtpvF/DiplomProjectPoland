@@ -105,27 +105,36 @@ public class ProductService {
 
         public HttpStatus updatePizza(Integer pizzaNeedToBeUpdatedId, PizzaDto pizzaDto) {
                 Pizza pizza = getPizzaById(pizzaNeedToBeUpdatedId);
-                List<Ingredient> ingredients = ingredientRepository.findAllById(pizzaDto.getIngredients());
-                pizza.setIngredients(ingredients);
-                for (Ingredient ingredient : ingredients) {
-                        ingredient.getPizza().remove(pizza);
+
+                // Находим все ингредиенты по их ID из pizzaDto
+                List<Ingredient> newIngredients = ingredientRepository.findAllById(pizzaDto.getIngredients());
+
+                // Очищаем существующие ингредиенты и обновляем связи
+                for (Ingredient ingredient : pizza.getIngredients()) {
+                        ingredient.getPizza().remove(pizza); // Удаляем пиццу из старых ингредиентов
                 }
-                ingredientRepository.saveAll(ingredients);
+                pizza.getIngredients().clear(); // Очищаем список ингредиентов у пиццы
+
+                // Устанавливаем новые ингредиенты и обновляем связи
+                for (Ingredient ingredient : newIngredients) {
+                        pizza.getIngredients().add(ingredient); // Добавляем новый ингредиент к пицце
+                        ingredient.getPizza().add(pizza); // Добавляем пиццу к новому ингредиенту
+                }
+
+                // Обновляем другие поля пиццы
                 pizza.setCost(pizzaDto.getCost());
                 pizza.setName(pizzaDto.getName());
+
+                // Проверяем заказы и обновляем путь к изображению
                 if (!pizza.getPersonOrders().isEmpty()) {
                         pizza.setPersonOrders(pizza.getPersonOrders());
                 } else {
                         pizza.setPathToImage(pizza.getPathToImage());
                 }
-                pizza.setIngredients(Collections.emptyList());
-                Pizza pizza1  = pizzaRepository.save(pizza);
-                for (Ingredient ingredient : ingredients) {
-                        ingredient.getPizza().add(pizza1);
-                }
-                pizza1.setIngredients(ingredients);
-                pizzaRepository.save(pizza1);
-                ingredientRepository.saveAll(ingredients);
+
+                // Сохраняем обновленную пиццу и ингредиенты
+                pizzaRepository.save(pizza);
+                ingredientRepository.saveAll(newIngredients);
 
                 return HttpStatus.OK;
         }

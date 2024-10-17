@@ -20,11 +20,11 @@ public class AddressService {
         private final AddressRepository addressRepository;
 
         public Address findOrCreateAddress(String addressName, Person person) {
-            Optional<Address> founded = addressRepository
-                    .findByAddressAndPerson(addressName, person);
-            if (founded.isPresent()) {
-                return founded.get();
-            } else {
+            Optional<Address> foundedd = addressRepository.findAddressByAddress(addressName);
+            if(!foundedd.isPresent()) {
+                return foundedd.get();
+            }
+             else {
                 Address address =  addressRepository.save(new Address(person, addressName));
                 return address;
             }

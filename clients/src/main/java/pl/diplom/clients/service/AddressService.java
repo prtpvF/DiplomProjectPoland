@@ -65,10 +65,11 @@ public class AddressService {
         }
 
         private void isAddressExists(Person person, String address) {
-            Optional<Address> address1 = addressRepository.findByAddressAndPerson(address, person);
-
-            if(address1.isPresent()) {
-                throw new AddressAlreadyExistsException("Address already exists");
+            List<Address> personAddresses = person.getAddresses();
+            for(Address addressModel : personAddresses) {
+                if(addressModel.getAddress().equals(address)) {
+                    throw new AddressAlreadyExistsException("address already exists");
+                }
             }
         }
 
