@@ -30,9 +30,11 @@ public class DrinkController {
          return CREATED;
     }
 
-    @DeleteMapping("/delete/drink/{id}")
+    @DeleteMapping("/drink/{id}")
     public HttpStatus deleteDrink(@PathVariable("id") Integer drinkId) {
         productService.deleteDrink(drinkId);
         return CREATED;
     }
+
+
 }

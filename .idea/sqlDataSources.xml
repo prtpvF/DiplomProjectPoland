@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="3ac51da7-aca3-4002-9cb2-d70c6dcbc3a7" name="diplom@localhost Mapping">
+      <data-sources db="55c319f9-8a0e-4a24-bda4-bb88c12d5554" />
+      <scope>
+        <node kind="database" qname="diplom">
+          <node kind="schema" qname="public" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>
