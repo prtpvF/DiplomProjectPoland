@@ -62,4 +62,10 @@ public class PersonExceptionHandler {
             HttpStatus status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity(e.getMessage(), status);
         }
+
+        @ExceptionHandler(CannotDeleteAddressException.class)
+        public ResponseEntity cannotDeleteAddressExceptionHandler(CannotDeleteAddressException e) {
+            HttpStatus status = HttpStatus.BAD_REQUEST;
+            return new ResponseEntity(e.getMessage(), status);
+        }
 }

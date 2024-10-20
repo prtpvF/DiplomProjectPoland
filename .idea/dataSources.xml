@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/diplom</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="diplom@localhost [2]" uuid="13e3760d-489b-49a0-a262-3499438ad370">
+    <data-source source="LOCAL" name="poland@localhost" uuid="13e3760d-489b-49a0-a262-3499438ad370">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5434/diplom</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/poland</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

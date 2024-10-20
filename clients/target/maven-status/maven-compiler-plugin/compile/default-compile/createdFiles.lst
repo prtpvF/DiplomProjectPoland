@@ -1,5 +1,6 @@
 pl/diplom/clients/exception/AddressAlreadyExistsException.class
 pl/diplom/clients/service/AddressService.class
+pl/diplom/clients/exception/CannotDeleteAddressException.class
 pl/diplom/clients/controller/AddressController.class
 pl/diplom/clients/service/ClientService.class
 pl/diplom/clients/dto/PortionDto.class

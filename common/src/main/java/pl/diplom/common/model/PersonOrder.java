@@ -28,13 +28,13 @@ public class PersonOrder {
         private int id;
 
         @ManyToOne
-        @JoinColumn(name = "person_id", nullable = false)
+        @JoinColumn(name = "person_id")
         private Person person;
 
         private String status;
 
         @ManyToOne(cascade = CascadeType.REFRESH)
-        @JoinColumn(name = "address_id", nullable = false)
+        @JoinColumn(name = "address_id")
         private Address address;
 
         @CreationTimestamp

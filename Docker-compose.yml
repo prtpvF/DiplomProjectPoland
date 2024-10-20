@@ -1,19 +1,22 @@
+version: '3.8'
+
 volumes:
   pg_diplom:
 
 services:
 
   postgres:
+    container_name: postgres
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: mihail
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: poland
     ports:
-      - "5432:5432"
+      - "5434:5432"
 
-  auth_service:
+  authservice:
     container_name: auth
     restart: always
     build:
@@ -26,10 +29,10 @@ services:
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       URI: jdbc:postgresql://postgres:5432/poland
-      USER: postgres
+      USER: mihail
       PASSWORD: postgres
 
-  person_service:
+  personservice:
     container_name: person
     build:
       context: ./clients
@@ -41,10 +44,10 @@ services:
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       URI: jdbc:postgresql://postgres:5432/poland
-      USER: postgres
+      USER: mihail
       PASSWORD: postgres
 
-  public-api_service:
+  publicapiservice:
     container_name: public
     build:
       context: ./public
@@ -56,10 +59,10 @@ services:
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       URI: jdbc:postgresql://postgres:5432/poland
-      USER: postgres
+      USER: mihail
       PASSWORD: postgres
 
-  producer_service:
+  producerservice:
     container_name: producer
     build:
       context: ./producer
@@ -71,10 +74,10 @@ services:
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       URI: jdbc:postgresql://postgres:5432/poland
-      USER: postgres
+      USER: mihail
       PASSWORD: postgres
 
-  admin_service:
+  adminservice:
     container_name: admin
     build:
       context: ./admin
@@ -83,12 +86,14 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
+    volumes:
+      - "C:\\images:/opt/app/images" # C:\\images заменить на путь до папки в своей системе # your computers
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       DB: jdbc:postgresql://postgres:5432/poland  # Используем имя сервиса вместо localhost
-      USER: postgres
+      USER: mihail
       PASSWORD: postgres
-      PATH_TO_IMG: /Users/mihail/Desktop/
+      PATH_TO_IMG:  images/
 
 
   zookeeper:
@@ -96,6 +101,7 @@ services:
     image: wurstmeister/zookeeper:latest
     ports:
       - "2181:2181"
+
   kafka:
     image: wurstmeister/kafka:latest
     ports:
@@ -107,3 +113,21 @@ services:
       KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9092
     depends_on:
       - zookeeper
+
+  react:
+    build:
+      context: ./front 2
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - authservice
+      - personservice
+      - publicapiservice
+      - producerservice
+      - adminservice
+    volumes:
+      - "C:\\images:/app/dist/images" # C:\\images заменить на путь до папки в своей системе (одинаковый с adminservice)
+    environment:
+      - NODE_ENV=production
+    command: ["npm", "run", "preview"]

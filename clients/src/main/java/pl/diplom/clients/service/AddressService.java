@@ -7,9 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pl.diplom.clients.dto.AddressDto;
 import pl.diplom.clients.exception.AddressAlreadyExistsException;
+import pl.diplom.clients.exception.CannotDeleteAddressException;
 import pl.diplom.common.model.Address;
 import pl.diplom.common.model.Person;
+import pl.diplom.common.model.PersonOrder;
+import pl.diplom.common.model.enums.PersonOrderStatusEnum;
 import pl.diplom.common.repository.AddressRepository;
+import pl.diplom.common.repository.PersonOrderRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +29,9 @@ public class AddressService {
 
         private final AddressRepository addressRepository;
         private final PersonService personService;
+    private final PersonOrderRepository personOrderRepository;
 
-        public AddressDto getAddress(String address, Person person) {
+    public AddressDto getAddress(String address, Person person) {
             Optional<Address> founded = addressRepository.findByAddressAndPerson(address, person);
 
             if(founded.isPresent()) {
@@ -48,12 +53,11 @@ public class AddressService {
             return addressDtos;
         }
 
-        public HttpStatus createAddress(String token, AddressDto addressDto) {
+        public HttpStatus createAddress(String token, String address) {
             Person person = personService.getPersonFromToken(token);
-            String address = "";
-            isAddressExists(person, addressDto.getAddress());
-            address = convertAddressToLowerCase(addressDto);
-            Address addressModel = new Address(person, addressDto.getAddress());
+            isAddressExists(person, address);
+            address = convertAddressToLowerCase(address);
+            Address addressModel = new Address(person, address);
             person.addAddress(addressModel);
             addressRepository.save(addressModel);
            return OK;
@@ -61,6 +65,10 @@ public class AddressService {
 
         public HttpStatus deleteAddress(Integer addressId, Person person) {
             isAddressExistsById(addressId);
+            Address address = addressRepository.findById(addressId)
+                    .orElseThrow(() -> new EntityNotFoundException("cannot find order"));
+            isAddressCanBeDeleted(address);
+            deleteRelationBetweenAddresses(address);
             addressRepository.deleteById(addressId);
             return OK;
         }
@@ -74,8 +82,8 @@ public class AddressService {
             }
         }
 
-        private String convertAddressToLowerCase(AddressDto address) {
-            return address.getAddress().toLowerCase();
+        private String convertAddressToLowerCase(String address) {
+            return address.toLowerCase();
         }
 
         private void isAddressExistsById(Integer addressId) {
@@ -89,4 +97,23 @@ public class AddressService {
             addressDto.setId(address.getId());
             return addressDto;
         }
+
+        private void isAddressCanBeDeleted(Address address) {
+            List<PersonOrder> orders = address.getOrders();
+
+            for(PersonOrder order : orders) {
+                if (!order.getStatus().equals(PersonOrderStatusEnum.DELIVERED.name())){
+                    throw new CannotDeleteAddressException("you can't delete address! You have active orders!");
+                }
+            }
+        }
+
+        private void deleteRelationBetweenAddresses(Address address) {
+            List<PersonOrder> orders = address.getOrders();
+            for(PersonOrder order : orders) {
+                order.setAddress(null);
+                personOrderRepository.save(order);
+            }
+        }
 }
+

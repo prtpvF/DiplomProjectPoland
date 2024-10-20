@@ -1,136 +1,26 @@
-2024-10-17T00:16:12.942-07:00  INFO 18039 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 18039 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
-2024-10-17T00:16:12.948-07:00  INFO 18039 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
-2024-10-17T00:16:13.559-07:00  INFO 18039 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-17T00:16:13.618-07:00  INFO 18039 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 11 JPA repository interfaces.
-2024-10-17T00:16:15.062-07:00  INFO 18039 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-10-17T00:16:15.070-07:00  INFO 18039 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-17T00:16:15.071-07:00  INFO 18039 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-10-17T00:16:15.108-07:00  INFO 18039 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-17T00:16:15.108-07:00  INFO 18039 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2114 ms
-2024-10-17T00:16:15.247-07:00  INFO 18039 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-17T00:16:15.289-07:00  INFO 18039 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-10-17T00:16:15.314-07:00  INFO 18039 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-17T00:16:15.564-07:00  INFO 18039 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-17T00:16:15.587-07:00  INFO 18039 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-17T00:16:15.669-07:00  INFO 18039 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@43fd77d8
-2024-10-17T00:16:15.670-07:00  INFO 18039 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-17T00:16:15.694-07:00  WARN 18039 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-10-17T00:16:17.161-07:00  INFO 18039 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-17T00:16:17.407-07:00  INFO 18039 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-17T00:16:17.767-07:00  INFO 18039 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-17T00:16:18.737-07:00  WARN 18039 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-17T00:16:18.824-07:00  WARN 18039 --- [common] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2024-10-17T00:16:18.825-07:00  INFO 18039 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-17T00:16:18.827-07:00  INFO 18039 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-17T00:16:18.830-07:00  INFO 18039 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-10-17T00:16:18.843-07:00  INFO 18039 --- [common] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-10-17T00:16:18.862-07:00 ERROR 18039 --- [common] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
-2024-10-17T00:18:35.987-07:00  INFO 18098 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 18098 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
-2024-10-17T00:18:35.989-07:00  INFO 18098 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
-2024-10-17T00:18:36.490-07:00  INFO 18098 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-17T00:18:36.550-07:00  INFO 18098 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 11 JPA repository interfaces.
-2024-10-17T00:18:37.344-07:00  INFO 18098 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-10-17T00:18:37.355-07:00  INFO 18098 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-17T00:18:37.355-07:00  INFO 18098 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-10-17T00:18:37.398-07:00  INFO 18098 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-17T00:18:37.399-07:00  INFO 18098 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1371 ms
-2024-10-17T00:18:37.570-07:00  INFO 18098 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-17T00:18:37.612-07:00  INFO 18098 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-10-17T00:18:37.637-07:00  INFO 18098 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-17T00:18:37.890-07:00  INFO 18098 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-17T00:18:37.909-07:00  INFO 18098 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-17T00:18:37.992-07:00  INFO 18098 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@55c03e4
-2024-10-17T00:18:37.993-07:00  INFO 18098 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-17T00:18:38.018-07:00  WARN 18098 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-10-17T00:18:38.989-07:00  INFO 18098 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-17T00:18:39.141-07:00  INFO 18098 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-17T00:18:39.406-07:00  INFO 18098 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-17T00:18:40.159-07:00  WARN 18098 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-17T00:18:40.244-07:00  WARN 18098 --- [common] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2024-10-17T00:18:40.245-07:00  INFO 18098 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-17T00:18:40.247-07:00  INFO 18098 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-17T00:18:40.250-07:00  INFO 18098 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-10-17T00:18:40.262-07:00  INFO 18098 --- [common] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-10-17T00:18:40.278-07:00 ERROR 18098 --- [common] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
-2024-10-17T00:19:05.542-07:00  INFO 18124 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 18124 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
-2024-10-17T00:19:05.544-07:00  INFO 18124 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
-2024-10-17T00:19:06.048-07:00  INFO 18124 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-17T00:19:06.108-07:00  INFO 18124 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 11 JPA repository interfaces.
-2024-10-17T00:19:07.615-07:00  INFO 18124 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-10-17T00:19:07.623-07:00  INFO 18124 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-17T00:19:07.624-07:00  INFO 18124 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-10-17T00:19:07.657-07:00  INFO 18124 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-10-17T00:19:07.657-07:00  INFO 18124 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2075 ms
-2024-10-17T00:19:07.785-07:00  INFO 18124 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-17T00:19:07.825-07:00  INFO 18124 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-10-17T00:19:07.851-07:00  INFO 18124 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-10-17T00:19:08.419-07:00  INFO 18124 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-17T00:19:08.448-07:00  INFO 18124 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-10-17T00:19:08.557-07:00  INFO 18124 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26865b57
-2024-10-17T00:19:08.559-07:00  INFO 18124 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-10-17T00:19:08.599-07:00  WARN 18124 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-10-17T00:19:09.552-07:00  INFO 18124 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-17T00:19:09.707-07:00  INFO 18124 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-17T00:19:09.980-07:00  INFO 18124 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-17T00:19:10.759-07:00  WARN 18124 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-17T00:19:10.848-07:00  INFO 18124 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-10-17T00:19:11.064-07:00  INFO 18124 --- [common] [main] pl.diplom.admin.AdminApplication         : Started AdminApplication in 5.941 seconds (process running for 6.485)
-2024-10-17T00:19:21.067-07:00  INFO 18124 --- [common] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-17T00:19:21.068-07:00  INFO 18124 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-10-17T00:19:21.196-07:00  INFO 18124 --- [common] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 128 ms
-2024-10-17T00:19:21.242-07:00  INFO 18124 --- [common] [http-nio-8080-exec-2] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name personDetailsService
-2024-10-17T00:19:21.484-07:00  INFO 18124 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:19:21.598-07:00  INFO 18124 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:19:21.604-07:00  INFO 18124 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:19:21.607-07:00  INFO 18124 --- [common] [http-nio-8080-exec-2] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:19:21.732-07:00  WARN 18124 --- [common] [http-nio-8080-exec-2] PageModule$PlainPageSerializationWarning : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
-	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
-	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
-
-2024-10-17T00:19:55.357-07:00  INFO 18124 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:19:55.362-07:00  INFO 18124 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:19:55.364-07:00  INFO 18124 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:19:55.366-07:00  INFO 18124 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:19:55.379-07:00  INFO 18124 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:19:55.382-07:00  INFO 18124 --- [common] [http-nio-8080-exec-3] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:22:03.775-07:00  INFO 18124 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:22:03.833-07:00  INFO 18124 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:22:03.835-07:00  INFO 18124 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:22:03.838-07:00  INFO 18124 --- [common] [http-nio-8080-exec-6] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:22:22.882-07:00  INFO 18124 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:22:22.893-07:00  INFO 18124 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:22:22.895-07:00  INFO 18124 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : Token is valid for user: user
-2024-10-17T00:22:22.899-07:00  INFO 18124 --- [common] [http-nio-8080-exec-7] pl.diplom.security.filter.JwtFilter      : User authorities: [ROLE_ADMIN]
-2024-10-17T00:41:23.914-07:00  INFO 18124 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-17T00:41:23.949-07:00  INFO 18124 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-10-17T00:41:23.962-07:00  INFO 18124 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-19T15:43:47.479-07:00  INFO 28668 --- [common] [main] pl.diplom.admin.AdminApplication         : Starting AdminApplication using Java 17.0.11 with PID 28668 (/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/target/classes started by mihail in /Users/mihail/Documents/diplom-poland/DiplomProjectPoland)
+2024-10-19T15:43:47.487-07:00  INFO 28668 --- [common] [main] pl.diplom.admin.AdminApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-10-19T15:43:48.303-07:00  INFO 28668 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-19T15:43:48.393-07:00  INFO 28668 --- [common] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75 ms. Found 11 JPA repository interfaces.
+2024-10-19T15:43:49.770-07:00  INFO 28668 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-19T15:43:49.793-07:00  INFO 28668 --- [common] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-19T15:43:49.794-07:00  INFO 28668 --- [common] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-19T15:43:49.854-07:00  INFO 28668 --- [common] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-19T15:43:49.855-07:00  INFO 28668 --- [common] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2305 ms
+2024-10-19T15:43:50.060-07:00  INFO 28668 --- [common] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-19T15:43:50.170-07:00  INFO 28668 --- [common] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-10-19T15:43:50.226-07:00  INFO 28668 --- [common] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-19T15:43:50.738-07:00  INFO 28668 --- [common] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-19T15:43:50.776-07:00  INFO 28668 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-19T15:43:50.989-07:00  INFO 28668 --- [common] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@604f376a
+2024-10-19T15:43:50.991-07:00  INFO 28668 --- [common] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-19T15:43:51.049-07:00  WARN 28668 --- [common] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-19T15:43:52.868-07:00  INFO 28668 --- [common] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-19T15:43:53.105-07:00  INFO 28668 --- [common] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-19T15:43:53.637-07:00  INFO 28668 --- [common] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-19T15:43:54.937-07:00  WARN 28668 --- [common] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-19T15:43:55.114-07:00  INFO 28668 --- [common] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-19T15:43:55.511-07:00  INFO 28668 --- [common] [main] pl.diplom.admin.AdminApplication         : Started AdminApplication in 8.791 seconds (process running for 9.806)
+2024-10-19T15:43:58.576-07:00  INFO 28668 --- [common] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-19T15:43:58.579-07:00  INFO 28668 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-19T15:43:58.583-07:00  INFO 28668 --- [common] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

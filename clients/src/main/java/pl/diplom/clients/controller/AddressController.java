@@ -35,7 +35,7 @@ public class AddressController {
         }
 
         @PostMapping
-        public ResponseEntity createAddress(@RequestBody AddressDto address,
+        public ResponseEntity createAddress(@RequestBody String address,
                                             @RequestHeader("token") String token) {
              addressService.createAddress(token, address);
             return new ResponseEntity(CREATED);

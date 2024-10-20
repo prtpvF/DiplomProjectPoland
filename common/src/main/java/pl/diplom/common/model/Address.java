@@ -26,7 +26,7 @@ public class Address {
 
         private String address;
 
-        @OneToMany(mappedBy = "address")
+        @OneToMany(mappedBy = "address", cascade = CascadeType.REFRESH)
         private List<PersonOrder> orders = new ArrayList<>();
 
         public Address(Person person, String address) {

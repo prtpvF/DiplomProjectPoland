@@ -12,6 +12,7 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/ProductDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/dto/SnackDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/exception/AddressAlreadyExistsException.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/exception/CannotDeleteAddressException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/exception/CannotDeleteOrderException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/exception/DrinkNotFoundException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/clients/src/main/java/pl/diplom/clients/exception/IllegalOrderOwnerException.java
