@@ -10,7 +10,7 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: mihail
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: poland
     ports:
@@ -29,7 +29,7 @@ services:
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       URI: jdbc:postgresql://postgres:5432/poland
-      USER: mihail
+      USER: postgres
       PASSWORD: postgres
 
   personservice:
@@ -44,7 +44,7 @@ services:
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       URI: jdbc:postgresql://postgres:5432/poland
-      USER: mihail
+      USER: postgres
       PASSWORD: postgres
 
   publicapiservice:
@@ -59,7 +59,7 @@ services:
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       URI: jdbc:postgresql://postgres:5432/poland
-      USER: mihail
+      USER: postgres
       PASSWORD: postgres
 
   producerservice:
@@ -74,7 +74,7 @@ services:
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       URI: jdbc:postgresql://postgres:5432/poland
-      USER: mihail
+      USER: postgres
       PASSWORD: postgres
 
   adminservice:
@@ -87,11 +87,11 @@ services:
     depends_on:
       - postgres
     volumes:
-      - "/Desktop" # C:\\images заменить на путь до папки в своей системе # your computers
+      - "C:\\images:/opt/app/images" # C:\\images заменить на путь до папки в своей системе # your computers directory : dockers directory
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       DB: jdbc:postgresql://postgres:5432/poland  # Используем имя сервиса вместо localhost
-      USER: mihail
+      USER: postgres
       PASSWORD: postgres
       PATH_TO_IMG:  images/
 
@@ -127,7 +127,7 @@ services:
       - producerservice
       - adminservice
     volumes:
-      - "/Desktop" # C:\\images заменить на путь до папки в своей системе (одинаковый с adminservice)
+      - "C:\\images:/app/dist/images" # C:\\images заменить на путь до папки в своей системе (одинаковый с adminservice)
     environment:
       - NODE_ENV=production
     command: ["npm", "run", "preview"]
