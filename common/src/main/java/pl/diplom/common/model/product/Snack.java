@@ -26,6 +26,8 @@ public class Snack extends Product {
 
         private String pathToImage;
 
+        private int quantity;
+
         @ManyToMany(mappedBy = "snacks")
         private List<PersonOrder> personOrderList = new ArrayList<>();
 

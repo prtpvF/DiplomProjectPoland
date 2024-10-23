@@ -13,6 +13,8 @@ public class DrinkDto {
 
         private String taste;
 
+        private int quantity;
+
         private Double cost;
 
         private Double volume;

@@ -18,6 +18,7 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/dto/worker/UpdateWorkerDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/exception/IllegalOrderStatusException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/exception/IllegalPersonDataException.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/exception/IllegalQuantityException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/exception/IngredientNotFoundException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/exception/InvalidFileSizeException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/admin/src/main/java/pl/diplom/admin/exception/InvalidFileTypeException.java

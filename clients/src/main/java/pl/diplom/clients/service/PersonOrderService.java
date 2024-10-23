@@ -14,9 +14,15 @@ import pl.diplom.clients.util.ObjectMapper;
 import pl.diplom.common.model.Person;
 import pl.diplom.common.model.PersonOrder;
 import pl.diplom.common.model.enums.PersonOrderStatusEnum;
+import pl.diplom.common.model.product.Drink;
+import pl.diplom.common.model.product.Pizza;
 import pl.diplom.common.model.product.Product;
+import pl.diplom.common.model.product.Snack;
 import pl.diplom.common.repository.AddressRepository;
 import pl.diplom.common.repository.PersonOrderRepository;
+import pl.diplom.common.repository.product.DrinkRepository;
+import pl.diplom.common.repository.product.PizzaRepository;
+import pl.diplom.common.repository.product.SnackRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +40,11 @@ public class PersonOrderService {
         private final AddressRepository addressRepository;
         private final ObjectMapper objectMapper;
         private final AddressService addressService;
+    private final PizzaRepository pizzaRepository;
+    private final SnackRepository snackRepository;
+    private final DrinkRepository drinkRepository;
 
-        public HttpStatus createOrder(PersonOrderDto personOrder,
+    public HttpStatus createOrder(PersonOrderDto personOrder,
                                       Person person) {
             isPersonOrderDataValid(personOrder);
             PersonOrder order = new PersonOrder();
@@ -83,6 +92,12 @@ public class PersonOrderService {
                         .getConvertedDrinkList(personOrder
                                 .getDrinks()));
             }
+
+            for(Integer id : personOrder.getDrinks()) {
+                Drink drink = drinkRepository.findById(id).get();
+                drink.setQuantity(drink.getQuantity()-1);
+                drinkRepository.save(drink);
+            }
         }
 
         private void setPizzaIfNotEmpty(PersonOrderDto personOrder, PersonOrder order) {
@@ -98,6 +113,12 @@ public class PersonOrderService {
                 order.setSnacks(productService
                         .getConvertedSnackList(personOrder
                                 .getSnacks()));
+            }
+
+            for(Integer id : personOrder.getSnacks()) {
+                Snack snack = snackRepository.findById(id).get();
+                snack.setQuantity(snack.getQuantity()-1);
+                snackRepository.save(snack);
             }
         }
 

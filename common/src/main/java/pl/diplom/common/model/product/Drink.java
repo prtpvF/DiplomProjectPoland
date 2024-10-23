@@ -28,6 +28,8 @@ public class Drink extends Product{
 
         private String taste;
 
+        private int quantity;
+
         @ManyToMany(mappedBy = "drinks", cascade = CascadeType.REFRESH)
         private List<PersonOrder> personOrderList = new ArrayList<>();
 

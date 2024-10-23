@@ -59,7 +59,5 @@ public class PersonOrder {
         private List<Snack> snacks = new ArrayList<>();
 
         @NotNull
-        @Min(10)
-        @Max(100000)
         private double cost;
 }

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.diplom.admin.dto.*;
+import pl.diplom.admin.exception.IllegalQuantityException;
 import pl.diplom.common.model.Image;
 import pl.diplom.common.model.Ingredient;
 import pl.diplom.common.model.PersonOrder;
@@ -39,7 +40,6 @@ public class ProductService {
         private final DrinkRepository drinkRepository;
         private final SnackRepository snackRepository;
         private final PersonOrderRepository personOrderRepository;
-        private final IngredientRepository inventoryRepository;
         private final ImageService imageService;
 
         private final ModelMapper modelMapper;
@@ -55,6 +55,7 @@ public class ProductService {
         public HttpStatus createDrink(DrinkDto drinkDto,
                                       MultipartFile file) throws IOException {
                 Drink drink = new Drink();
+                isQuantityValid(drinkDto.getQuantity());
                 modelMapper.map(drinkDto, drink);
                 Image image;
 
@@ -95,6 +96,7 @@ public class ProductService {
         public HttpStatus createSnack(SnackDto snackDto,
                                       MultipartFile file) throws IOException {
                 Snack snack = new Snack();
+                isQuantityValid(snack.getQuantity());
                 modelMapper.map(snackDto, snack);
                 snack.setPersonOrderList(Collections.emptyList());
                 String filePath = imageService.savePhotoLocal(file);
@@ -105,34 +107,27 @@ public class ProductService {
 
         public HttpStatus updatePizza(Integer pizzaNeedToBeUpdatedId, PizzaDto pizzaDto) {
                 Pizza pizza = getPizzaById(pizzaNeedToBeUpdatedId);
-
-                // Находим все ингредиенты по их ID из pizzaDto
                 List<Ingredient> newIngredients = ingredientRepository.findAllById(pizzaDto.getIngredients());
 
-                // Очищаем существующие ингредиенты и обновляем связи
                 for (Ingredient ingredient : pizza.getIngredients()) {
                         ingredient.getPizza().remove(pizza); // Удаляем пиццу из старых ингредиентов
                 }
                 pizza.getIngredients().clear(); // Очищаем список ингредиентов у пиццы
 
-                // Устанавливаем новые ингредиенты и обновляем связи
                 for (Ingredient ingredient : newIngredients) {
                         pizza.getIngredients().add(ingredient); // Добавляем новый ингредиент к пицце
                         ingredient.getPizza().add(pizza); // Добавляем пиццу к новому ингредиенту
                 }
 
-                // Обновляем другие поля пиццы
                 pizza.setCost(pizzaDto.getCost());
                 pizza.setName(pizzaDto.getName());
 
-                // Проверяем заказы и обновляем путь к изображению
                 if (!pizza.getPersonOrders().isEmpty()) {
                         pizza.setPersonOrders(pizza.getPersonOrders());
                 } else {
                         pizza.setPathToImage(pizza.getPathToImage());
                 }
 
-                // Сохраняем обновленную пиццу и ингредиенты
                 pizzaRepository.save(pizza);
                 ingredientRepository.saveAll(newIngredients);
 
@@ -147,11 +142,8 @@ public class ProductService {
                 if(!drinkNeed.getPersonOrderList().isEmpty()) {
                         drinkNeed.setPersonOrderList(drinkNeed.getPersonOrderList());
                 }
-                drinkNeed.setPathToImage(drinkNeed.getPathToImage());
-                drinkNeed.setCost(drinkDto.getCost());
-                drinkNeed.setName(drinkDto.getName());
-                drinkNeed.setTaste(drinkDto.getTaste());
-                drinkNeed.setVolume(drinkDto.getVolume());
+                isQuantityValid(drinkDto.getQuantity());
+                modelMapper.map(drinkDto, drinkNeed);
                 drinkRepository.save(drinkNeed);
                 return OK;
         }
@@ -166,10 +158,8 @@ public class ProductService {
                 if(!snack.getPersonOrderList().isEmpty()) {
                         snack.setPersonOrderList(snack.getPersonOrderList());
                 }
-                snack.setPathToImage(snack.getPathToImage());
-                snack.setCost(snackDto.getCost());
-                snack.setName(snackDto.getName());
-                snack.setWeight(snackDto.getWeight());
+                isQuantityValid(snackDto.getQuantity());
+               modelMapper.map(snackDto, snack);
                 snackRepository.save(snack);
                 return OK;
         }
@@ -266,5 +256,11 @@ public class ProductService {
                 ingredientDto.setCost(ingredient.getCost());
                 ingredientDto.setWeight(ingredient.getWeight());
                 return ingredientDto;
+        }
+
+        private void isQuantityValid(Integer quantity) {
+                if(quantity <= 0 || quantity == null) {
+                        throw new IllegalQuantityException("you can't create a product with 0 quantity");
+                }
         }
 }

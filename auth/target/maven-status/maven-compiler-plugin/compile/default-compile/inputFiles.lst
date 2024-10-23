@@ -6,6 +6,7 @@
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/dto/RegistrationDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/dto/RegistrationMessageDto.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/ApiException.java
+/Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/IllegalAgeException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/IncorrectPasswordException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/PersonAlreadyExistsException.java
 /Users/mihail/Documents/diplom-poland/DiplomProjectPoland/auth/src/main/java/pl/diplom/auth/exception/PersonDoesntExistException.java

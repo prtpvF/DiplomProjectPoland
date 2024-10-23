@@ -18,6 +18,8 @@ public class SnackDto {
 
         private String pathToImage;
 
+        private int quantity;
+
         private String description;
 
         private Double cost;

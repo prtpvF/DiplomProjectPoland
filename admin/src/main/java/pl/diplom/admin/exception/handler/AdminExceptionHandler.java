@@ -59,4 +59,10 @@ public class AdminExceptionHandler {
             HttpStatus status = HttpStatus.NOT_FOUND;
             return new ResponseEntity(ex.getMessage(), status);
         }
+
+        @ExceptionHandler(value = { IllegalQuantityException.class })
+        public ResponseEntity illegalQuantityExceptionHandler(IllegalQuantityException ex) {
+            HttpStatus status = BAD_REQUEST;
+            return new ResponseEntity(ex.getMessage(), status);
+        }
 }

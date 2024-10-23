@@ -20,6 +20,8 @@ public class DrinkDto {
 
         private String taste;
 
+        private int quantity;
+
         private String pathToImage;
 
         private String description;

@@ -14,4 +14,6 @@ public class SnackDto {
         private Double cost;
 
         private Double weight;
+
+        private int quantity;
 }

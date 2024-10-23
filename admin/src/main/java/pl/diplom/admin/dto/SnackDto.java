@@ -24,6 +24,8 @@ public class SnackDto {
 
         private MultipartFile image;
 
+        private int quantity;
+
         @NotNull(message = "cannot be empty")
         private Double cost;
 

@@ -87,7 +87,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - "C:\\images:/opt/app/images" # C:\\images заменить на путь до папки в своей системе # your computers
+      - "/Desktop" # C:\\images заменить на путь до папки в своей системе # your computers
     environment:
       SPRING_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       DB: jdbc:postgresql://postgres:5432/poland  # Используем имя сервиса вместо localhost
@@ -127,7 +127,7 @@ services:
       - producerservice
       - adminservice
     volumes:
-      - "C:\\images:/app/dist/images" # C:\\images заменить на путь до папки в своей системе (одинаковый с adminservice)
+      - "/Desktop" # C:\\images заменить на путь до папки в своей системе (одинаковый с adminservice)
     environment:
       - NODE_ENV=production
     command: ["npm", "run", "preview"]

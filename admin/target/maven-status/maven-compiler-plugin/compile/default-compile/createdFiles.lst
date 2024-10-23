@@ -11,6 +11,7 @@ pl/diplom/admin/AdminApplication.class
 pl/diplom/admin/exception/handler/AdminExceptionHandler.class
 pl/diplom/admin/exception/RecipeNotFoundException.class
 pl/diplom/admin/exception/IllegalPersonDataException.class
+pl/diplom/admin/exception/IllegalQuantityException.class
 pl/diplom/admin/service/ImageService.class
 pl/diplom/admin/dto/worker/RegistrationDto.class
 pl/diplom/admin/dto/PersonDto.class

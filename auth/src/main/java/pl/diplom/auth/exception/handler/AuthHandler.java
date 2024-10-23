@@ -5,10 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import pl.diplom.auth.exception.ApiException;
-import pl.diplom.auth.exception.IncorrectPasswordException;
-import pl.diplom.auth.exception.PersonAlreadyExistsException;
-import pl.diplom.auth.exception.PersonDoesntExistException;
+import pl.diplom.auth.exception.*;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -47,6 +44,12 @@ public class AuthHandler {
 
         @ExceptionHandler(IllegalArgumentException.class)
         public ResponseEntity illegalArgumentExceptionHandler(IllegalArgumentException e){
+            HttpStatus status =  BAD_REQUEST;
+            return new ResponseEntity(e.getMessage(), status);
+        }
+
+        @ExceptionHandler(IllegalAgeException.class)
+        public ResponseEntity illegalAgeExceptionHandler(IllegalAgeException e){
             HttpStatus status =  BAD_REQUEST;
             return new ResponseEntity(e.getMessage(), status);
         }

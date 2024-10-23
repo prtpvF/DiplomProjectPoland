@@ -23,6 +23,8 @@ public class DrinkDto {
 
         private Double volume;
 
+        private Integer quantity;
+
         private MultipartFile image;
 
         private List<Integer> personOrderIds = new ArrayList<>();

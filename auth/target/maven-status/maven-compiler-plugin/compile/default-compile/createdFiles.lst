@@ -2,6 +2,7 @@ pl/diplom/auth/dto/RegistrationDto.class
 pl/diplom/auth/exception/handler/AuthHandler.class
 pl/diplom/auth/exception/PersonAlreadyExistsException.class
 pl/diplom/auth/dto/JwtRequestDto.class
+pl/diplom/auth/exception/IllegalAgeException.class
 pl/diplom/auth/util/MessageTypeEnum.class
 pl/diplom/auth/exception/ApiException.class
 pl/diplom/auth/dto/LoginDto.class
