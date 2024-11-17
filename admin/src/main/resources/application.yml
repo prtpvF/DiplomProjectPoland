@@ -2,9 +2,9 @@ spring:
   application:
     name: admin
   datasource:
-    username: ${USER}
-    password: ${PASSWORD}
-    url: ${DB}
+    username: postgres
+    password: postgres
+    url:  jdbc:postgresql://postgres:5432/poland
   main:
     lazy-initialization: true
   jpa:
@@ -34,4 +34,4 @@ logging:
 server:
   port: 8080
 
-path_to_file: ${PATH_TO_IMG}
+path_to_file: //свойпуть

@@ -2,9 +2,9 @@ spring:
   application:
     name: producer
   datasource:
-    username: ${USER}
-    password: ${PASSWORD}
-    url: ${URI}
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://postgres:5432/poland
   main:
     lazy-initialization: true
   jpa:
